@@ -1,0 +1,1147 @@
+<NetLoggerXML>
+<Header>
+<CreationDateUTC>Fri 02/19/2021 00:37:02</CreationDateUTC>
+<Copyright>The NetLogger System 2021</Copyright>
+<APIVersion>1.0</APIVersion>
+<TimeZone>UTC</TimeZone>
+</Header>
+<CheckinList>
+<ServerName>NETLOGGER</ServerName>
+<NetName>NATA 40m Net</NetName>
+<CheckinCount>63</CheckinCount>
+<Checkin>
+<SerialNo>1</SerialNo>
+<Callsign>KI4YTV</Callsign>
+<State>AL</State>
+<Remarks> </Remarks>
+<QSLInfo>NCS</QSLInfo>
+<CityCountry>New Brockton</CityCountry>
+<FirstName>Ed</FirstName>
+<Status>(nc)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Ed</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>2</SerialNo>
+<Callsign>W2ASD</Callsign>
+<State>NY</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo>QRZ,LOTW DIRECT</QSLInfo>
+<CityCountry>WOODRIDGE</CityCountry>
+<FirstName>Sebastian D Delmont</FirstName>
+<Status> </Status>
+<County>SULLIVAN</County>
+<Grid>FN21rq</Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Sebastian</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>3</SerialNo>
+<Callsign>AD0LV</Callsign>
+<State>CO</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Mosca</CityCountry>
+<FirstName>James S Mccloskey</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>James</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>4</SerialNo>
+<Callsign>N9AVI</Callsign>
+<State>IN</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Indianapolis</CityCountry>
+<FirstName>Michael S Blanton</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Michael</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>5</SerialNo>
+<Callsign>N9AVJ</Callsign>
+<State>IN</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>INDIANAPOLIS</CityCountry>
+<FirstName>Patricia J Blanton</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Patricia</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>6</SerialNo>
+<Callsign>N9KRG</Callsign>
+<State>WI</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Fond Du Lac</CityCountry>
+<FirstName>Jake S Litwin</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Jake</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>7</SerialNo>
+<Callsign>KD8YWF</Callsign>
+<State>WV</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Martinsburg</CityCountry>
+<FirstName>James R Barry</FirstName>
+<Status> </Status>
+<County>Berkeley</County>
+<Grid>FM19ak</Grid>
+<Street>605 Faulkner Ave</Street>
+<Zip>25401</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Rob</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>8</SerialNo>
+<Callsign>K2JZD</Callsign>
+<State>NJ</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Perth Amboy</CityCountry>
+<FirstName>David Morales-leon</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>David</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>9</SerialNo>
+<Callsign>W8DKC</Callsign>
+<State>MI</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Jenison</CityCountry>
+<FirstName>George E Majdak</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>George</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>10</SerialNo>
+<Callsign>N9EAZ</Callsign>
+<State>WI</State>
+<Remarks> </Remarks>
+<QSLInfo>DIR LOTW eQSL</QSLInfo>
+<CityCountry>Deerfield</CityCountry>
+<FirstName>Daniel R Henney</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Daniel</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>11</SerialNo>
+<Callsign>N4KJU</Callsign>
+<State>KY</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>PAINTSVILLE</CityCountry>
+<FirstName>John M Hager</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>John</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>12</SerialNo>
+<Callsign>KE8GML</Callsign>
+<State>OH</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Piqua</CityCountry>
+<FirstName>Steven A Joyce</FirstName>
+<Status>(u)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Steven</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>13</SerialNo>
+<Callsign>KC8ODH</Callsign>
+<State>OH</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Grand River</CityCountry>
+<FirstName>John D Sasu</FirstName>
+<Status>(n/r)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>John</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>14</SerialNo>
+<Callsign>K4PVK</Callsign>
+<State>AL</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>MOBILE</CityCountry>
+<FirstName>Paul V Kieffer</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Paul</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>15</SerialNo>
+<Callsign>KD8NKY</Callsign>
+<State>OH</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Grove City</CityCountry>
+<FirstName>RANDY</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Randall</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>16</SerialNo>
+<Callsign>WA0YMC</Callsign>
+<State>MO</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>SAINT LOUIS</CityCountry>
+<FirstName>Paul W Johnson</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Paul</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>17</SerialNo>
+<Callsign>KC9ZIM</Callsign>
+<State>IN</State>
+<Remarks> </Remarks>
+<QSLInfo>eQSL</QSLInfo>
+<CityCountry>Salem</CityCountry>
+<FirstName>David</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>David</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>18</SerialNo>
+<Callsign>AE4EK</Callsign>
+<State>FL</State>
+<Remarks> </Remarks>
+<QSLInfo>LOTW eQSL QRZ DIR</QSLInfo>
+<CityCountry>The Villages</CityCountry>
+<FirstName>Glenn L Silver NCS-Alternate</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Glenn</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>19</SerialNo>
+<Callsign>W5WHK</Callsign>
+<State>TX</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>TEMPLE</CityCountry>
+<FirstName>William H Komar Jr</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>William</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>20</SerialNo>
+<Callsign>8P4SB</Callsign>
+<State>DX</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>St. George</CityCountry>
+<FirstName>Shanty O Bowen</FirstName>
+<Status>(n/r)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>Barbados</Country>
+<DXCC> </DXCC>
+<PreferredName>Shanty O</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>21</SerialNo>
+<Callsign>WB7RAV</Callsign>
+<State>VA</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Warrenton</CityCountry>
+<FirstName>Randal L Cohen</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Randal</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>22</SerialNo>
+<Callsign>W0YY</Callsign>
+<State>MO</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>SUNRISE BEACH</CityCountry>
+<FirstName>Larry</FirstName>
+<Status>(rel)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Larry</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>23</SerialNo>
+<Callsign>K1DDN</Callsign>
+<State>CO</State>
+<Remarks> </Remarks>
+<QSLInfo>BoD Secy</QSLInfo>
+<CityCountry>CANON CITY</CityCountry>
+<FirstName>Amanda S Alden</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Amanda</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>24</SerialNo>
+<Callsign>K4VL</Callsign>
+<State>TN</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>WOODLAWN</CityCountry>
+<FirstName>Robert D Fest</FirstName>
+<Status>(c/o)</Status>
+<County>Montgomery</County>
+<Grid>EM66fm</Grid>
+<Street>2179 JIM TAYL RD</Street>
+<Zip>37191</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Robert</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>25</SerialNo>
+<Callsign>K7BDG</Callsign>
+<State>WY</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Sheridan</CityCountry>
+<FirstName>Gary C Foster</FirstName>
+<Status>(c/o)</Status>
+<County>Sheridan</County>
+<Grid>DN64mt</Grid>
+<Street>1371 N Gould St PO BOX 82801</Street>
+<Zip>82801</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Gary</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>26</SerialNo>
+<Callsign>KO4ECP</Callsign>
+<State>KY</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Caneyville</CityCountry>
+<FirstName>Gregory M Davenport</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Gregory</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>27</SerialNo>
+<Callsign>KE8HWF</Callsign>
+<State>OH</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Cincinnati</CityCountry>
+<FirstName>John D Hindery</FirstName>
+<Status>(n/r)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>John</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>28</SerialNo>
+<Callsign>KI4FSZ</Callsign>
+<State>FL</State>
+<Remarks> </Remarks>
+<QSLInfo>DIR-eQSL-CCBURO-OMISSBURO-No SASE -100% RETURN</QSLInfo>
+<CityCountry>ST PETERSBURG</CityCountry>
+<FirstName>Jeff</FirstName>
+<Status>(n/r)</Status>
+<County>Pinellas</County>
+<Grid>EL87ps</Grid>
+<Street>PO BOX 530092</Street>
+<Zip>33747-0092</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Jeff</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>29</SerialNo>
+<Callsign>KF7RAZ</Callsign>
+<State>TX</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Mansfield</CityCountry>
+<FirstName>Stephen M Morgan</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Stephen</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>30</SerialNo>
+<Callsign>VE2TLX</Callsign>
+<State> </State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Laval Québec</CityCountry>
+<FirstName>Andre Lapointe</FirstName>
+<Status>(n/r)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>Canada</Country>
+<DXCC> </DXCC>
+<PreferredName>Andre</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>31</SerialNo>
+<Callsign>K4RJT</Callsign>
+<State>NC</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Raleigh</CityCountry>
+<FirstName>Ron Tessite</FirstName>
+<Status> </Status>
+<County>Wake</County>
+<Grid>FM05pw</Grid>
+<Street>6117 Charleycote Dr</Street>
+<Zip>27614</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Ron</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>32</SerialNo>
+<Callsign>N9YBA</Callsign>
+<State>FL</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>MIAMI</CityCountry>
+<FirstName>Steven D Pinkert</FirstName>
+<Status>(n/r)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Steven</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>33</SerialNo>
+<Callsign>W4UDB</Callsign>
+<State>NC</State>
+<Remarks> </Remarks>
+<QSLInfo>eQSL LOTW</QSLInfo>
+<CityCountry>GREEN MOUNTAIN</CityCountry>
+<FirstName>Ronald J Gregoire</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Ronald</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>34</SerialNo>
+<Callsign>N4MCC</Callsign>
+<State>TN</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>FRANKLIN</CityCountry>
+<FirstName>Thomas A Mc Cluskey</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Thomas</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>35</SerialNo>
+<Callsign>N5WGA</Callsign>
+<State>OK</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>VALLIANT</CityCountry>
+<FirstName>Wallace G Ammons</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Wallace</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>36</SerialNo>
+<Callsign>WO4L</Callsign>
+<State>PA</State>
+<Remarks> </Remarks>
+<QSLInfo>LOTW eQSL</QSLInfo>
+<CityCountry>East Berlin</CityCountry>
+<FirstName>Robert J Hess</FirstName>
+<Status>(c/o)</Status>
+<County>Adams</County>
+<Grid>FM19lx</Grid>
+<Street>74 Curtis Drive</Street>
+<Zip>17316</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Robert</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>37</SerialNo>
+<Callsign>KQ4WH</Callsign>
+<State>SC</State>
+<Remarks> </Remarks>
+<QSLInfo>QRZ LOTW eQSL</QSLInfo>
+<CityCountry>SMOAKS</CityCountry>
+<FirstName>David E Sauls Iii</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>David</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>38</SerialNo>
+<Callsign>W1PEF</Callsign>
+<State>NH</State>
+<Remarks> </Remarks>
+<QSLInfo>QRZ,eQSL,LOTW,DIR No SASE</QSLInfo>
+<CityCountry>Amherst</CityCountry>
+<FirstName>Paul</FirstName>
+<Status>(rel)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Paul</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>39</SerialNo>
+<Callsign>VA3YKT</Callsign>
+<State>ON</State>
+<Remarks> </Remarks>
+<QSLInfo>QRZ LOTW</QSLInfo>
+<CityCountry>Newmarket Ontario</CityCountry>
+<FirstName>John Gadoua</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>Canada</Country>
+<DXCC>291</DXCC>
+<PreferredName>John</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>40</SerialNo>
+<Callsign>VE3ZSZ</Callsign>
+<State>ON</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Etobicoke</CityCountry>
+<FirstName>Sam Jones</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>Canada</Country>
+<DXCC>291</DXCC>
+<PreferredName>Sam</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>41</SerialNo>
+<Callsign>KO4BVB</Callsign>
+<State>GA</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Carrollton</CityCountry>
+<FirstName>Tony A Altman</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Bernard</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>42</SerialNo>
+<Callsign>KC5WKL</Callsign>
+<State>TX</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Flint</CityCountry>
+<FirstName>John M Threadgill</FirstName>
+<Status> </Status>
+<County>Smith</County>
+<Grid>EM22ih</Grid>
+<Street>19298 Fawn Creek</Street>
+<Zip>75762</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>John</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>43</SerialNo>
+<Callsign>KE7KE</Callsign>
+<State>ID</State>
+<Remarks> </Remarks>
+<QSLInfo>QRZ, LOTW</QSLInfo>
+<CityCountry>Weiser</CityCountry>
+<FirstName>Ray Taylor</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Ray</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>44</SerialNo>
+<Callsign>KE0PBY</Callsign>
+<State>MO</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Rolla</CityCountry>
+<FirstName>Richard W Altheide</FirstName>
+<Status>(n/r)</Status>
+<County>Phelps</County>
+<Grid>EM47cw</Grid>
+<Street>923 E 7th St</Street>
+<Zip>65401</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Richard</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>45</SerialNo>
+<Callsign>K5UTM</Callsign>
+<State>AR</State>
+<Remarks>QRP</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>FORT SMITH</CityCountry>
+<FirstName>Randy R Cooley</FirstName>
+<Status>(c/o)</Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Randy</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>46</SerialNo>
+<Callsign>KJ2AM</Callsign>
+<State>NY</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Fresh Meadows</CityCountry>
+<FirstName>Jose A Mira Jr</FirstName>
+<Status> </Status>
+<County>Queens</County>
+<Grid>FN30cr</Grid>
+<Street>6705f 186th Ln</Street>
+<Zip>11365</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Jose</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>47</SerialNo>
+<Callsign>NX2E</Callsign>
+<State>NY</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Kendall</CityCountry>
+<FirstName>Jerome A Palermo</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Jerome</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>48</SerialNo>
+<Callsign>WV8RKL</Callsign>
+<State>WV</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>PARKERSBURG</CityCountry>
+<FirstName>Randall Lynch</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Randall</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>49</SerialNo>
+<Callsign>N1SQ</Callsign>
+<State>NC</State>
+<Remarks> </Remarks>
+<QSLInfo>eQSL LOTW</QSLInfo>
+<CityCountry>CARY</CityCountry>
+<FirstName>Peter M Alexer</FirstName>
+<Status> </Status>
+<County>Wake</County>
+<Grid>FM05nt</Grid>
+<Street>CARPENTER TOWN LN</Street>
+<Zip>27519</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Peter</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>50</SerialNo>
+<Callsign>KJ4FFA</Callsign>
+<State>NC</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Youngsville</CityCountry>
+<FirstName>Anton E Edwards</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Anton</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>51</SerialNo>
+<Callsign>K2WAS</Callsign>
+<State>NY</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Rochester</CityCountry>
+<FirstName>Mark N Hodur</FirstName>
+<Status> </Status>
+<County>Monroe</County>
+<Grid>FN13dd</Grid>
+<Street>150 gilbert</Street>
+<Zip>14206</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Mark</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>52</SerialNo>
+<Callsign>NJ2US</Callsign>
+<State>NJ</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Woodbine</CityCountry>
+<FirstName>Jeffrey</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Jeffrey</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>53</SerialNo>
+<Callsign>AC7DW</Callsign>
+<State>WY</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>CASPER</CityCountry>
+<FirstName>William C Doll</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>William</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>54</SerialNo>
+<Callsign>KB9MEJ</Callsign>
+<State>TX</State>
+<Remarks> </Remarks>
+<QSLInfo>7735 Dashwood</QSLInfo>
+<CityCountry>San Antonio</CityCountry>
+<FirstName>Lucas M Marsh Sr</FirstName>
+<Status> </Status>
+<County>Bexar</County>
+<Grid>EN53ss</Grid>
+<Street>210 Goldsbo Rd</Street>
+<Zip>21668-1306</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Lucas</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>55</SerialNo>
+<Callsign>WB3CGH</Callsign>
+<State>MI</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Houghton Lake</CityCountry>
+<FirstName>Michael</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Michael</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>56</SerialNo>
+<Callsign>W9TLV</Callsign>
+<State>IL</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Streat</CityCountry>
+<FirstName>Thomas L Vagasky</FirstName>
+<Status> </Status>
+<County>La Salle</County>
+<Grid>EN51od</Grid>
+<Street>607 Fuller Ave</Street>
+<Zip>61364</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Thomas</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>57</SerialNo>
+<Callsign>W1FPW</Callsign>
+<State>MA</State>
+<Remarks> </Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>Stoughton</CityCountry>
+<FirstName>Frederick P Williams Iii</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Frederick</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>58</SerialNo>
+<Callsign>N9FB</Callsign>
+<State>IN</State>
+<Remarks> </Remarks>
+<QSLInfo>LOTW Pref</QSLInfo>
+<CityCountry>WHITESTOWN</CityCountry>
+<FirstName>Robert W Johnston</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Rob</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>59</SerialNo>
+<Callsign>N2VSD</Callsign>
+<State>NY</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>BLOOMINGBURG</CityCountry>
+<FirstName>William R Costello</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>William</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>60</SerialNo>
+<Callsign>AK7RO</Callsign>
+<State>ID</State>
+<Remarks>(no club info)</Remarks>
+<QSLInfo> </QSLInfo>
+<CityCountry>BOISE</CityCountry>
+<FirstName>Roger T Ogami</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC> </DXCC>
+<PreferredName>Roger</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>61</SerialNo>
+<Callsign>W8DDS</Callsign>
+<State>VA</State>
+<Remarks> </Remarks>
+<QSLInfo>eQSL DIR</QSLInfo>
+<CityCountry>Centreville</CityCountry>
+<FirstName>David W Lucht</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>David</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>62</SerialNo>
+<Callsign>AC3LZ</Callsign>
+<State>DE</State>
+<Remarks> </Remarks>
+<QSLInfo>DIR QRZ LOTW HRDLOG CLUBLOG eQSL</QSLInfo>
+<CityCountry>Magnolia</CityCountry>
+<FirstName>Fred Tollin</FirstName>
+<Status> </Status>
+<County> </County>
+<Grid> </Grid>
+<Street> </Street>
+<Zip> </Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Fred</PreferredName>
+</Checkin>
+<Checkin>
+<SerialNo>63</SerialNo>
+<Callsign>W5RSE</Callsign>
+<State>OK</State>
+<Remarks> </Remarks>
+<QSLInfo>DIR</QSLInfo>
+<CityCountry>Holdenville</CityCountry>
+<FirstName>Russell S Epperley</FirstName>
+<Status> </Status>
+<County>Hughes</County>
+<Grid>EM15sb</Grid>
+<Street>3379 SPAULDING RD</Street>
+<Zip>74848</Zip>
+<MemberID> </MemberID>
+<Country>United States</Country>
+<DXCC>291</DXCC>
+<PreferredName>Russell</PreferredName>
+</Checkin>
+</CheckinList>
+</NetLoggerXML>

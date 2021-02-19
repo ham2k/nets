@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 
 import Nets from './components/Nets'
+import NetsLoader from './components/NetsLoader'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       </header>
 
       <Nets />
+      <NetsLoader />
     </div>
   )
 }
