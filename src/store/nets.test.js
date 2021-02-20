@@ -15,7 +15,7 @@ describe('Get Active Nets', () => {
 
   beforeEach(() => {
     fetch.resetMocks()
-    fetch.mockIf('http://www.netlogger.org/api/GetActiveNets.php', activeNetsXml)
+    fetch.mockIf('/cors-proxy/http://www.netlogger.org/api/GetActiveNets.php', activeNetsXml)
     MockDate.set(now)
   })
 
@@ -47,9 +47,9 @@ describe('Get Active Nets', () => {
         loading: false,
         error: undefined,
         copyright: 'The NetLogger System 2021',
-        generatedOn: 'Thu 02/18/2021 23:35:32',
+        generatedOn: '2021-02-18T23:35:32.000Z',
         timezone: 'UTC',
-        retrievedOn: now,
+        retrievedOn: now.toISOString(),
       })
     })
   })

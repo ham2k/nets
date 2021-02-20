@@ -40,7 +40,7 @@ export const { setNetsList, setNetsMetadata } = netsSlice.actions
 export const getNetsFromNetlogger = () => (dispatch) => {
   dispatch(setNetsMetadata({ loading: true, error: undefined }))
 
-  return fetch('http://www.netlogger.org/api/GetActiveNets.php')
+  return fetch('/cors-proxy/http://www.netlogger.org/api/GetActiveNets.php')
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -55,8 +55,10 @@ export const getNetsFromNetlogger = () => (dispatch) => {
       const xml = new window.DOMParser().parseFromString(bodyText, 'text/xml')
       meta.generatedOn = xml.getElementsByTagName('CreationDateUTC')[0]?.textContent
       meta.timezone = xml.getElementsByTagName('TimeZone')[0]?.textContent
+      console.log(meta.generatedOn, meta.timezone, `${meta.generatedOn} ${meta.timezone}`)
+      // meta.generatedOn = new Date(Date.parse(`${meta.generatedOn} ${meta.timezone}`)).toISOString()
       meta.copyright = xml.getElementsByTagName('Copyright')[0]?.textContent
-      meta.retrievedOn = new Date()
+      meta.retrievedOn = new Date().toISOString()
 
       const xmlServers = xml.getElementsByTagName('Server')
       Array.prototype.slice.call(xmlServers).forEach((xmlServer) => {
