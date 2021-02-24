@@ -4,7 +4,8 @@ export const netsSlice = createSlice({
   name: 'nets',
 
   initialState: {
-    nets: [],
+    netNames: [],
+    nets: {},
     meta: {},
   },
 
@@ -19,7 +20,9 @@ export const netsSlice = createSlice({
     },
 
     setNetsList: (state, { payload: { nets } }) => {
-      state.nets = nets
+      state.netNames = nets.map((net) => net.name)
+      state.nets = {}
+      nets.forEach((net) => (state.nets[net.name] = net))
     },
   },
 })
@@ -54,9 +57,12 @@ export const getNetsFromNetlogger = () => (dispatch) => {
 
       const xml = new window.DOMParser().parseFromString(bodyText, 'text/xml')
       meta.generatedOn = xml.getElementsByTagName('CreationDateUTC')[0]?.textContent
+      if (!meta.generatedOn) {
+        dispatch(setNetsMetadata({ loading: false, error: 'Unexpected contents' }))
+      }
+
       meta.timezone = xml.getElementsByTagName('TimeZone')[0]?.textContent
-      console.log(meta.generatedOn, meta.timezone, `${meta.generatedOn} ${meta.timezone}`)
-      // meta.generatedOn = new Date(Date.parse(`${meta.generatedOn} ${meta.timezone}`)).toISOString()
+      meta.generatedOn = new Date(Date.parse(`${meta.generatedOn} ${meta.timezone}`)).toISOString()
       meta.copyright = xml.getElementsByTagName('Copyright')[0]?.textContent
       meta.retrievedOn = new Date().toISOString()
 

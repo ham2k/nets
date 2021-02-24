@@ -1,0 +1,26 @@
+ul.NetSelection {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border-color);
+}
+
+.NetSelection li {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding: var(--spacing-100);
+  cursor: pointer;
+}
+
+.NetSelection li.selected {
+  font-weight: bold;
+  background-color: var(--content-background-color);
+  position: relative;
+  left: 1px;
+  border-left: 1px solid var(--content-background-color);
+}
+
+.NetSelection li .secondary {
+  font-size: 70%;
+}
