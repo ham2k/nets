@@ -1,0 +1,23 @@
+.CheckinsTable {
+  width: 100%;
+}
+
+.CheckinsTable td,
+.CheckinsTable th {
+  padding-left: var(--spacing-100);
+  padding-right: var(--spacing-100);
+}
+
+.CheckinsTable td,
+.CheckinsTable th {
+  text-align: left;
+}
+
+.CheckinsTable td.number,
+.CheckinsTable th.number {
+  text-align: right;
+}
+
+.CheckinsTable th.serial-field {
+  width: 2em;
+}

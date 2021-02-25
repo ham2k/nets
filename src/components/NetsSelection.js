@@ -1,7 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { selectNets } from '../store/nets'
 
 import './NetSelection.css'
 
+/* ================================================================================================================== */
 function sortNets(nets) {
   const netArray = Object.keys(nets).map((name) => nets[name])
   return netArray.sort((a, b) => {
@@ -11,7 +15,9 @@ function sortNets(nets) {
   })
 }
 
-export default function NetsSelection({ nets, selected, onSelect }) {
+/* ================================================================================================================== */
+export default function NetsSelection({ selected, onSelect }) {
+  const nets = useSelector(selectNets)
   const sortedNets = sortNets(nets)
 
   return (
@@ -24,8 +30,6 @@ export default function NetsSelection({ nets, selected, onSelect }) {
         >
           {net.name}
           <div className="secondary">
-            <span className="pill">{net.subscriberCount}</span>
-            {' • '}
             {net.band}
             {' • '}
             {net.frequency} MHz {net.mode}
