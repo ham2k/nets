@@ -1,0 +1,24 @@
+
+# ServerList Version 2
+#
+# This is the current list of NetLogger servers. The server name and
+# whether or not the server is public or for development only, is configured
+# on the server.
+#
+# WARNING: There should be no need to edit this file locally, but if you
+#          do, NetLogger will reject it due to a checksum mismatch. Replace
+#          the value for the FileCheckSum variable with "override". This will
+#          override file corruption protection. Note that the checksum is an
+#          MD5 checksum, but only of non comment lines, with leading and
+#          trailing white space removed (including CR's and NL's at the end
+#          of each line). Also the line containing the FileCheckSum variable
+#          is not used in the checksum computation. You could regenerate the
+#          checksum, but it can be a little complicated.
+
+[Variables]
+FileCheckSum=4aa36c1c452ddd5808736a658efd8e27
+
+[ServerList]
+www.netlogger.org  | 80
+www.netlogger1.org | 80
+www.netlogger2.org | 80

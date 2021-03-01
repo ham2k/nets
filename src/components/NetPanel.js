@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { selectNet, selectNetCheckins } from '../store/nets'
+import { selectNet, selectNetCheckins } from '../data/netlogger'
 import CheckinsLoader from './CheckinsLoader'
 import CheckinsTable from './CheckinsTable'
 
@@ -10,26 +10,25 @@ import './NetPanel.css'
 /* ================================================================================================================== */
 export default function NetPanel({ selected }) {
   const net = useSelector(selectNet(selected))
-  const checkins = useSelector(selectNetCheckins(selected))
 
-  if (net && net.name) {
+  if (net && net.NetName) {
     return (
       <div className="NetPanel">
-        <h2>{net.name}</h2>
+        <h2>{net.NetName}</h2>
 
         <div className="secondary">
-          {net.band} • {net.frequency} MHz {net.mode}
+          {net.Band} • {net.Frequency} MHz {net.Mode}
         </div>
 
         <div>
-          Net Control: <span className="callsign">{net.netControl}</span>
+          Net Control: <span className="callsign">{net.NetControl}</span>
           {' • '}
-          <span>{net.subscriberCount} subscribers</span>
+          <span>{net.SubscriberCount} subscribers</span>
           {' • '}
-          <span>Started {net.date}</span>
+          <span>Started {net.Date}</span>
         </div>
 
-        <CheckinsTable net={net} checkins={checkins} />
+        <CheckinsTable net={net} checkins={net.checkins} />
 
         <CheckinsLoader net={net} />
       </div>

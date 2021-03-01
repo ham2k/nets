@@ -1,17 +1,16 @@
 import React from 'react'
 import { render, act } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import fs from 'fs'
 
-import store from './store'
+import store from './data/store'
 import App from './App'
 
-const activeNetsXml = fs.readFileSync('src/store/samples/ActiveNets.xml', 'ascii')
+import setupNetloggerSamples from './data/netlogger/samples'
 
 describe('App', () => {
   beforeEach(() => {
     fetch.resetMocks()
-    fetch.mockIf('/cors-proxy/http://www.netlogger.org/api/GetActiveNets.php', activeNetsXml)
+    setupNetloggerSamples()
   })
 
   afterEach(() => {})
@@ -28,6 +27,6 @@ describe('App', () => {
 
     expect(app.getByText(/Ham2k/i)).toBeInTheDocument()
 
-    expect(app.getByText(/NATA 40m Net/i)).toBeInTheDocument()
+    expect(app.getByText(/ARTS W4CN weekly 2m SSB net/i)).toBeInTheDocument()
   })
 })

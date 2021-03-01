@@ -1,16 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { selectNets } from '../store/nets'
+import { selectNets } from '../data/netlogger'
 
-import './NetSelection.css'
+import './NetsSelection.css'
 
 /* ================================================================================================================== */
 function sortNets(nets) {
-  const netArray = Object.keys(nets).map((name) => nets[name])
+  const netArray = Object.keys(nets || {}).map((name) => nets[name])
   return netArray.sort((a, b) => {
-    if (a.name < b.name) return -1
-    if (a.name > b.name) return 1
+    if (a.NetName < b.NetName) return -1
+    if (a.NetName > b.NetName) return 1
     return 0
   })
 }
@@ -24,15 +24,15 @@ export default function NetsSelection({ selected, onSelect }) {
     <ul className="NetSelection">
       {sortedNets.map((net) => (
         <li
-          key={net.name}
-          onClick={() => onSelect && onSelect(net.name)}
-          className={selected === net.name ? 'selected' : ''}
+          key={net.NetName}
+          onClick={() => onSelect && onSelect(net.NetName)}
+          className={selected === net.NetName ? 'selected' : ''}
         >
-          {net.name}
+          {net.NetName}
           <div className="secondary">
-            {net.band}
+            {net.Band}
             {' • '}
-            {net.frequency} MHz {net.mode}
+            {net.Frequency} MHz {net.Mode}
           </div>
         </li>
       ))}

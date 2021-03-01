@@ -5,16 +5,16 @@ import './CheckinsTable.css'
 
 /* ================================================================================================================== */
 const TITLES = {
-  serial: '#',
-  callsign: 'Call',
-  name: 'Name',
-  country: 'Country',
-  city: 'City',
-  state: 'State',
-  county: 'County',
-  qslInfo: 'QSL Info',
-  remarks: 'Remarks',
-  status: 'Status',
+  SerialNo: '#',
+  Callsign: 'Call',
+  Mame: 'Name',
+  Country: 'Country',
+  City: 'City',
+  State: 'State',
+  County: 'County',
+  QSLInfo: 'QSL Info',
+  Remarks: 'Remarks',
+  Status: 'Status',
 }
 
 const STYLES = {
@@ -35,7 +35,7 @@ const DATA_COMPONENTS = {
 
 /* ================================================================================================================== */
 export default function CheckinsTable({ net, checkins }) {
-  const fields = ['serial', 'callsign', 'status', 'name', 'country', 'city', 'state', 'county', 'remarks', 'qslInfo']
+  const fields = ['SerialNo', 'Callsign', 'Status', 'Name', 'Country', 'City', 'State', 'County', 'Remarks', 'QSLInfo']
 
   return (
     <table className="CheckinsTable">
