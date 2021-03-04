@@ -1,11 +1,14 @@
 .CheckinsTable {
   width: 100%;
+  border-spacing: 0;
 }
 
 .CheckinsTable td,
 .CheckinsTable th {
   padding-left: var(--spacing-100);
   padding-right: var(--spacing-100);
+  padding-top: var(--spacing-50);
+  padding-bottom: var(--spacing-50);
 }
 
 .CheckinsTable td,
@@ -20,4 +23,24 @@
 
 .CheckinsTable th.serial-field {
   width: 2em;
+}
+
+.CheckinsTable tr.ci_operating {
+  background-color: #f9f;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+.CheckinsTable tr.ci_unavailable {
+  opacity: 0.2;
+}
+
+.CheckinsTable tr.ci_netcontrol {
+  color: #60f;
+  font-weight: bold;
+}
+
+.CheckinsTable tr.ci_relay {
+  color: #c70;
+  font-weight: bold;
 }

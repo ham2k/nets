@@ -10,6 +10,7 @@ import './NetPanel.css'
 /* ================================================================================================================== */
 export default function NetPanel({ selected }) {
   const net = useSelector(selectNet(selected))
+  const checkins = useSelector(selectNetCheckins(selected))
 
   if (net && net.NetName) {
     return (
@@ -28,7 +29,7 @@ export default function NetPanel({ selected }) {
           <span>Started {net.Date}</span>
         </div>
 
-        <CheckinsTable net={net} checkins={net.checkins} />
+        <CheckinsTable net={net} checkins={checkins} />
 
         <CheckinsLoader net={net} />
       </div>

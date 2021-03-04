@@ -12,14 +12,15 @@ const TITLES = {
   City: 'City',
   State: 'State',
   County: 'County',
+  MemberID: 'Member',
   QSLInfo: 'QSL Info',
   Remarks: 'Remarks',
   Status: 'Status',
 }
 
 const STYLES = {
-  serial: 'number',
-  callsign: 'callsign',
+  SerialNo: 'number',
+  Callsign: 'callsign',
 }
 
 const HEADER_COMPONENTS = {
@@ -34,8 +35,33 @@ const DATA_COMPONENTS = {
 }
 
 /* ================================================================================================================== */
+const classNamesFor = (checkin, net) => {
+  const classes = []
+  if (checkin.operating) classes.push('ci_operating')
+  if (checkin.statuses['(c/o)']) classes.push('ci_unavailable')
+  if (checkin.statuses['(n/r)']) classes.push('ci_unavailable')
+
+  if (checkin.statuses['(nc)']) classes.push('ci_netcontrol')
+  if (checkin.statuses['(rel)']) classes.push('ci_relay')
+
+  return classes
+}
+
+/* ================================================================================================================== */
 export default function CheckinsTable({ net, checkins }) {
-  const fields = ['SerialNo', 'Callsign', 'Status', 'Name', 'Country', 'City', 'State', 'County', 'Remarks', 'QSLInfo']
+  const fields = [
+    'SerialNo',
+    'Callsign',
+    'Status',
+    'Name',
+    'Country',
+    'City',
+    'State',
+    'County',
+    'MemberID',
+    'Remarks',
+    'QSLInfo',
+  ]
 
   return (
     <table className="CheckinsTable">
@@ -50,7 +76,7 @@ export default function CheckinsTable({ net, checkins }) {
       <tbody>
         {checkins &&
           checkins.map((checkin, row) => (
-            <tr key={checkin.serial}>
+            <tr key={checkin.SerialNo} className={classNames(...classNamesFor(checkin, net))}>
               {fields.map((field, col) => {
                 const DataComponent = DATA_COMPONENTS[field] || DATA_COMPONENTS.default
                 return (
@@ -60,7 +86,7 @@ export default function CheckinsTable({ net, checkins }) {
                     row={row}
                     col={col}
                     net={net}
-                    key={`${checkin.serial}-${field}`}
+                    key={`${checkin.SerialNo}-${field}`}
                   />
                 )
               })}

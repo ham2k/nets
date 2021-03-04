@@ -1,25 +1,23 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { selectNetsMetadata, getNetSubscription } from '../data/netlogger'
+import { refreshNetData } from '../data/netlogger'
 
 import './CheckinsLoader.css'
 
-const RELOAD_INTERVAL = 120
+const RELOAD_INTERVAL = 15
 
 /* ================================================================================================================== */
 export default function CheckinsLoader({ net, operator }) {
-  const meta = { loading: false } //useSelector(selectNetsMetadata)
-
   const dispatch = useDispatch()
 
   useEffect(() => {
     console.log(`Loading checkins for ${net.NetName}`)
-    dispatch(getNetSubscription(net.NetName))
+    dispatch(refreshNetData(net.NetName))
 
     const interval = window.setInterval(() => {
       console.log(`Reloading checkins for ${net.NetName}`)
-      dispatch(getNetSubscription(net.NetName))
+      dispatch(refreshNetData(net.NetName))
     }, RELOAD_INTERVAL * 1000)
 
     return () => {
@@ -30,10 +28,10 @@ export default function CheckinsLoader({ net, operator }) {
   return (
     <div className="CheckinsLoader">
       <div>
-        {meta.loading ? (
+        {net.isLoading ? (
           <button disabled={true}>Loading…</button>
         ) : (
-          <button onClick={() => dispatch(getNetSubscription(net.NetName))}>Refresh</button>
+          <button onClick={() => dispatch(refreshNetData(net.NetName))}>Refresh</button>
         )}
       </div>
     </div>

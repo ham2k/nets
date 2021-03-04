@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { selectNetsMetadata, getInitialData, refreshNets } from '../data/netlogger'
+import { selectMeta, getInitialData, refreshNets } from '../data/netlogger'
 
 import './NetsLoader.css'
 
@@ -9,7 +9,7 @@ const RELOAD_INTERVAL = 120
 
 /* ================================================================================================================== */
 export default function NetsLoader() {
-  const meta = { loading: false } //useSelector(selectNetsMetadata)
+  const meta = useSelector(selectMeta)
 
   const dispatch = useDispatch()
 
@@ -30,7 +30,7 @@ export default function NetsLoader() {
   return (
     <div className="NetsLoader">
       <div>
-        {meta.loading ? (
+        {meta.isLoading ? (
           <button disabled={true}>Loading…</button>
         ) : (
           <button onClick={() => dispatch(refreshNets())}>Refresh</button>

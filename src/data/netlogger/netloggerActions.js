@@ -1,4 +1,4 @@
-import { setServerList, setServerInfo, addNets, addNetData, setMetadata } from './netloggerSlice'
+import { setMeta, setServerList, setServerInfo, addNets, setNetParts } from './netloggerSlice'
 
 const SERVER_LIST_URL = 'http://www.netlogger.org/downloads/ServerList.txt'
 const NETLOGGER_PROTOCOL_VERSION = '2.3'
@@ -7,6 +7,7 @@ const NETLOGGER_APP_VERSION = 'v3.1.7x'
 /* ================================================================================================================== */
 export const getInitialData = () => (dispatch) => {
   const url = new URL(SERVER_LIST_URL)
+  dispatch(setMeta({ errors: [] }))
 
   return fetch(`/cors-proxy/${url}`)
     .then((response) => {
@@ -148,6 +149,8 @@ export const getNetSubscription = (netName) => (dispatch, getState) => {
   const net = getState()?.netlogger?.nets?.[netName]
   if (!net) return
 
+  dispatch(setNetParts({ NetName: netName, data: { isLoading: true } }))
+
   const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/SubscribeToNet.php`)
   url.searchParams.append('ProtocolVersion', NETLOGGER_PROTOCOL_VERSION)
   url.searchParams.append('NetName', netName)
@@ -166,18 +169,67 @@ export const getNetSubscription = (netName) => (dispatch, getState) => {
       }
     })
     .then((bodyText) => {
-      const netData = parseNetDatastream(bodyText, net)
-      dispatch(addNetData({ NetName: netName, ...netData }))
+      const { data, checkins, ims, monitors, exts } = parseNetDatastream(bodyText, net)
+      data.isLoading = false
+      dispatch(setNetParts({ NetName: netName, data, checkins, ims, monitors, exts }))
     })
 }
 
 /* ================================================================================================================== */
+export const refreshNetData = (netName) => (dispatch, getState) => {
+  const net = getState()?.netlogger?.nets?.[netName]
+  if (!net) return
+
+  dispatch(setNetParts({ NetName: netName, data: { isLoading: true } }))
+
+  const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/GetUpdates3.php`)
+  url.searchParams.append('ProtocolVersion', NETLOGGER_PROTOCOL_VERSION)
+  url.searchParams.append('NetName', netName)
+  url.searchParams.append('IMSerial', 0)
+  url.searchParams.append('LastExtDataSerial', 0)
+
+  return fetch(`/cors-proxy/${url}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.text()
+      } else {
+        throw new TypeError('Bad response')
+      }
+    })
+    .then((bodyText) => {
+      const { data, checkins, ims, monitors, exts } = parseNetDatastream(bodyText, net)
+      data.isLoading = false
+      dispatch(setNetParts({ NetName: netName, data, checkins, ims, monitors, exts }))
+    })
+}
+/* ================================================================================================================== */
 function parseNetDatastream(bodyText, net) {
+  const data = parseNetData(bodyText)
   const checkins = parseNetCheckins(bodyText)
-  const monitors = parseNetMonitors(bodyText)
   const ims = parseNetIMs(bodyText)
-  const newNetInfo = parseNetInfo(bodyText)
-  return { checkins, monitors, ims, ...newNetInfo }
+  const monitors = parseNetMonitors(bodyText)
+  const exts = parseNetExts(bodyText)
+  return { data, checkins, ims, monitors, exts }
+}
+
+function parseNetData(bodyText) {
+  // eslint-disable-next-line no-unused-vars
+  const [preamble, data, postamble] = bodyText.split(/<!--\s*Net Info (?:Start|End)\s*-->/)
+  const net = {}
+  if (data) {
+    const pairs = data.split('|')
+
+    pairs.forEach((row) => {
+      if (row) {
+        const [name, ...values] = row.split('=')
+        if (name) {
+          net[name] = values.join('=')
+        }
+      }
+    })
+  }
+
+  return net
 }
 
 const CHECKIN_LIST_FIELDS = [
@@ -219,6 +271,10 @@ function parseNetCheckins(bodyText) {
           CHECKIN_LIST_FIELDS.forEach((field) => {
             checkin[field] = parts.shift()
           })
+
+          checkin.statuses = {}
+          checkin.Status.split(',').forEach((status) => (checkin.statuses[status] = true))
+
           checkins.push(checkin)
         }
       }
@@ -284,22 +340,27 @@ function parseNetIMs(bodyText) {
   return ims
 }
 
-function parseNetInfo(bodyText) {
+function parseNetExts(bodyText) {
   // eslint-disable-next-line no-unused-vars
-  const [preamble, data, postamble] = bodyText.split(/<!--\s*Net Info (?:Start|End)\s*-->/)
-  const net = {}
+  const [preamble, data, postamble] = bodyText.split(/<!--\s*Ext Data (?:Start|End)\s*-->/)
+  const exts = []
   if (data) {
-    const pairs = data.split('|')
-
-    pairs.forEach((row) => {
+    const rows = data.split(/[\n\r]+/)
+    rows.forEach((row) => {
       if (row) {
-        const [name, ...values] = row.split('=')
-        if (name) {
-          net[name] = values.join('=')
+        const parts = row.split('|')
+        const ext = {
+          Timestamp: parts[0],
+          Unknown1: parts[1],
+          Name: parts[2],
+          Unknown2: parts[3],
+          Unknown3: parts[4],
+          ID: parts[5],
         }
+        exts.push(ext)
       }
     })
   }
 
-  return net
+  return exts
 }
