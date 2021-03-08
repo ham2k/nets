@@ -53,7 +53,7 @@ describe('NetLogger API Calls', () => {
             })
 
             action = actions.shift()
-            expect(action.type).toBe('netlogger/netMeta')
+            expect(action.type).toBe('netlogger/setMeta')
             expect(action.payload.lastUpdated).toBeTruthy()
 
             action = actions.shift()
@@ -67,6 +67,10 @@ describe('NetLogger API Calls', () => {
             })
 
             action = actions.shift()
+            expect(action.type).toBe('netlogger/setMeta')
+            expect(action.payload.lastUpdated).toBeTruthy()
+
+            action = actions.shift()
             expect(action.type).toBe('netlogger/setServerInfo')
             expect(action.payload).toMatchObject({
               ServerHost: 'http://www.netlogger2.org:80',
@@ -75,6 +79,10 @@ describe('NetLogger API Calls', () => {
               DefaultAIMInterval: '20000',
               ServerListURL: 'http://www.netlogger.org/downloads/ServerList.txt',
             })
+
+            action = actions.shift()
+            expect(action.type).toBe('netlogger/setMeta')
+            expect(action.payload.lastUpdated).toBeTruthy()
 
             action = actions.shift()
             expect(action.type).toBe('netlogger/addNets')

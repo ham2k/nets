@@ -1,13 +1,20 @@
 .Header {
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+  padding-top: var(--spacing-50);
+  padding-bottom: var(--spacing-50);
+
   grid-area: header;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .Header h1 {
   font-weight: normal;
+  margin: 0;
+  padding: 0;
 }
 
 .Header h1 strong {

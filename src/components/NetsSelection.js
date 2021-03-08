@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { selectNets } from '../data/netlogger'
 
@@ -20,11 +20,21 @@ function sortNets(nets) {
 export default function NetsSelection({ selected }) {
   const nets = useSelector(selectNets)
   const sortedNets = sortNets(nets)
+  const history = useHistory()
 
   return (
     <ul className="NetSelection">
       {sortedNets.map((net) => (
-        <li key={net.NetName} className={selected === net.NetName ? 'selected' : ''}>
+        <li
+          key={net.NetName}
+          className={selected === net.NetName ? 'selected' : ''}
+          onClick={(ev) => {
+            if (ev.defaultPrevented) return
+            ev.preventDefault()
+
+            history.push(`/${net.NetName}`)
+          }}
+        >
           <Link to={`/${net.NetName}`}>{net.NetName}</Link>
           <div className="secondary">
             {net.Band}
