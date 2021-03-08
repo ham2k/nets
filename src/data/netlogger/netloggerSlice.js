@@ -29,7 +29,7 @@ export const netloggerSlice = createSlice({
 
     addNets: (state, { payload }) => {
       ;(payload || []).forEach((net) => {
-        state.nets[net.NetName] = net
+        state.nets[net.NetName] = { ...state.nets[net.NetName], ...net }
       })
     },
 

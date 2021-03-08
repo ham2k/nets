@@ -53,6 +53,10 @@ describe('NetLogger API Calls', () => {
             })
 
             action = actions.shift()
+            expect(action.type).toBe('netlogger/netMeta')
+            expect(action.payload.lastUpdated).toBeTruthy()
+
+            action = actions.shift()
             expect(action.type).toBe('netlogger/setServerInfo')
             expect(action.payload).toMatchObject({
               ServerHost: 'http://www.netlogger1.org:80',

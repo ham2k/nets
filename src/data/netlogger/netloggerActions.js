@@ -111,14 +111,16 @@ const NET_LIST_FIELDS = [
   'Logger',
   'NetControl',
   'Date',
-  'Band',
   'Mode',
+  'Band',
   'ImEnable',
   'DefaultInterval',
   'AltNetName',
   'EMPTY',
   'SubscriberCount',
 ]
+
+const TWO_DIGIT_REGEX = /(\d\d)/g
 
 function parseNetsList(bodyText, serverInfo) {
   // eslint-disable-next-line no-unused-vars
@@ -137,6 +139,12 @@ function parseNetsList(bodyText, serverInfo) {
         NET_LIST_FIELDS.forEach((field) => {
           net[field] = parts.shift()
         })
+
+        if (net.Date) {
+          const parts = net.Date.match(TWO_DIGIT_REGEX)
+          net.Date = `${parts[0]}${parts[1]}-${parts[2]}-${parts[3]} ${parts[4]}:${parts[5]}:${parts[6]} UTC`
+        }
+
         nets.push(net)
       }
     })
@@ -203,6 +211,7 @@ export const refreshNetData = (netName) => (dispatch, getState) => {
       dispatch(setNetParts({ NetName: netName, data, checkins, ims, monitors, exts }))
     })
 }
+
 /* ================================================================================================================== */
 function parseNetDatastream(bodyText, net) {
   const data = parseNetData(bodyText)
@@ -228,6 +237,8 @@ function parseNetData(bodyText) {
         }
       }
     })
+
+    if (net.Date) net.Date = `${net.Date} UTC`
   }
 
   return net
@@ -241,7 +252,7 @@ const CHECKIN_LIST_FIELDS = [
   'Name',
   'Remarks',
   'QSLInfo',
-  '_timestamp',
+  'Timestamp',
   'County',
   'Grid',
   'Street',
@@ -275,6 +286,8 @@ function parseNetCheckins(bodyText) {
 
           checkin.statuses = {}
           checkin.Status.split(',').forEach((status) => (checkin.statuses[status] = true))
+
+          if (checkin.Timestamp) checkin.Timestamp = `${checkin.Timestamp} UTC`
 
           checkins.push(checkin)
         }

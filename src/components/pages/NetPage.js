@@ -11,7 +11,6 @@ import CheckinsTable from '../CheckinsTable'
 /* ================================================================================================================== */
 export default function NetPage() {
   const { slug } = useParams()
-  console.log('slug', slug)
   const net = useSelector(selectNet(slug))
   const checkins = useSelector(selectNetCheckins(slug))
 
@@ -31,7 +30,7 @@ export default function NetPage() {
             {' • '}
             <span>{net.SubscriberCount} subscribers</span>
             {' • '}
-            <span>Started {net.Date}</span>
+            <span>Started {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
           </div>
 
           <CheckinsTable net={net} checkins={checkins} />

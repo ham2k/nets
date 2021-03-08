@@ -14,11 +14,9 @@ export default function NetsLoader() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('Loading nets')
     dispatch(getInitialData())
 
     const interval = window.setInterval(() => {
-      console.log('Reloading nets')
       dispatch(refreshNets())
     }, RELOAD_INTERVAL * 1000)
 

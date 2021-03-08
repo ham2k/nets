@@ -12,11 +12,9 @@ export default function CheckinsLoader({ net, operator }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(`Loading checkins for ${net.NetName}`)
     dispatch(refreshNetData(net.NetName))
 
     const interval = window.setInterval(() => {
-      console.log(`Reloading checkins for ${net.NetName}`)
       dispatch(refreshNetData(net.NetName))
     }, RELOAD_INTERVAL * 1000)
 
