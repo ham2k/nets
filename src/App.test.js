@@ -6,6 +6,7 @@ import store from './data/store'
 import App from './App'
 
 import setupNetloggerSamples from './data/netlogger/samples'
+import { MemoryRouter } from 'react-router-dom'
 
 describe('App', () => {
   beforeEach(() => {
@@ -20,7 +21,9 @@ describe('App', () => {
     await act(async () => {
       app = render(
         <Provider store={store}>
-          <App />
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
         </Provider>
       )
     })

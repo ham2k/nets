@@ -6,7 +6,7 @@ export const netloggerSlice = createSlice({
   initialState: {
     meta: {},
     serverList: null,
-    serverInfo: null,
+    serverInfo: {},
     nets: {},
     netCheckins: {},
     netIMs: {},
@@ -21,24 +21,10 @@ export const netloggerSlice = createSlice({
 
     setServerList: (state, { payload }) => {
       state.serverList = payload
-      state.serverInfo = {}
-      state.nets = {}
-      state.netCheckins = {}
-      state.netIms = {}
-      state.netMonitors = {}
-      state.netExts = {}
     },
 
     setServerInfo: (state, { payload }) => {
       state.serverInfo[payload.ServerName] = payload
-    },
-
-    resetNets: (state) => {
-      state.nets = {}
-      state.netCheckins = {}
-      state.netIms = {}
-      state.netMonitors = {}
-      state.netExts = {}
     },
 
     addNets: (state, { payload }) => {
@@ -57,7 +43,7 @@ export const netloggerSlice = createSlice({
   },
 })
 
-export const { setMeta, setServerList, setServerInfo, resetNets, addNets, setNetParts } = netloggerSlice.actions
+export const { setMeta, setServerList, setServerInfo, addNets, setNetParts } = netloggerSlice.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

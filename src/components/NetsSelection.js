@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { selectNets } from '../data/netlogger'
 
@@ -16,19 +17,15 @@ function sortNets(nets) {
 }
 
 /* ================================================================================================================== */
-export default function NetsSelection({ selected, onSelect }) {
+export default function NetsSelection({ selected }) {
   const nets = useSelector(selectNets)
   const sortedNets = sortNets(nets)
 
   return (
     <ul className="NetSelection">
       {sortedNets.map((net) => (
-        <li
-          key={net.NetName}
-          onClick={() => onSelect && onSelect(net.NetName)}
-          className={selected === net.NetName ? 'selected' : ''}
-        >
-          {net.NetName}
+        <li key={net.NetName} className={selected === net.NetName ? 'selected' : ''}>
+          <Link to={`/${net.NetName}`}>{net.NetName}</Link>
           <div className="secondary">
             {net.Band}
             {' • '}

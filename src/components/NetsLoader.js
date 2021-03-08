@@ -5,7 +5,7 @@ import { selectMeta, getInitialData, refreshNets } from '../data/netlogger'
 
 import './NetsLoader.css'
 
-const RELOAD_INTERVAL = 120
+const RELOAD_INTERVAL = 30
 
 /* ================================================================================================================== */
 export default function NetsLoader() {
@@ -29,13 +29,10 @@ export default function NetsLoader() {
 
   return (
     <div className="NetsLoader">
-      <div>
-        {meta.isLoading ? (
-          <button disabled={true}>Loading…</button>
-        ) : (
-          <button onClick={() => dispatch(refreshNets())}>Refresh</button>
-        )}
-      </div>
+      {meta.lastUpdated && (
+        <span>Servers last updated: {new Date(meta.lastUpdated).toLocaleTimeString([], { timeStyle: 'short' })}</span>
+      )}
+      {meta.isLoading && <span>Loading…</span>}
     </div>
   )
 }

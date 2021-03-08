@@ -2,7 +2,6 @@ ul.NetSelection {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--border-color);
 }
 
 .NetSelection li {
@@ -23,4 +22,17 @@ ul.NetSelection {
 
 .NetSelection li .secondary {
   font-size: 70%;
+}
+
+.NetSelection a,
+.NetSelection a:link,
+.NetSelection a:visited {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.NetSelection a:active,
+.NetSelection a:hover {
+  text-decoration: none;
+  color: var(--link-color);
 }

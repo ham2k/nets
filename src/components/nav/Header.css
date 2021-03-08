@@ -1,0 +1,32 @@
+.Header {
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Header h1 {
+  font-weight: normal;
+}
+
+.Header h1 strong {
+  font-weight: bold;
+}
+
+.LargeHeader {
+  font-size: 130%;
+}
+
+.Header a,
+.Header a:link,
+.Header a:visited {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.Header a:active,
+.Header a:hover {
+  text-decoration: none;
+  color: var(--link-color);
+}

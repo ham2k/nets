@@ -1,28 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+
+import HomePage from './components/pages/HomePage'
+import NetPage from './components/pages/NetPage'
+import NetsLoader from './components/NetsLoader'
 
 import './App.css'
 
-import NetsSelection from './components/NetsSelection'
-import NetsLoader from './components/NetsLoader'
-import NetPanel from './components/NetPanel'
-
 function App() {
-  const [selectedNet, setSelectedNet] = useState()
-
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>
-          📻 ham2k <strong>Nets</strong>
-        </h1>
-      </header>
-      <nav>
-        <NetsSelection selected={selectedNet} onSelect={(net) => setSelectedNet(net)} />
+      <Switch>
+        <Route path="/:slug">
+          <NetPage />
+        </Route>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+      <footer>
         <NetsLoader />
-      </nav>
-      <main>
-        <NetPanel selected={selectedNet} />
-      </main>
+      </footer>
     </div>
   )
 }

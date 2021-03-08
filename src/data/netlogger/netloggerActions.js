@@ -64,6 +64,7 @@ export const getServerInfo = (serverHost) => (dispatch) => {
       if (serverInfo.ServerName) {
         dispatch(setServerInfo(serverInfo))
         dispatch(getNetsList(serverInfo))
+        dispatch(setMeta({ lastUpdated: Date.now() }))
       } else {
         console.error(`Incomplete server data for ${serverHost}`, serverInfo)
       }
