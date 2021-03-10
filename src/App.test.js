@@ -2,7 +2,7 @@ import React from 'react'
 import { render, act } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
-import store from './data/store'
+import { testStore } from './data/store'
 import App from './App'
 
 import setupNetloggerSamples from './data/netlogger/samples'
@@ -20,7 +20,7 @@ describe('App', () => {
     let app
     await act(async () => {
       app = render(
-        <Provider store={store}>
+        <Provider store={testStore}>
           <MemoryRouter>
             <App />
           </MemoryRouter>
