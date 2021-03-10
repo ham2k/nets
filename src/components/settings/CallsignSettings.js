@@ -1,12 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { selectCallsign, setCallsign } from '../../data/settings'
+import { callsignSelector, setCallsign } from '../../data/settings'
 
 /* ================================================================================================================== */
 export default function CallsignSettings() {
   const dispatch = useDispatch()
-  const callsign = useSelector(selectCallsign()) || ''
+  const callsign = useSelector(callsignSelector()) || ''
 
   return (
     <span className="CallsignSettings">

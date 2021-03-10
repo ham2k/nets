@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { selectNet, selectNetCheckins } from '../data/netlogger'
+import { netSelector, netCheckinsSelector } from '../data/netlogger'
 import CheckinsLoader from './CheckinsLoader'
 import CheckinsTable from './CheckinsTable'
 
@@ -9,8 +9,8 @@ import './NetPanel.css'
 
 /* ================================================================================================================== */
 export default function NetPanel({ selected }) {
-  const net = useSelector(selectNet(selected))
-  const checkins = useSelector(selectNetCheckins(selected))
+  const net = useSelector(netSelector(selected))
+  const checkins = useSelector(netCheckinsSelector(selected))
 
   if (net && net.NetName) {
     return (

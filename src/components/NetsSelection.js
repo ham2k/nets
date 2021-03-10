@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
-import { selectNets } from '../data/netlogger'
+import { netsSelector } from '../data/netlogger'
 
 import './NetsSelection.css'
 
@@ -18,7 +18,7 @@ function sortNets(nets) {
 
 /* ================================================================================================================== */
 export default function NetsSelection({ selected }) {
-  const nets = useSelector(selectNets())
+  const nets = useSelector(netsSelector())
   const sortedNets = sortNets(nets)
   const history = useHistory()
 

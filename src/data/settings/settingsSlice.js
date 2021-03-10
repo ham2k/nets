@@ -16,7 +16,7 @@ export const settingsSlice = createSlice({
 
 export const { setCallsign } = settingsSlice.actions
 
-export const selectCallsign = () => (state) => state.settings.callsign
-export const selectUpcasedCallsign = () => (state) => (state.settings.callsign || '').toUpperCase()
+export const callsignSelector = () => (state) => state.settings.callsign
+export const upcasedCallsignSelector = () => (state) => (state.settings.callsign || '').toUpperCase()
 
 export default settingsSlice.reducer

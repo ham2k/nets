@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 
 import Header from '../nav/Header'
 
-import { selectNet, selectNetCheckins } from '../../data/netlogger'
-import { selectUpcasedCallsign } from '../../data/settings'
+import { netSelector, netCheckinsSelector } from '../../data/netlogger'
+import { upcasedCallsignSelector } from '../../data/settings'
 
 import CheckinsLoader from '../CheckinsLoader'
 import CheckinsTable from '../CheckinsTable'
@@ -13,9 +13,9 @@ import CheckinsTable from '../CheckinsTable'
 /* ================================================================================================================== */
 export default function NetPage() {
   const { slug } = useParams()
-  const net = useSelector(selectNet(slug))
-  const checkins = useSelector(selectNetCheckins(slug))
-  const callsign = useSelector(selectUpcasedCallsign())
+  const net = useSelector(netSelector(slug))
+  const checkins = useSelector(netCheckinsSelector(slug))
+  const callsign = useSelector(upcasedCallsignSelector())
 
   if (net && net.NetName) {
     return (
