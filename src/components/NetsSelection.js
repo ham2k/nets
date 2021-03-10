@@ -18,7 +18,7 @@ function sortNets(nets) {
 
 /* ================================================================================================================== */
 export default function NetsSelection({ selected }) {
-  const nets = useSelector(selectNets)
+  const nets = useSelector(selectNets())
   const sortedNets = sortNets(nets)
   const history = useHistory()
 

@@ -9,7 +9,7 @@ const RELOAD_INTERVAL = 30
 
 /* ================================================================================================================== */
 export default function NetsLoader() {
-  const meta = useSelector(selectMeta)
+  const meta = useSelector(selectMeta())
 
   const dispatch = useDispatch()
 

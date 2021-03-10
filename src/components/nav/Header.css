@@ -37,3 +37,10 @@
   text-decoration: none;
   color: var(--link-color);
 }
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -287,6 +287,7 @@ function parseNetCheckins(bodyText) {
           checkin.statuses = {}
           checkin.Status.split(',').forEach((status) => (checkin.statuses[status] = true))
 
+          if (checkin.Callsign) checkin.Callsign = checkin.Callsign.toUpperCase()
           if (checkin.Timestamp) checkin.Timestamp = `${checkin.Timestamp} UTC`
 
           checkins.push(checkin)

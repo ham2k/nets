@@ -31,11 +31,17 @@ const HEADER_COMPONENTS = {
 const DATA_COMPONENTS = {
   // serial: ({ checkin }) => <td className="number serial-field">{checkin.serial}</td>,
   // callsign: ({ checkin }) => <td className="callsign callsign-field">{checkin.callsign}</td>,
+  SerialNo: ({ checkin, field, operator }) => (
+    <td className={classNames(`${field}-field`, STYLES[field])}>
+      {checkin.Callsign === operator ? '👉 ' : ''}
+      {checkin[field]}
+    </td>
+  ),
   default: ({ checkin, field }) => <td className={classNames(`${field}-field`, STYLES[field])}>{checkin[field]}</td>,
 }
 
 /* ================================================================================================================== */
-const classNamesFor = (checkin, net) => {
+const classNamesFor = (checkin, net, operator) => {
   const classes = []
   if (checkin.operating) classes.push('ci_operating')
   if (checkin.statuses['(c/o)']) classes.push('ci_unavailable')
@@ -44,11 +50,13 @@ const classNamesFor = (checkin, net) => {
   if (checkin.statuses['(nc)']) classes.push('ci_netcontrol')
   if (checkin.statuses['(rel)']) classes.push('ci_relay')
 
+  if (checkin.Callsign === operator) classes.push('ci_operator')
+
   return classes
 }
 
 /* ================================================================================================================== */
-export default function CheckinsTable({ net, checkins }) {
+export default function CheckinsTable({ net, checkins, operator }) {
   const fields = [
     'SerialNo',
     'Callsign',
@@ -76,13 +84,14 @@ export default function CheckinsTable({ net, checkins }) {
       <tbody>
         {checkins &&
           checkins.map((checkin, row) => (
-            <tr key={checkin.SerialNo} className={classNames(...classNamesFor(checkin, net))}>
+            <tr key={checkin.SerialNo} className={classNames(...classNamesFor(checkin, net, operator))}>
               {fields.map((field, col) => {
                 const DataComponent = DATA_COMPONENTS[field] || DATA_COMPONENTS.default
                 return (
                   <DataComponent
                     checkin={checkin}
                     field={field}
+                    operator={operator}
                     row={row}
                     col={col}
                     net={net}

@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom'
 import Header from '../nav/Header'
 
 import { selectNet, selectNetCheckins } from '../../data/netlogger'
+import { selectUpcasedCallsign } from '../../data/settings'
+
 import CheckinsLoader from '../CheckinsLoader'
 import CheckinsTable from '../CheckinsTable'
 
@@ -13,6 +15,7 @@ export default function NetPage() {
   const { slug } = useParams()
   const net = useSelector(selectNet(slug))
   const checkins = useSelector(selectNetCheckins(slug))
+  const callsign = useSelector(selectUpcasedCallsign())
 
   if (net && net.NetName) {
     return (
@@ -33,7 +36,7 @@ export default function NetPage() {
             <span>Started {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
           </div>
 
-          <CheckinsTable net={net} checkins={checkins} />
+          <CheckinsTable net={net} checkins={checkins} operator={callsign} />
 
           <CheckinsLoader net={net} />
         </main>
