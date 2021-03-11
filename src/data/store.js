@@ -5,10 +5,12 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 
 import netloggerReducer from '../data/netlogger'
 import settingsReducer from '../data/settings'
+import logsReducer from '../data/logs'
 
 const rootReducer = combineReducers({
   netlogger: netloggerReducer,
   settings: settingsReducer,
+  logs: logsReducer,
 })
 
 const persistConfig = {

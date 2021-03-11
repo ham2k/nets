@@ -10,7 +10,7 @@ export default function CallsignSettings() {
 
   return (
     <span className="CallsignSettings">
-      <label for={'callsign_settings'}>Callsign</label>
+      <label htmlFor={'callsign_settings'}>Callsign</label>
       <input
         id={'callsign_settings'}
         value={callsign}

@@ -6,6 +6,7 @@ import Header from '../nav/Header'
 
 import { netSelector, netCheckinsSelector } from '../../data/netlogger'
 import { upcasedCallsignSelector } from '../../data/settings'
+import { logSelector } from '../../data/logs'
 
 import CheckinsLoader from '../CheckinsLoader'
 import CheckinsTable from '../CheckinsTable'
@@ -16,6 +17,7 @@ export default function NetPage() {
   const net = useSelector(netSelector(slug))
   const checkins = useSelector(netCheckinsSelector(slug))
   const callsign = useSelector(upcasedCallsignSelector())
+  const log = useSelector(logSelector())
 
   if (net && net.NetName) {
     return (
@@ -36,7 +38,7 @@ export default function NetPage() {
             <span>Started {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
           </div>
 
-          <CheckinsTable net={net} checkins={checkins} operator={callsign} />
+          <CheckinsTable net={net} checkins={checkins} operator={callsign} log={log} />
 
           <CheckinsLoader net={net} />
         </main>

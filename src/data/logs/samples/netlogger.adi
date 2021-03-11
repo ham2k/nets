@@ -1,0 +1,1275 @@
+NetLogger 3.1.7, Copyright(c) 2015-2016 John Marvin, AC0ZG, All Rights Reserved.
+<LOG_PGM:9>NetLogger
+<LOG_VER:5>3.1.7
+
+<PROGRAMID:9>NetLogger
+<PROGRAMVERSION:5>3.1.7
+
+<EOH>
+
+<Call:6>KD8NKY
+<QSO_Date:8>20210205
+<Time_On:6>000848
+<Name:5>RANDY
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:10>Grove City
+<State:2>OH
+<Cnty:3>OH,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:7>Randall
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:23>RANDY
+
+Grove City, OH
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K4RJT
+<QSO_Date:8>20210205
+<Time_On:6>004039
+<Name:11>Ron Tessite
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:7>Raleigh
+<State:2>NC
+<Cnty:7>NC,Wake
+<DXCC:3>291
+<Gridsquare:6>FM05pw
+<App_NetLogger_Preferred_Name:3>Ron
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:51>Ron Tessite
+6117 Charleycote Dr
+Raleigh, NC 27614
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>WZ4DAY
+<QSO_Date:8>20210205
+<Time_On:6>231622
+<Name:5>Jerry
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:7>STURGIS
+<State:2>KY
+<Cnty:8>KY,Union
+<DXCC:3>291
+<Gridsquare:6>EM67an
+<App_NetLogger_Preferred_Name:5>Jerry
+<Operator:5>W2ASD
+<QSL_Via:3>VIP
+<Country:13>United States
+<Address:47>Jerry
+815 NORTH MAIN STREET
+STURGIS, KY 42459
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>KC0CC
+<QSO_Date:8>20210205
+<Time_On:6>231828
+<Comment:6>1 CALL
+<Name:3>Joe
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:13>Saint Charles
+<State:2>MO
+<Cnty:16>MO,Saint Charles
+<Gridsquare:6>EM48ss
+<App_NetLogger_Preferred_Name:5>Henry
+<Operator:5>W2ASD
+<QSL_Via:27>VIP DIRECT NoSASE LOTW eQSL
+<Country:13>United States
+<Address:39>Joe
+PO Box 1040
+Saint Charles, MO 291
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:4>W0YY
+<QSO_Date:8>20210206
+<Time_On:6>231113
+<Name:5>LARRY
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<State:2>MO
+<Cnty:9>MO,Camden
+<DXCC:3>291
+<Gridsquare:4>EM38
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:13>LARRY
+
+, MO
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W2RLS
+<QSO_Date:8>20210206
+<Time_On:6>231119
+<Comment:14>(no club info)
+<Name:6>ROBERT
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<State:2>AL
+<Cnty:3>AL,
+<Operator:5>W2ASD
+<Address:14>ROBERT
+
+, AL
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N5WGA
+<QSO_Date:8>20210206
+<Time_On:6>231121
+<Name:5>CHUCK
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<State:2>OK
+<Cnty:12>OK,McCurtain
+<DXCC:3>291
+<Gridsquare:4>EM24
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:13>CHUCK
+
+, OK
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W1PEF
+<QSO_Date:8>20210209
+<Time_On:6>232347
+<Name:4>Paul
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:7>Amherst
+<State:2>NH
+<Cnty:15>NH,Hillsborough
+<DXCC:3>291
+<Gridsquare:6>FN42eu
+<App_NetLogger_Preferred_Name:4>Paul
+<Operator:5>W2ASD
+<QSL_Via:25>QRZ,eQSL,LOTW,DIR No SASE
+<Country:13>United States
+<Address:38>Paul
+3 Chandler Ln
+Amherst, NH 03031
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KI4YTV
+<QSO_Date:8>20210209
+<Time_On:6>232350
+<Name:2>Ed
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:12>New Brockton
+<State:2>AL
+<Cnty:9>AL,Coffee
+<DXCC:3>291
+<Gridsquare:6>EM71aj
+<App_NetLogger_Preferred_Name:2>Ed
+<Operator:5>W2ASD
+<QSL_Via:3>NCS
+<Country:13>United States
+<Address:45>Ed
+513 North John st
+New Brockton, AL 36351
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N2VSD
+<QSO_Date:8>20210211
+<Time_On:6>233810
+<Comment:14>(no club info)
+<Name:18>William R Costello
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.188
+<QTH:12>BLOOMINGBURG
+<State:2>NY
+<Cnty:3>NY,
+<App_NetLogger_Preferred_Name:7>William
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:38>William R Costello
+
+BLOOMINGBURG, NY
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>AC3LZ
+<QSO_Date:8>20210212
+<Time_On:6>000554
+<Name:11>Fred Tollin
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.188
+<QTH:8>Magnolia
+<State:2>DE
+<Cnty:3>DE,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:4>Fred
+<Operator:5>W2ASD
+<QSL_Via:32>DIR QRZ LOTW HRDLOG CLUBLOG eQSL
+<Country:13>United States
+<Address:27>Fred Tollin
+
+Magnolia, DE
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W1KNF
+<QSO_Date:8>20210212
+<Time_On:6>000608
+<Name:17>Kathleen N Fallin
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.188
+<QTH:9>Pine Lake
+<State:2>GA
+<Cnty:9>GA,Dekalb
+<DXCC:3>291
+<Gridsquare:6>EM73vt
+<App_NetLogger_Preferred_Name:8>Kathleen
+<Operator:5>W2ASD
+<QSL_Via:23>OMIAA QRZ LOTW eQSL DIR
+<Country:13>United States
+<Address:62>Kathleen N Fallin
+4647 King Dr PO BOX 15
+Pine Lake, GA 30072
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N9AVI
+<QSO_Date:8>20210212
+<Time_On:6>230721
+<Name:17>Michael S Blanton
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:12>Indianapolis
+<State:2>IN
+<Cnty:9>IN,Marion
+<DXCC:3>291
+<Gridsquare:6>EM69xq
+<App_NetLogger_Preferred_Name:7>Michael
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:62>Michael S Blanton
+6716 Revere Ln
+Indianapolis, IN 46237-9621
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>AD0LV
+<QSO_Date:8>20210212
+<Time_On:6>231116
+<Name:17>James S Mccloskey
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:5>Mosca
+<State:2>CO
+<Cnty:10>CO,Alamosa
+<DXCC:3>291
+<Gridsquare:6>DM77bp
+<App_NetLogger_Preferred_Name:5>James
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:63>James S Mccloskey
+5050 Henry Street PO BOX 43
+Mosca, CO 81146
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N5OUR
+<QSO_Date:8>20210213
+<Time_On:6>002316
+<Name:17>Matthew K Johnson
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:6>BORGER
+<State:2>TX
+<Cnty:13>TX,Hutchinson
+<DXCC:3>291
+<Gridsquare:6>DM95hq
+<App_NetLogger_Preferred_Name:7>Matthew
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:52>Matthew K Johnson
+1003 HARRINGTON
+BORGER, TX 79007
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K1SPD
+<QSO_Date:8>20210214
+<Time_On:6>232846
+<Name:18>Scott P Dowling Sr
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:9>La Vergne
+<State:2>TN
+<Cnty:3>TN,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:5>Scott
+<Operator:5>W2ASD
+<QSL_Via:26>QRZ LOTW Buro  DIR No SASE
+<Country:13>United States
+<Address:35>Scott P Dowling Sr
+
+La Vergne, TN
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>KQ4WH
+<QSO_Date:8>20210214
+<Time_On:6>232849
+<Name:17>David E Sauls Iii
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:6>SMOAKS
+<State:2>SC
+<Cnty:3>SC,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:5>David
+<Operator:5>W2ASD
+<QSL_Via:13>QRZ LOTW eQSL
+<Country:13>United States
+<Address:31>David E Sauls Iii
+
+SMOAKS, SC
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KD2SXD
+<QSO_Date:8>20210215
+<Time_On:6>001816
+<Name:4>Mike
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:12>Jacksonville
+<State:2>FL
+<Cnty:3>FL,
+<App_NetLogger_Preferred_Name:7>Michael
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:24>Mike
+
+Jacksonville, FL
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KC5WKL
+<QSO_Date:8>20210215
+<Time_On:6>002645
+<Name:17>John M Threadgill
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:5>Flint
+<State:2>TX
+<Cnty:8>TX,Smith
+<DXCC:3>291
+<Gridsquare:6>EM22ih
+<App_NetLogger_Preferred_Name:4>John
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:52>John M Threadgill
+19298 Fawn Creek
+Flint, TX 75762
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KD9QAV
+<QSO_Date:8>20210215
+<Time_On:6>233618
+<Comment:14>(no club info)
+<Name:19>Michael J Pasternak
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:7>Gardner
+<State:2>IL
+<Cnty:9>IL,Grundy
+<DXCC:3>291
+<Gridsquare:6>EN51ue
+<App_NetLogger_Preferred_Name:7>Michael
+<Operator:5>W2ASD
+<QSL_Via:12>QRZ or paper
+<Country:13>United States
+<Address:65>Michael J Pasternak
+209 N Jackson St PO BOX 1
+Gardner, IL 60424
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N9EAZ
+<QSO_Date:8>20210216
+<Time_On:6>232147
+<Name:15>Daniel R Henney
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:9>Deerfield
+<State:2>WI
+<Cnty:3>WI,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:6>Daniel
+<Operator:5>W2ASD
+<QSL_Via:13>DIR LOTW eQSL
+<Country:13>United States
+<Address:32>Daniel R Henney
+
+Deerfield, WI
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K2ZGW
+<QSO_Date:8>20210216
+<Time_On:6>232153
+<Name:17>Mario G Assennato
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:6>Glenda
+<State:2>NJ
+<Cnty:3>NJ,
+<App_NetLogger_Preferred_Name:5>Mario
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:31>Mario G Assennato
+
+Glenda, NJ
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>AE4EK
+<QSO_Date:8>20210218
+<Time_On:6>230744
+<Name:29>Glenn L Silver  NCS-Alternate
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.187
+<QTH:12>The Villages
+<State:2>FL
+<Cnty:3>FL,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:5>Glenn
+<Operator:5>W2ASD
+<QSL_Via:17>LOTW eQSL QRZ DIR
+<Country:13>United States
+<Address:49>Glenn L Silver  NCS-Alternate
+
+The Villages, FL
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W4UDB
+<QSO_Date:8>20210218
+<Time_On:6>230751
+<Name:17>Ronald J Gregoire
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.187
+<QTH:14>GREEN MOUNTAIN
+<State:2>NC
+<Cnty:3>NC,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:6>Ronald
+<Operator:5>W2ASD
+<QSL_Via:9>eQSL LOTW
+<Country:13>United States
+<Address:39>Ronald J Gregoire
+
+GREEN MOUNTAIN, NC
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K1DDN
+<QSO_Date:8>20210219
+<Time_On:6>231550
+<Name:14>Amanda S Alden
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.183
+<QTH:10>CANON CITY
+<State:2>CO
+<Cnty:3>CO,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:6>Amanda
+<Operator:5>W2ASD
+<QSL_Via:8>BoD Secy
+<Country:13>United States
+<Address:32>Amanda S Alden
+
+CANON CITY, CO
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W8DKC
+<QSO_Date:8>20210219
+<Time_On:6>231611
+<Name:15>George E Majdak
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.183
+<QTH:7>Jenison
+<State:2>MI
+<Cnty:3>MI,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:6>George
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:30>George E Majdak
+
+Jenison, MI
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N9AVJ
+<QSO_Date:8>20210222
+<Time_On:6>231901
+<Comment:14>(no club info)
+<Name:18>Patricia J Blanton
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:12>INDIANAPOLIS
+<State:2>IN
+<Cnty:9>IN,Marion
+<DXCC:3>291
+<Gridsquare:6>EM69xq
+<App_NetLogger_Preferred_Name:8>Patricia
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:58>Patricia J Blanton
+6716 REVERE LN
+INDIANAPOLIS, IN 46237
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K0BWJ
+<QSO_Date:8>20210222
+<Time_On:6>231903
+<Comment:14>(no club info)
+<Name:14>Bruce W Joyner
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:7>Soldier
+<State:2>IA
+<Cnty:9>IA,Monona
+<DXCC:3>291
+<Gridsquare:6>EN21cx
+<App_NetLogger_Preferred_Name:5>Bruce
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:50>Bruce W Joyner
+103 ASH ST
+Soldier, IA 51572-6242
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N0GEW
+<QSO_Date:8>20210223
+<Time_On:6>235634
+<Name:12>Gary E Wacha
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:8>Brainerd
+<State:2>MN
+<Cnty:12>MN,Crow Wing
+<DXCC:3>291
+<Gridsquare:6>EN26vi
+<App_NetLogger_Preferred_Name:4>Gary
+<Operator:5>W2ASD
+<QSL_Via:11>DIR No SASE
+<Country:13>United States
+<Address:47>Gary E Wacha
+410 Bluff Ave
+Brainerd, MN 56401
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W4MUF
+<QSO_Date:8>20210225
+<Time_On:6>233521
+<Name:5>Jimmy
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:12>Mount Juliet
+<State:2>TN
+<Cnty:3>TN,
+<DXCC:3>291
+<App_NetLogger_Preferred_Name:5>Jimmy
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:25>Jimmy
+
+Mount Juliet, TN
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>WB3CGH
+<QSO_Date:8>20210226
+<Time_On:6>232041
+<Name:18>Michael V Chisholm
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.184
+<QTH:13>Houghton Lake
+<State:2>MI
+<Cnty:12>MI,Roscommon
+<DXCC:3>291
+<Gridsquare:6>EN74ph
+<App_NetLogger_Preferred_Name:7>Michael
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:61>Michael V Chisholm
+801 Crestview Rd
+Houghton Lake, MI 48629
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KG5JIM
+<QSO_Date:8>20210227
+<Time_On:6>030616
+<App_NetLogger_ClubMemberId:5>10245
+<Name:3>JIM
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.184
+<QTH:5>HOUMA
+<State:2>LA
+<Cnty:13>LA,Terrebonne
+<DXCC:3>291
+<Gridsquare:4>EL49
+<App_NetLogger_Preferred_Name:5>Jimmy
+<Operator:5>W2ASD
+<QSL_Via:33>GIB-4 V Y Q N QRZ--EQSL--and-LOTW
+<Country:13>United States
+<Address:44>JIM
+909 BAYOU DULARGE ROAD
+HOUMA, LA 70363
+<App_NetLogger_Net:17>OMISS 40m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>WA5CAT
+<QSO_Date:8>20210227
+<Time_On:6>030620
+<App_NetLogger_ClubMemberId:5>11055
+<Name:2>ED
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.184
+<QTH:10>Alamogordo
+<State:2>NM
+<Cnty:8>NM,OTERO
+<DXCC:3>291
+<Gridsquare:4>DM72
+<App_NetLogger_Preferred_Name:2>Ed
+<Operator:5>W2ASD
+<QSL_Via:21>V Q N QRZ-LOTW-DIRECT
+<Country:13>United States
+<Address:44>ED
+56 Danley Ranch Rd
+Alamogordo, NM 88310
+<App_NetLogger_Net:17>OMISS 40m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>WD5CSK
+<QSO_Date:8>20210301
+<Time_On:6>221735
+<App_NetLogger_ClubMemberId:5>10641
+<Name:3>RON
+<Band:3>20m
+<Mode:3>SSB
+<Freq:6>14.290
+<QTH:6>Edmond
+<State:2>OK
+<Cnty:11>OK,Oklahoma
+<DXCC:3>291
+<Gridsquare:4>EM15
+<App_NetLogger_Preferred_Name:6>Ronald
+<Operator:5>W2ASD
+<QSL_Via:32>GIB-11 T N LoTW--Direct-eQSL-QRZ
+<Country:13>United States
+<Address:40>RON
+5708 Northwood Dr
+Edmond, OK 73034
+<App_NetLogger_Net:17>OMISS 20m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KF5KUW
+<QSO_Date:8>20210301
+<Time_On:6>221803
+<App_NetLogger_ClubMemberId:4>8797
+<Name:4>MARK
+<Band:3>20m
+<Mode:3>SSB
+<Freq:6>14.290
+<QTH:7>Leonard
+<State:2>TX
+<Cnty:9>TX,FANNIN
+<DXCC:3>291
+<Gridsquare:4>EM13
+<App_NetLogger_Preferred_Name:4>Mark
+<Operator:5>W2ASD
+<QSL_Via:15>GIB-10 QRZ-LOTW
+<Country:13>United States
+<Address:45>MARK
+227 County Road 4707
+Leonard, TX 75452
+<App_NetLogger_Net:17>OMISS 20m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W4UDB
+<QSO_Date:8>20210301
+<Time_On:6>233416
+<Name:17>Ronald J Gregoire
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.183
+<QTH:14>GREEN MOUNTAIN
+<State:2>NC
+<Cnty:9>NC,Yancey
+<DXCC:3>291
+<Gridsquare:6>EM85vw
+<App_NetLogger_Preferred_Name:6>Ronald
+<Operator:5>W2ASD
+<QSL_Via:9>eQSL LOTW
+<Country:13>United States
+<Address:66>Ronald J Gregoire
+1420 UPPER DOE BAG RD
+GREEN MOUNTAIN, NC 28740
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:4>K4VL
+<QSO_Date:8>20210301
+<Time_On:6>234821
+<Name:13>Robert D Fest
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.183
+<QTH:8>WOODLAWN
+<State:2>TN
+<Cnty:13>TN,Montgomery
+<DXCC:3>291
+<Gridsquare:6>EM66fm
+<App_NetLogger_Preferred_Name:6>Robert
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:51>Robert D Fest
+2179 JIM TAYL RD
+WOODLAWN, TN 37191
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>AD0LV
+<QSO_Date:8>20210301
+<Time_On:6>235035
+<Name:17>James S Mccloskey
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.183
+<QTH:5>Mosca
+<State:2>CO
+<Cnty:10>CO,Alamosa
+<DXCC:3>291
+<Gridsquare:6>DM77bp
+<App_NetLogger_Preferred_Name:5>James
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:63>James S Mccloskey
+5050 Henry Street PO BOX 43
+Mosca, CO 81146
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K7BDG
+<QSO_Date:8>20210301
+<Time_On:6>235039
+<Name:13>Gary C Foster
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.183
+<QTH:8>Sheridan
+<State:2>WY
+<Cnty:11>WY,Sheridan
+<DXCC:3>291
+<Gridsquare:6>DN64mt
+<App_NetLogger_Preferred_Name:4>Gary
+<Operator:5>W2ASD
+<QSL_Via:13>QRZ EQSL LOTW
+<Country:13>United States
+<Address:63>Gary C Foster
+1371 N Gould St PO BOX 82801
+Sheridan, WY 82801
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>WX0MIK
+<QSO_Date:8>20210302
+<Time_On:6>210530
+<App_NetLogger_ClubMemberId:5>12823
+<Name:4>MIKE
+<Band:3>20m
+<Mode:3>SSB
+<Freq:6>14.290
+<QTH:7>Mankato
+<State:2>MN
+<Cnty:13>MN,Blue Earth
+<DXCC:3>291
+<Gridsquare:4>EN24
+<App_NetLogger_Preferred_Name:7>Michael
+<Operator:5>W2ASD
+<QSL_Via:26>GIB-8 LOTW-eQSL-QRZ-direct
+<Country:13>United States
+<Address:45>MIKE
+20253 Indian Ln
+Mankato, MN 56001-6614
+<App_NetLogger_Net:17>OMISS 20m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:4>K6HP
+<QSO_Date:8>20210302
+<Time_On:6>212345
+<App_NetLogger_ClubMemberId:4>7019
+<Comment:4>FREE
+<Name:2>ED
+<Band:3>20m
+<Mode:3>SSB
+<Freq:6>14.290
+<QTH:7>MURPHYS
+<State:2>CA
+<Cnty:12>CA,CALAVERAS
+<DXCC:3>291
+<Gridsquare:4>CM98
+<App_NetLogger_Preferred_Name:2>Ed
+<Operator:5>W2ASD
+<QSL_Via:13>E F P V T Q N
+<Country:13>United States
+<Address:34>ED
+PO BOX 2441
+MURPHYS, CA 95247
+<App_NetLogger_Award_Status:18>FR:EP,FR:FF,FR:POL
+<App_NetLogger_Net:17>OMISS 20m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>W7DKE
+<QSO_Date:8>20210302
+<Time_On:6>212351
+<App_NetLogger_ClubMemberId:4>9819
+<Name:5>DAVID
+<Band:3>20m
+<Mode:3>SSB
+<Freq:6>14.290
+<QTH:8>Show Low
+<State:2>AZ
+<Cnty:9>AZ,NAVAJO
+<DXCC:3>291
+<Gridsquare:4>DM44
+<App_NetLogger_Preferred_Name:5>David
+<Operator:5>W2ASD
+<QSL_Via:20>M Show-Low--AZ-85901
+<Country:13>United States
+<Address:46>DAVID
+2773 Pinon Pine Dr.
+Show Low, AZ 85901
+<App_NetLogger_Award_Status:5>MIL:N
+<App_NetLogger_Net:17>OMISS 20m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K9DBB
+<QSO_Date:8>20210302
+<Time_On:6>214523
+<App_NetLogger_ClubMemberId:5>13027
+<Name:6>DEBBIE
+<Band:3>20m
+<Mode:3>SSB
+<Freq:6>14.290
+<QTH:5>Atoka
+<State:2>TN
+<Cnty:9>TN,TIPTON
+<DXCC:3>291
+<Gridsquare:4>EM55
+<App_NetLogger_Preferred_Name:6>Debbie
+<Operator:5>W2ASD
+<QSL_Via:15>QRZ--LoTH--eQSL
+<Country:13>United States
+<Address:40>DEBBIE
+92 Elizabeth Dr
+Atoka, TN 38004
+<App_NetLogger_Net:17>OMISS 20m SSB Net
+<App_NetLogger_Club:5>OMISS
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>KC1YL
+<QSO_Date:8>20210302
+<Time_On:6>230525
+<Name:4>Lisa
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.195
+<QTH:8>Seminole
+<State:2>FL
+<Cnty:11>FL,Pinellas
+<DXCC:3>291
+<Gridsquare:6>EL87ou
+<App_NetLogger_Preferred_Name:4>Lisa
+<Operator:5>W2ASD
+<QSL_Via:24>NCS LOTW,QRZ,DIR No SASE
+<Country:13>United States
+<Address:47>Lisa
+11282 Oak Ridge Trail
+Seminole, FL 33772
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KC9ZIM
+<QSO_Date:8>20210302
+<Time_On:6>230529
+<Name:5>David
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.195
+<QTH:5>Salem
+<State:2>IN
+<Cnty:13>IN,Washington
+<DXCC:3>291
+<Gridsquare:6>EM68xn
+<App_NetLogger_Preferred_Name:5>David
+<Operator:5>W2ASD
+<QSL_Via:4>eQSL
+<Country:13>United States
+<Address:43>David
+3822 E Motsinger Rd
+Salem, IN 47167
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K0KLB
+<QSO_Date:8>20210302
+<Time_On:6>233852
+<Comment:14>(no club info)
+<Name:12>Kevin L Behn
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.195
+<QTH:7>Hampton
+<State:2>IA
+<Cnty:11>IA,Franklin
+<DXCC:3>291
+<Gridsquare:6>EN32kq
+<App_NetLogger_Preferred_Name:5>Kevin
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:44>Kevin L Behn
+1808 120 St
+Hampton, IA 50441
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>KJ5IM
+<QSO_Date:8>20210303
+<Time_On:6>231817
+<Name:3>Jim
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:12>BROKEN ARROW
+<State:2>OK
+<Cnty:8>OK,Tulsa
+<DXCC:3>291
+<Gridsquare:6>EM26ca
+<App_NetLogger_Preferred_Name:5>James
+<Operator:5>W2ASD
+<QSL_Via:13>eQSL QRZ SASE
+<Country:13>United States
+<Address:42>Jim
+4325 S 4TH ST
+BROKEN ARROW, OK 74011
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KA4NDY
+<QSO_Date:8>20210303
+<Time_On:6>231820
+<Comment:14>(no club info)
+<Name:13>Donald K Huey
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:9>Alabaster
+<State:2>AL
+<Cnty:9>AL,Shelby
+<DXCC:3>291
+<Gridsquare:6>EM63of
+<App_NetLogger_Preferred_Name:6>Donald
+<Operator:5>W2ASD
+<QSL_Via:18>PLEASE QSL DIRECT.
+<Country:13>United States
+<Address:51>Donald K Huey
+1020 8th Ave SW
+Alabaster, AL 35007
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N4NFM
+<QSO_Date:8>20210303
+<Time_On:6>231822
+<Comment:12>qrp 10 watts
+<Name:15>Thomas A Jacobs
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:9>Woodstock
+<State:2>GA
+<Cnty:11>GA,Cherokee
+<DXCC:3>291
+<Gridsquare:6>EM74sc
+<App_NetLogger_Preferred_Name:6>Thomas
+<Operator:5>W2ASD
+<QSL_Via:16>LOTW eQSL Direct
+<Country:13>United States
+<Address:61>Thomas A Jacobs
+2303 River Station Terr
+Woodstock, GA 30188
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>KJ2AM
+<QSO_Date:8>20210303
+<Time_On:6>232659
+<Name:14>Jose A Mira Jr
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:13>Fresh Meadows
+<State:2>NY
+<Cnty:9>NY,Queens
+<DXCC:3>291
+<Gridsquare:6>FN30cr
+<App_NetLogger_Preferred_Name:4>Jose
+<Operator:5>W2ASD
+<QSL_Via:34>LOTW EQSL QRZ HRD Log &amp; DIRECT
+<Country:13>United States
+<Address:55>Jose A Mira Jr
+6705f 186th Ln
+Fresh Meadows, NY 11365
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KD2SXD
+<QSO_Date:8>20210304
+<Time_On:6>230712
+<Name:16>Michael Robinson
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:12>Jacksonville
+<State:2>FL
+<Cnty:3>FL,
+<App_NetLogger_Preferred_Name:7>Michael
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:36>Michael Robinson
+
+Jacksonville, FL
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>KC0CC
+<QSO_Date:8>20210305
+<Time_On:6>001508
+<Name:3>Joe
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:13>Saint Charles
+<State:2>MO
+<Cnty:3>MO,
+<App_NetLogger_Preferred_Name:5>Henry
+<Operator:5>W2ASD
+<QSL_Via:20>DIR NoSASE LOTW eQSL
+<Country:13>United States
+<Address:28>Joe
+
+Saint Charles, MO 291
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>N0OII
+<QSO_Date:8>20210309
+<Time_On:6>004012
+<Name:16>Richard L Nedved
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:7>Tyndall
+<State:2>SD
+<Cnty:12>SD,Bon Homme
+<DXCC:3>291
+<Gridsquare:6>EN12cx
+<App_NetLogger_Preferred_Name:7>Richard
+<Operator:5>W2ASD
+<Country:13>United States
+<Address:51>Richard L Nedved
+41809 305th St
+Tyndall, SD 57066
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>WB8RWM
+<QSO_Date:8>20210309
+<Time_On:6>004015
+<Comment:14>(no club info)
+<Name:17>Robert W Moody Sr
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:8>FAIRBURY
+<State:2>NE
+<Cnty:12>NE,Jefferson
+<DXCC:3>291
+<Gridsquare:6>EN10jd
+<App_NetLogger_Preferred_Name:6>Robert
+<Operator:5>W2ASD
+<QSL_Via:18>QRZ com or direct.
+<Country:13>United States
+<Address:53>Robert W Moody Sr
+818 4TH STREET
+FAIRBURY, NE 68352
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:5>K9GLM
+<QSO_Date:8>20210309
+<Time_On:6>005106
+<Name:12>Gregy L Mley
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:11>Bolingbrook
+<State:2>IL
+<Cnty:7>IL,Will
+<DXCC:3>291
+<Gridsquare:6>EN51wq
+<App_NetLogger_Preferred_Name:7>Gregory
+<Operator:5>W2ASD
+<QSL_Via:16>LoTW eQSL Direct
+<Country:13>United States
+<Address:50>Gregy L Mley
+1 Parkside Ct
+Bolingbrook, IL 60490
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+
+<Call:6>KI5MJZ
+<QSO_Date:8>20210309
+<Time_On:6>005449
+<Comment:14>(no club info)
+<Name:19>Christopher T Barry
+<Band:3>40m
+<Mode:3>SSB
+<Freq:5>7.185
+<QTH:11>SAN ANTONIO
+<State:2>TX
+<Cnty:8>TX,Bexar
+<DXCC:3>291
+<Gridsquare:6>EL09so
+<App_NetLogger_Preferred_Name:11>Christopher
+<Operator:5>W2ASD
+<QSL_Via:17>QRZ.com eQSL LoTW
+<Country:13>United States
+<Address:72>Christopher T Barry
+18430 EMERALD FOREST DR
+SAN ANTONIO, TX 78259-3655
+<App_NetLogger_Net:12>NATA 40m Net
+<Station_Callsign:5>W2ASD
+<eor>
+

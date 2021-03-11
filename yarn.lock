@@ -3305,10 +3305,10 @@ address@1.1.2, address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
-adif-parser-ts@^0.3.18:
-  version "0.3.18"
-  resolved "https://registry.yarnpkg.com/adif-parser-ts/-/adif-parser-ts-0.3.18.tgz#a51b14260078b6ec032101e242cf778ae3a6cb7a"
-  integrity sha512-3IgmTstdCXxhBGo9I50pJvdCad+b7GTxWwROl8pro8uVTFB328AbPTkICbmzyAw7b7hK/qVQCieEJKCD+qIAJQ==
+adif-parser-ts@^0.3.22:
+  version "0.3.22"
+  resolved "https://registry.yarnpkg.com/adif-parser-ts/-/adif-parser-ts-0.3.22.tgz#4ca3a8bc7cb0605f6f8276821917625b12b06f09"
+  integrity sha512-VMlObGEjs9qAruZ8F4oyPtS7a9MkqwtAJz6dreJHByAU5mxlm86DNL+2grfvFrY1Zi5A97Qut9WQgMNm/HEvsw==
 
 adjust-sourcemap-loader@3.0.0:
   version "3.0.0"
@@ -13130,6 +13130,11 @@ redux-mock-store@^1.5.4:
   integrity sha512-xmcA0O/tjCLXhh9Fuiq6pMrJCwFRaouA8436zcikdIpYWWCjU76CRk+i2bHx8EeiSiMGnB85/lZdU3wIJVXHTA==
   dependencies:
     lodash.isplainobject "^4.0.6"
+
+redux-persist@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
+  integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
 
 redux-thunk@^2.3.0:
   version "2.3.0"

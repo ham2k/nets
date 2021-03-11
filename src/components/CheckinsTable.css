@@ -50,3 +50,41 @@
   color: #c70;
   font-weight: bold;
 }
+
+.CheckinsTable td.State-field {
+  text-align: center;
+}
+
+.CheckinsTable tr.ci_confirmed_callsign td.Callsign-field {
+  text-decoration: line-through;
+  color: #f00 !important;
+}
+
+.CheckinsTable tr.ci_worked_callsign td.Callsign-field {
+  text-decoration: line-through;
+  color: #d66 !important;
+}
+
+.CheckinsTable tr.ci_confirmed_state td.State-field {
+  text-decoration: line-through !important;
+  color: #f00 !important;
+}
+
+.CheckinsTable tr.ci_worked_state td.State-field {
+  text-decoration: line-through !important;
+  color: #d66 !important;
+}
+
+.CheckinsTable tr.ci_new_state td.State-field div {
+  background-color: #5d5;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  border-radius: 4px;
+}
+
+.CheckinsTable tr.ci_worked_state_mixed td.State-field div {
+  background-color: #bfdbbf;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  border-radius: 4px;
+}

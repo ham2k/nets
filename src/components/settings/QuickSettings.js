@@ -1,6 +1,7 @@
 import React from 'react'
 
-import CallsignSettings from '../settings/CallsignSettings'
+import LogsSettings from './LogsSettings'
+import CallsignSettings from './CallsignSettings'
 
 import './Settings.css'
 
@@ -8,6 +9,7 @@ import './Settings.css'
 export default function QuickSettings() {
   return (
     <div className="QuickSettings Settings">
+      <LogsSettings />
       <CallsignSettings />
     </div>
   )
