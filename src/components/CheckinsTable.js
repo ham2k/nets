@@ -39,6 +39,15 @@ const DATA_COMPONENTS = {
       {checkin[field]}
     </td>
   ),
+  Name: ({ checkin, field }) => (
+    <td className={classNames(`${field}-field`, STYLES[field])}>
+      <div>
+        <a href={`https://www.qrz.com/db?query=${checkin.Callsign}&mode=callsign`} target="qrz">
+          {checkin[field]}
+        </a>
+      </div>
+    </td>
+  ),
   default: ({ checkin, field }) => (
     <td className={classNames(`${field}-field`, STYLES[field])}>
       <div>{checkin[field]}</div>
@@ -52,6 +61,7 @@ const classNamesFor = ({ checkin, net, operator, log }) => {
   if (checkin.operating) classes.push('ci_operating')
   if (checkin.statuses['(c/o)']) classes.push('ci_unavailable')
   if (checkin.statuses['(n/r)']) classes.push('ci_unavailable')
+  if (checkin.statuses['(u)']) classes.push('ci_unavailable')
 
   if (checkin.statuses['(nc)']) classes.push('ci_netcontrol')
   if (checkin.statuses['(rel)']) classes.push('ci_relay')
@@ -95,8 +105,6 @@ export default function CheckinsTable({ net, checkins, operator, log }) {
     'Remarks',
     'QSLInfo',
   ]
-
-  console.log(qualifierFor({ qsl: true, band: net.Band, mode: net.Mode }))
 
   return (
     <table className="CheckinsTable">

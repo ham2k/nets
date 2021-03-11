@@ -1,4 +1,5 @@
 import { setMeta, setServerList, setServerInfo, addNets, setNetParts } from './netloggerSlice'
+import capitalize from 'lodash/capitalize'
 
 const SERVER_LIST_URL = 'http://www.netlogger.org/downloads/ServerList.txt'
 const NETLOGGER_PROTOCOL_VERSION = '2.3'
@@ -289,6 +290,11 @@ function parseNetCheckins(bodyText) {
 
           if (checkin.Callsign) checkin.Callsign = checkin.Callsign.toUpperCase()
           if (checkin.Timestamp) checkin.Timestamp = `${checkin.Timestamp} UTC`
+          if (checkin.Name) checkin.Name = capitalize(checkin.Name)
+          if (checkin.PreferredName) checkin.PreferredName = capitalize(checkin.PreferredName)
+          if (checkin.Country) checkin.Country = capitalize(checkin.Country)
+          if (checkin.County) checkin.County = capitalize(checkin.County)
+          if (checkin.City) checkin.City = capitalize(checkin.City)
 
           checkins.push(checkin)
         }
