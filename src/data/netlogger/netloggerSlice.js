@@ -28,8 +28,19 @@ export const netloggerSlice = createSlice({
     },
 
     addNets: (state, { payload }) => {
-      ;(payload || []).forEach((net) => {
-        state.nets[net.NetName] = { ...state.nets[net.NetName], ...net }
+      payload = payload || []
+
+      /* First delete any existing nets from the same server */
+      const serverName = payload[0]?.ServerName
+      Object.keys(state.nets).forEach((netName) => {
+        if (state.nets[netName]?.ServerName === serverName) {
+          delete state.nets[netName]
+        }
+      })
+
+      /* Then add each new net back into the list */
+      payload.forEach((net) => {
+        state.nets[net.NetName] = net
       })
     },
 
