@@ -1,5 +1,6 @@
 import { setMeta, setServerList, setServerInfo, addNets, setNetParts } from './netloggerSlice'
 import capitalize from 'lodash/capitalize'
+import words from 'lodash/words'
 import slugify from 'slugify'
 
 const SERVER_LIST_URL = 'http://www.netlogger.org/downloads/ServerList.txt'
@@ -7,6 +8,12 @@ const NETLOGGER_PROTOCOL_VERSION = '2.3'
 const NETLOGGER_APP_VERSION = 'v3.1.7x'
 
 const SLUGIFY_OPTIONS = { lower: true, strict: true }
+
+const capitalizeWords = (str) => {
+  return words(str || '')
+    .map((word) => capitalize(word))
+    .join(' ')
+}
 
 /* ================================================================================================================== */
 export const getInitialData = () => (dispatch) => {
@@ -140,7 +147,7 @@ function parseNetsList(bodyText, serverInfo) {
         net.ServerName = serverInfo.ServerName
 
         NET_LIST_FIELDS.forEach((field) => {
-          net[field] = parts.shift()
+          net[field] = parts.shift().trim()
         })
 
         if (net.Date) {
@@ -238,7 +245,7 @@ function parseNetData(bodyText) {
       if (row) {
         const [name, ...values] = row.split('=')
         if (name) {
-          net[name] = values.join('=')
+          net[name] = values.join('=').trim()
         }
       }
     })
@@ -287,7 +294,7 @@ function parseNetCheckins(bodyText) {
           const checkin = {}
 
           CHECKIN_LIST_FIELDS.forEach((field) => {
-            checkin[field] = parts.shift()
+            checkin[field] = parts.shift()?.trim()
           })
 
           checkin.statuses = {}
@@ -295,11 +302,14 @@ function parseNetCheckins(bodyText) {
 
           if (checkin.Callsign) checkin.Callsign = checkin.Callsign.toUpperCase()
           if (checkin.Timestamp) checkin.Timestamp = `${checkin.Timestamp} UTC`
-          if (checkin.Name) checkin.Name = capitalize(checkin.Name)
-          if (checkin.PreferredName) checkin.PreferredName = capitalize(checkin.PreferredName)
-          if (checkin.Country) checkin.Country = capitalize(checkin.Country)
-          if (checkin.County) checkin.County = capitalize(checkin.County)
-          if (checkin.City) checkin.City = capitalize(checkin.City)
+          if (checkin.Name) checkin.Name = capitalizeWords(checkin.Name)
+          if (checkin.PreferredName) checkin.PreferredName = capitalizeWords(checkin.PreferredName)
+          if (checkin.Country.toLowerCase() === 'united states') checkin.Country = 'USA'
+          else checkin.Country = capitalizeWords(checkin.Country)
+          if (checkin.County) checkin.County = capitalizeWords(checkin.County)
+          if (checkin.City) checkin.City = capitalizeWords(checkin.City)
+          if (checkin.Remarks === '(no club info)') checkin.Remarks = ''
+          if (checkin.MemberID && !checkin.MemberID.startsWith('#')) checkin.MemberID = `#${checkin.MemberID}`
 
           checkins.push(checkin)
         }
@@ -329,8 +339,8 @@ function parseNetMonitors(bodyText) {
       if (row) {
         const parts = row.split('|')
         const monitor = {
-          NamePlusVersion: parts[0],
-          IPAddress: parts[1],
+          NamePlusVersion: parts[0]?.trim(),
+          IPAddress: parts[1]?.trim(),
         }
         monitors.push(monitor)
       }
@@ -351,12 +361,12 @@ function parseNetIMs(bodyText) {
       if (row) {
         const parts = row.split('|')
         const im = {
-          ID: parts[0],
-          Name: parts[1],
-          Flag: parts[2],
-          Message: parts[3],
-          Timestamp: parts[4],
-          IPAddress: parts[5],
+          ID: parts[0]?.trim(),
+          Name: parts[1]?.trim(),
+          Flag: parts[2]?.trim(),
+          Message: parts[3]?.trim(),
+          Timestamp: parts[4]?.trim(),
+          IPAddress: parts[5]?.trim(),
         }
         ims.push(im)
       }
@@ -376,12 +386,12 @@ function parseNetExts(bodyText) {
       if (row) {
         const parts = row.split('|')
         const ext = {
-          Timestamp: parts[0],
-          Unknown1: parts[1],
-          Name: parts[2],
-          Unknown2: parts[3],
-          Unknown3: parts[4],
-          ID: parts[5],
+          Timestamp: parts[0]?.trim(),
+          Unknown1: parts[1]?.trim(),
+          Name: parts[2]?.trim(),
+          Unknown2: parts[3]?.trim(),
+          Unknown3: parts[4]?.trim(),
+          ID: parts[5]?.trim(),
         }
         exts.push(ext)
       }

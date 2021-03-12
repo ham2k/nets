@@ -1,0 +1,204 @@
+.Checkin {
+  --checkin-outer-border: 6px;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2em 6em 1fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ' serial  callsign  operator  location '
+    ' .       status    remarks   qsl    ';
+
+  padding-top: var(--spacing-50);
+  padding-bottom: var(--spacing-50);
+
+  line-height: 24px;
+
+  margin-left: var(--checkin-outer-border);
+  margin-right: var(--checkin-outer-border);
+}
+
+@media (max-width: 720px) {
+  .Checkin {
+    --checkin-outer-border: 3px;
+
+    grid-template-columns: 2em 5em 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      ' serial  callsign  operator   '
+      ' .       status    location   '
+      ' .       .         remarks    '
+      ' .       .         qsl        ';
+
+    line-height: 20px;
+  }
+}
+
+.Checkin.odd {
+  background-color: #f0f0f0;
+}
+
+.Checkin.even {
+  background-color: #f9f9f9;
+}
+
+.Checkin .SerialNo-field {
+  grid-area: serial;
+}
+
+.Checkin .Status-field {
+  grid-area: status;
+  font-size: 90%;
+  text-align: center;
+}
+
+.Checkin .Callsign-field {
+  grid-area: callsign;
+  text-align: center;
+}
+
+.Checkin .Operator-section {
+  grid-area: operator;
+}
+
+.Checkin .Location-section {
+  grid-area: location;
+}
+
+.Checkin .Remarks-field {
+  font-size: 90%;
+  grid-area: remarks;
+}
+
+.Checkin .QSLInfo-field {
+  font-size: 90%;
+  grid-area: qsl;
+}
+
+.Checkin.ci_operator {
+  background-color: #bbf2f2;
+  font-weight: bold;
+}
+
+.Checkin.ci_unavailable div {
+  opacity: 0.2;
+}
+
+.Checkin.ci_netcontrol .Operator-section {
+  color: #60f;
+  font-weight: bold;
+}
+
+.Checkin.ci_relay .Operator-section {
+  color: #c70;
+  font-weight: bold;
+}
+
+.Checkin.ci_operating {
+  border: var(--checkin-outer-border) solid #f9f;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 8px;
+}
+
+.Checkin .SerialNo-field {
+  text-align: right;
+}
+
+.Checkin .Status-field {
+  text-align: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.Checkin .Callsign-field .pill {
+  text-align: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.Checkin .Name-field {
+  font-weight: bold;
+}
+
+.Checkin .MemberID-field {
+  margin-left: 1em;
+}
+
+.Checkin .Country-field {
+  text-transform: capitalize;
+}
+
+.Checkin .StateHunting-field {
+  display: inline-block;
+  text-align: center;
+  min-width: 2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+
+  border-radius: 5px;
+}
+
+.Checkin .City-field {
+  margin-left: 0.5em;
+}
+
+.Checkin .County-field {
+  margin-left: 1em;
+}
+
+.Checkin .State-field {
+  margin-left: 0.5em;
+}
+
+.Checkin .Country-field {
+  margin-left: 1em;
+}
+
+.Checkin.ci_confirmed_callsign .Callsign-field {
+  text-decoration: line-through;
+  color: #f00 !important;
+}
+
+.Checkin.ci_worked_callsign {
+  background-color: #f5d5d5;
+}
+
+.Checkin.ci_worked_callsign .Callsign-field {
+  text-decoration: line-through;
+  color: #d66 !important;
+}
+
+.Checkin.ci_confirmed_state .StateHunting-field {
+  text-decoration: line-through !important;
+  color: #f00 !important;
+}
+
+.Checkin.ci_worked_state .StateHunting-field {
+  text-decoration: line-through !important;
+  color: #d66 !important;
+}
+
+.Checkin.ci_new_state .StateHunting-field {
+  background-color: #5d5;
+}
+
+.Checkin.ci_worked_state_mixed .StateHunting-field {
+  background-color: #bfdbbf;
+}
+
+.Checkin a,
+.Checkin a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.Checkin a:active,
+.Checkin a:hover {
+  text-decoration: underline;
+  color: var(--link-color);
+}

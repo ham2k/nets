@@ -12,6 +12,7 @@
   --pill-background-color: #aaa;
 
   --font-size-base: 12pt;
+  --font-size-mobile: 10pt;
 
   --spacing-100: 0.5em;
   --spacing-200: 1em;
@@ -35,6 +36,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+@media (max-width: 720px) {
+  body {
+    font-size: var(--font-size-mobile);
+  }
+}
+
 a:link,
 a:visited,
 .link {
@@ -54,7 +61,7 @@ a:active,
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.pill {
+.xpill {
   display: inline-block;
   background-color: var(--pill-background-color);
   font-weight: bold;

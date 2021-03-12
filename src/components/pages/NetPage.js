@@ -10,7 +10,7 @@ import { upcasedCallsignSelector } from '../../data/settings'
 import { logSelector } from '../../data/logs'
 
 import CheckinsLoader from '../CheckinsLoader'
-import CheckinsTable from '../CheckinsTable'
+import CheckinsList from '../checkins/CheckinsList'
 
 /* ================================================================================================================== */
 export default function NetPage() {
@@ -39,7 +39,7 @@ export default function NetPage() {
             <span>Started {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
           </div>
 
-          <CheckinsTable net={net} checkins={checkins} operator={callsign} log={log} />
+          <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} />
 
           <CheckinsLoader net={net} />
         </main>
