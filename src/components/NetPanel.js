@@ -12,7 +12,7 @@ export default function NetPanel({ selected }) {
   const net = useSelector(netSelector(selected))
   const checkins = useSelector(netCheckinsSelector(selected))
 
-  if (net && net.NetName) {
+  if (net && net.slug) {
     return (
       <div className="NetPanel">
         <h2>{net.NetName}</h2>

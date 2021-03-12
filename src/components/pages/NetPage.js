@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import Header from '../nav/Header'
 
@@ -19,7 +20,7 @@ export default function NetPage() {
   const callsign = useSelector(upcasedCallsignSelector())
   const log = useSelector(logSelector())
 
-  if (net && net.NetName) {
+  if (net && net.slug) {
     return (
       <>
         <Header />
@@ -45,13 +46,6 @@ export default function NetPage() {
       </>
     )
   } else {
-    return (
-      <>
-        <Header />
-        <main>
-          <div className="NetPanel">Please select a net</div>
-        </main>
-      </>
-    )
+    return <Redirect to={'/'} />
   }
 }

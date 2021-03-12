@@ -93,16 +93,19 @@ describe('NetLogger API Calls', () => {
             expect(action.payload.length).toBe(24)
             expect(action.payload[0]).toMatchObject({
               NetName: '160m net on 1900kHz',
+              slug: '160m-net-on-1900khz',
               NetControl: 'KE8USA',
               Frequency: '1.9MHz',
             })
             expect(action.payload[3]).toMatchObject({
               NetName: 'BARS Thursday Night Net',
+              slug: 'bars-thursday-night-net',
               NetControl: 'KD9LDD',
               Frequency: '147.330',
             })
             expect(action.payload[23]).toMatchObject({
               NetName: 'WC5C Weekly Net',
+              slug: 'wc5c-weekly-net',
               NetControl: 'AC5V',
               Frequency: '147.16',
             })
@@ -127,8 +130,9 @@ describe('NetLogger API Calls', () => {
       const store = mockStore({
         netlogger: {
           nets: {
-            'Graveyard Net': {
+            'graveyard-net': {
               NetName: 'Graveyard Net',
+              slug: 'graveyard-net',
               ServerHost: 'http://www.netlogger1.org:80',
               ServerName: 'NETLOGGER1',
             },
@@ -136,7 +140,7 @@ describe('NetLogger API Calls', () => {
         },
       })
       store
-        .dispatch(getNetSubscription('Graveyard Net'))
+        .dispatch(getNetSubscription('graveyard-net'))
         .then(() => {
           const actions = store.getActions()
 
@@ -145,13 +149,13 @@ describe('NetLogger API Calls', () => {
           action = actions.shift()
           expect(action.type).toBe('netlogger/setNetParts')
           expect(action.payload).toMatchObject({
-            NetName: 'Graveyard Net',
+            slug: 'graveyard-net',
             data: { isLoading: true },
           })
 
           action = actions.shift()
           expect(action.type).toBe('netlogger/setNetParts')
-          expect(action.payload.NetName).toBe('Graveyard Net')
+          expect(action.payload.slug).toBe('graveyard-net')
 
           expect(action.payload.data).toMatchObject({
             NetName: 'Graveyard Net',

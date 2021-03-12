@@ -26,16 +26,16 @@ export default function NetsSelection({ selected }) {
     <ul className="NetSelection">
       {sortedNets.map((net) => (
         <li
-          key={net.NetName}
-          className={selected === net.NetName ? 'selected' : ''}
+          key={net.slug}
+          className={selected === net.slug ? 'selected' : ''}
           onClick={(ev) => {
             if (ev.defaultPrevented) return
             ev.preventDefault()
 
-            history.push(`/${net.NetName}`)
+            history.push(`/${net.slug}`)
           }}
         >
-          <Link to={`/${net.NetName}`}>{net.NetName}</Link>
+          <Link to={`/${net.slug}`}>{net.NetName}</Link>
           <div className="secondary">
             {net.Band}
             {' • '}

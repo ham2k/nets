@@ -32,24 +32,24 @@ export const netloggerSlice = createSlice({
 
       /* First delete any existing nets from the same server */
       const serverName = payload[0]?.ServerName
-      Object.keys(state.nets).forEach((netName) => {
-        if (state.nets[netName]?.ServerName === serverName) {
-          delete state.nets[netName]
+      Object.keys(state.nets).forEach((slug) => {
+        if (state.nets[slug]?.ServerName === serverName) {
+          delete state.nets[slug]
         }
       })
 
       /* Then add each new net back into the list */
       payload.forEach((net) => {
-        state.nets[net.NetName] = net
+        state.nets[net.slug] = net
       })
     },
 
-    setNetParts: (state, { payload: { NetName, data, checkins, ims, monitors, exts } }) => {
-      if (data) state.nets[NetName] = { ...state.nets[NetName], ...data }
-      if (checkins) state.netCheckins[NetName] = checkins
-      if (ims) state.netIMs[NetName] = ims
-      if (monitors) state.netMonitors[NetName] = monitors
-      if (exts) state.netExts[NetName] = exts
+    setNetParts: (state, { payload: { slug, data, checkins, ims, monitors, exts } }) => {
+      if (data) state.nets[slug] = { ...state.nets[slug], ...data }
+      if (checkins) state.netCheckins[slug] = checkins
+      if (ims) state.netIMs[slug] = ims
+      if (monitors) state.netMonitors[slug] = monitors
+      if (exts) state.netExts[slug] = exts
     },
   },
 })

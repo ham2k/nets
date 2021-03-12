@@ -12,16 +12,16 @@ export default function CheckinsLoader({ net, operator }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(refreshNetData(net.NetName))
+    dispatch(refreshNetData(net.slug))
 
     const interval = window.setInterval(() => {
-      dispatch(refreshNetData(net.NetName))
+      dispatch(refreshNetData(net.slug))
     }, RELOAD_INTERVAL * 1000)
 
     return () => {
       interval && clearInterval(interval)
     }
-  }, [dispatch, net.NetName]) // run once
+  }, [dispatch, net.slug]) // run once
 
   return (
     <div className="CheckinsLoader">
@@ -29,7 +29,7 @@ export default function CheckinsLoader({ net, operator }) {
         {net.isLoading ? (
           <button disabled={true}>Loading…</button>
         ) : (
-          <button onClick={() => dispatch(refreshNetData(net.NetName))}>Refresh</button>
+          <button onClick={() => dispatch(refreshNetData(net.slug))}>Refresh</button>
         )}
       </div>
     </div>

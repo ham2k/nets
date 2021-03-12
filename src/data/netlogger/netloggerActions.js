@@ -1,9 +1,12 @@
 import { setMeta, setServerList, setServerInfo, addNets, setNetParts } from './netloggerSlice'
 import capitalize from 'lodash/capitalize'
+import slugify from 'slugify'
 
 const SERVER_LIST_URL = 'http://www.netlogger.org/downloads/ServerList.txt'
 const NETLOGGER_PROTOCOL_VERSION = '2.3'
 const NETLOGGER_APP_VERSION = 'v3.1.7x'
+
+const SLUGIFY_OPTIONS = { lower: true, strict: true }
 
 /* ================================================================================================================== */
 export const getInitialData = () => (dispatch) => {
@@ -54,7 +57,6 @@ export const getServerInfo = (serverHost) => (dispatch) => {
       if (response.ok) {
         return response.text()
       } else {
-        debugger
         throw new TypeError('Bad response')
       }
     })
@@ -146,6 +148,8 @@ function parseNetsList(bodyText, serverInfo) {
           net.Date = `${parts[0]}${parts[1]}-${parts[2]}-${parts[3]} ${parts[4]}:${parts[5]}:${parts[6]} UTC`
         }
 
+        if (net.NetName) net.slug = slugify(net.NetName, SLUGIFY_OPTIONS)
+
         nets.push(net)
       }
     })
@@ -155,15 +159,15 @@ function parseNetsList(bodyText, serverInfo) {
 }
 
 /* ================================================================================================================== */
-export const getNetSubscription = (netName) => (dispatch, getState) => {
-  const net = getState()?.netlogger?.nets?.[netName]
+export const getNetSubscription = (slug) => (dispatch, getState) => {
+  const net = getState()?.netlogger?.nets?.[slug]
   if (!net) return
 
-  dispatch(setNetParts({ NetName: netName, data: { isLoading: true } }))
+  dispatch(setNetParts({ slug, data: { isLoading: true } }))
 
   const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/SubscribeToNet.php`)
   url.searchParams.append('ProtocolVersion', NETLOGGER_PROTOCOL_VERSION)
-  url.searchParams.append('NetName', netName)
+  url.searchParams.append('NetName', net.NetName)
   if (net.operator) {
     url.searchParams.append('Callsign', `${net.operator} - ${NETLOGGER_APP_VERSION}`)
   }
@@ -181,20 +185,20 @@ export const getNetSubscription = (netName) => (dispatch, getState) => {
     .then((bodyText) => {
       const { data, checkins, ims, monitors, exts } = parseNetDatastream(bodyText, net)
       data.isLoading = false
-      dispatch(setNetParts({ NetName: netName, data, checkins, ims, monitors, exts }))
+      dispatch(setNetParts({ slug, data, checkins, ims, monitors, exts }))
     })
 }
 
 /* ================================================================================================================== */
-export const refreshNetData = (netName) => (dispatch, getState) => {
-  const net = getState()?.netlogger?.nets?.[netName]
+export const refreshNetData = (slug) => (dispatch, getState) => {
+  const net = getState()?.netlogger?.nets?.[slug]
   if (!net) return
 
-  dispatch(setNetParts({ NetName: netName, data: { isLoading: true } }))
+  dispatch(setNetParts({ slug, data: { isLoading: true } }))
 
   const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/GetUpdates3.php`)
   url.searchParams.append('ProtocolVersion', NETLOGGER_PROTOCOL_VERSION)
-  url.searchParams.append('NetName', netName)
+  url.searchParams.append('NetName', net.NetName)
   url.searchParams.append('IMSerial', 0)
   url.searchParams.append('LastExtDataSerial', 0)
 
@@ -209,7 +213,7 @@ export const refreshNetData = (netName) => (dispatch, getState) => {
     .then((bodyText) => {
       const { data, checkins, ims, monitors, exts } = parseNetDatastream(bodyText, net)
       data.isLoading = false
-      dispatch(setNetParts({ NetName: netName, data, checkins, ims, monitors, exts }))
+      dispatch(setNetParts({ slug, data, checkins, ims, monitors, exts }))
     })
 }
 
@@ -240,6 +244,7 @@ function parseNetData(bodyText) {
     })
 
     if (net.Date) net.Date = `${net.Date} UTC`
+    if (net.NetName) net.slug = slugify(net.NetName, SLUGIFY_OPTIONS)
   }
 
   return net
