@@ -9,7 +9,7 @@ import { netSelector, netCheckinsSelector, netLocalSelector } from '../../data/n
 import { upcasedCallsignSelector } from '../../data/settings'
 import { logSelector } from '../../data/logs'
 
-import CheckinsLoader from '../CheckinsLoader'
+import CheckinsLoader from '../checkins/CheckinsLoader'
 import CheckinsList from '../checkins/CheckinsList'
 
 /* ================================================================================================================== */
@@ -25,24 +25,29 @@ export default function NetPage() {
     return (
       <>
         <Header />
-        <main className="NetPage">
-          <h2>{net.NetName}</h2>
+        <main className="NetPage overflow-y-auto">
+          <div className="flex-row-baseline pb-100 flex-0">
+            <div>
+              <h2 className="p-0 m-0">{net.NetName}</h2>
+              <div className="secondary">
+                {net.Band} • {net.Frequency} MHz {net.Mode}
+              </div>
+            </div>
 
-          <div className="secondary">
-            {net.Band} • {net.Frequency} MHz {net.Mode}
+            <div className="align-right">
+              Net Control: <span className="callsign">{net.NetControl}</span>
+              {' • '}
+              <span>{net.SubscriberCount} subscribers</span>
+              {' • '}
+              <span>Started {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
+              {' • '}
+              <CheckinsLoader net={net} />
+            </div>
           </div>
 
-          <div>
-            Net Control: <span className="callsign">{net.NetControl}</span>
-            {' • '}
-            <span>{net.SubscriberCount} subscribers</span>
-            {' • '}
-            <span>Started {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
+          <div className="flex-1 overflow-y-auto">
+            <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} local={local} />
           </div>
-
-          <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} local={local} />
-
-          <CheckinsLoader net={net} />
         </main>
       </>
     )

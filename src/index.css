@@ -2,6 +2,7 @@
   --background-color: #e3e3e3;
   --content-background-color: #f3f3f3;
   --text-color: #333;
+  --secondary-text-color: #777;
   --text-highlight-color: #c00;
 
   --link-color: #c00;
@@ -32,37 +33,232 @@ body {
   font-size: var(--font-size-base);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
 @media (max-width: 720px) {
+  :root {
+    --spacing-100: 0.3em;
+    --spacing-200: 0.6em;
+    --spacing-400: 1.2em;
+    --spacing-50: 0.15em;
+  }
+
   body {
     font-size: var(--font-size-mobile);
   }
 }
 
-a:link,
-a:visited,
-.link {
-  color: var(--link-color);
-  cursor: pointer;
-  text-decoration: underline;
+/* == Flex ========================================================== */
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-a:hover,
-a:active,
-.link:hover {
-  color: var(--link-highlight-color);
-  cursor: pointer;
+.flex-row-baseline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.flex-row-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.callsign {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+.flex-row-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.clickable {
-  cursor: pointer;
+.flex-row-stretch {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-col-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.flex-col-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.flex-col-stretch {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.flex-0 {
+  flex: 0;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.whole-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 100%;
+  width: 100%;
+}
+
+/* == Other Layout Utils ================================================ */
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+/* == Padding, Margin, Borders ================================================ */
+.p-0 {
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.pb-100 {
+  padding-bottom: var(--spacing-100);
+}
+
+.plr-100 {
+  padding-left: var(--spacing-100);
+  padding-right: var(--spacing-100);
+}
+
+.plr-200 {
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+}
+
+.mt-100 {
+  margin-top: var(--spacing-100);
+}
+
+.mt-200 {
+  margin-top: var(--spacing-200);
+}
+
+.mb-100 {
+  margin-bottom: var(--spacing-100);
+}
+
+.mb-200 {
+  margin-bottom: var(--spacing-100);
+}
+
+.ml-neg100 {
+  margin-left: calc(-1 * var(--spacing-100));
+}
+
+.mr-neg100 {
+  margin-right: calc(-1 * var(--spacing-100));
+}
+
+.ml-neg50 {
+  margin-left: calc(-0.5 * var(--spacing-100));
+}
+
+.mr-neg50 {
+  margin-right: calc(-0.5 * var(--spacing-100));
+}
+
+.bt-1 {
+  border-top: 1px solid var(--border-color);
+}
+
+.bb-1 {
+  border-left: 1px solid var(--border-color);
+}
+
+.b-red {
+  border: 1px solid red;
+}
+
+.b-green {
+  border: 1px solid green;
+}
+
+.b-blue {
+  border: 1px solid blue;
+}
+
+/* == Headers, Pills, Secondary ================================================ */
+
+.secondary {
+  font-size: 90%;
+  color: var(--secondary-text-color);
+}
+
+.larger {
+  font-size: 130%;
 }
 
 .xpill {
@@ -74,4 +270,123 @@ a:active,
   padding-right: 0.5em;
   border-radius: 0.7em;
   text-align: center;
+}
+
+/* == Misc Utilities ================================================ */
+
+.clickable {
+  cursor: pointer;
+}
+
+.callsign {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* == Default Tag Styles ================================================ */
+
+label {
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a:link,
+a:visited,
+.link {
+  color: var(--link-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover,
+a:active,
+.link:hover {
+  color: var(--link-highlight-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+button.link {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+.App {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+main {
+  flex: 1;
+  /* overflow: auto; */
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start;
+  align-items: stretch; */
+
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+  padding-top: var(--spacing-100);
+  padding-bottom: var(--spacing-100);
+
+  background-color: var(--content-background-color);
+}
+
+header {
+  flex: 0;
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+  padding-top: var(--spacing-50);
+  padding-bottom: var(--spacing-50);
+
+  background-color: var(--background-color);
+}
+
+footer {
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+  padding-top: var(--spacing-50);
+  padding-bottom: var(--spacing-50);
+}
+
+header a,
+header a:link,
+header a:visited,
+footer a,
+footer a:link,
+footer a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+header a:active,
+header a:hover,
+footer a:active,
+footer a:hover {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+header h1 {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+header h1 strong {
+  font-weight: bold;
 }

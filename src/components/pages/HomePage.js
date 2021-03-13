@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <LargeHeader />
-      <main className="HomePage">
+      <main className="HomePage overflow-auto">
         <NetsSelection />
       </main>
     </>

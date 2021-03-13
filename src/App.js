@@ -5,8 +5,6 @@ import HomePage from './components/pages/HomePage'
 import NetPage from './components/pages/NetPage'
 import NetsLoader from './components/NetsLoader'
 
-import './App.css'
-
 function App() {
   return (
     <div className="App">

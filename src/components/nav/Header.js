@@ -3,18 +3,16 @@ import { Link } from 'react-router-dom'
 
 import QuickSettings from '../settings/QuickSettings'
 
-import './Header.css'
-
 export default function LargeHeader() {
   return (
-    <header className="Header">
-      <h1>
+    <header className="Header flex-row-center">
+      <h1 className="flex-1">
         <Link to={'/'}>
           📻 ham2k <strong>Nets</strong>
         </Link>
       </h1>
 
-      <div className="Settings">
+      <div className="Settings flex-1 align-right">
         <QuickSettings />
       </div>
     </header>

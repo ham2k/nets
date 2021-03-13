@@ -1,9 +1,13 @@
-.Checkin {
-  --checkin-outer-border: 6px;
+.Checkins {
+  --highlight-border-size: 3px;
+}
+
+.CheckinCard {
+  line-height: 24px;
 
   width: 100%;
   display: grid;
-  grid-template-columns: 2em 6em 1fr 2fr;
+  grid-template-columns: 2em 7em 1fr 2fr;
   grid-template-rows: auto;
   grid-template-areas:
     ' serial  callsign  operator  location '
@@ -11,17 +15,16 @@
 
   padding-top: var(--spacing-50);
   padding-bottom: var(--spacing-50);
-
-  line-height: 24px;
-
-  margin-left: var(--checkin-outer-border);
-  margin-right: var(--checkin-outer-border);
 }
 
-@media (max-width: 720px) {
-  .Checkin {
-    --checkin-outer-border: 3px;
+border-left: var(--checkin-outer-border) solid #000;
 
+@media (max-width: 720px) {
+  .Checkins {
+    --highlight-border-size: 1px;
+  }
+
+  .CheckinCard {
     grid-template-columns: 2em 5em 1fr;
     grid-template-rows: auto;
     grid-template-areas:
@@ -77,11 +80,16 @@
 
 .Checkin.ci_operator {
   background-color: #bbf2f2;
-  font-weight: bold;
 }
 
-.Checkin.ci_unavailable div {
-  opacity: 0.2;
+.Checkin.ci_operator .you {
+  font-weight: bold;
+  color: #0fa3a3;
+  text-transform: uppercase;
+}
+
+.Checkin.ci_unavailable .CheckinCard > div {
+  opacity: 0.25;
 }
 
 .Checkin.ci_netcontrol .Operator-section {
@@ -95,10 +103,14 @@
 }
 
 .Checkin.ci_operating {
-  border: var(--checkin-outer-border) solid #f9f;
-  margin-left: 0;
-  margin-right: 0;
-  border-radius: 8px;
+  border-top: var(--highlight-border-size) solid #f229f2;
+  border-bottom: var(--highlight-border-size) solid #f229f2;
+  background-color: #e6bee6;
+}
+.Checkin.ci_operating .operating {
+  font-weight: bold;
+  color: #f229f2;
+  text-transform: uppercase;
 }
 
 .Checkin .SerialNo-field {
@@ -111,13 +123,17 @@
   padding-right: 0.5em;
 }
 
+.Checkin .Status-field > span {
+  margin-right: 0.5em;
+}
+
 .Checkin .Callsign-field .pill {
   text-align: center;
   padding-left: 0.5em;
   padding-right: 0.5em;
 
   background-color: #ccc;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   border-radius: 5px;
 }
 

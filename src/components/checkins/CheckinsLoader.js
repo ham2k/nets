@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { refreshNetData } from '../data/netlogger'
-
-import './CheckinsLoader.css'
+import { refreshNetData } from '../../data/netlogger'
 
 const RELOAD_INTERVAL = 20
 
@@ -24,14 +22,14 @@ export default function CheckinsLoader({ net, operator }) {
   }, [dispatch, net.slug]) // run once
 
   return (
-    <div className="CheckinsLoader">
-      <div>
-        {net.isLoading ? (
-          <button disabled={true}>Loading…</button>
-        ) : (
-          <button onClick={() => dispatch(refreshNetData(net.slug))}>Refresh</button>
-        )}
-      </div>
-    </div>
+    <>
+      {net.isLoading ? (
+        <span>Loading…</span>
+      ) : (
+        <button className="link" onClick={() => dispatch(refreshNetData(net.slug))}>
+          Refresh
+        </button>
+      )}
+    </>
   )
 }

@@ -12,13 +12,13 @@ import './Checkins.css'
 const classNamesFor = ({ checkin, net, operator, log, localInfo }) => {
   const classes = []
   if (checkin.operating) classes.push('ci_operating')
-  if (checkin.statuses['(c/o)']) classes.push('ci_unavailable')
-  if (checkin.statuses['(n/r)']) classes.push('ci_unavailable')
-  if (checkin.statuses['(u)']) classes.push('ci_unavailable')
+  if (checkin.statuses.checkedOut) classes.push('ci_unavailable')
+  if (checkin.statuses.notResponding) classes.push('ci_unavailable')
+  if (checkin.statuses.unavailable) classes.push('ci_unavailable')
   if (localInfo?.notHeard) classes.push('ci_unavailable')
 
-  if (checkin.statuses['(nc)']) classes.push('ci_netcontrol')
-  if (checkin.statuses['(rel)']) classes.push('ci_relay')
+  if (checkin.statuses.netControl) classes.push('ci_netcontrol')
+  if (checkin.statuses.relay) classes.push('ci_relay')
 
   if (checkin.Callsign === operator) classes.push('ci_operator')
 
@@ -76,63 +76,76 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
         ...classNamesFor({ checkin, net, operator, log, localInfo })
       )}
     >
-      <div className="SerialNo-field">{checkin.SerialNo}</div>
+      <div className="CheckinCard">
+        <div className="SerialNo-field">{checkin.SerialNo}</div>
 
-      <div className="Status-field">
-        {operator === checkin.Callsign ? <b>you</b> : ''}
-        {localInfo.notHeard && <span>not heard</span>}
-        {localInfo.worked && <span>worked</span>}
-        {localInfo.notWorked && <span>not worked</span>}
-        {checkin.statuses.other && <span>{checkin.statuses.other.join(' ')}</span>}
-      </div>
+        <div className="Status-field">
+          {operator === checkin.Callsign ? <span className="you">you</span> : ''}
+          {checkin.operating && <span className="operating">Current</span>}
+          {localInfo.notHeard && <span>not heard</span>}
+          {localInfo.worked && <span>worked</span>}
+          {localInfo.notWorked && <span>not worked</span>}
+        </div>
 
-      <div className="Callsign-field ">
-        {checkin.Callsign && (
-          <span className="pill callsign clickable" onClick={onClick}>
-            {checkin.Callsign}
-            {checkin.statuses.portable ? <strong>/P</strong> : ''}
-            {checkin.statuses.mobile ? <strong>/M</strong> : ''}
+        <div className="Callsign-field ">
+          {checkin.Callsign && (
+            <span className="pill callsign clickable" onClick={onClick}>
+              {checkin.Callsign}
+              {checkin.statuses.portable ? <strong>/P</strong> : ''}
+              {checkin.statuses.mobile ? <strong>/M</strong> : ''}
+            </span>
+          )}
+        </div>
+
+        <div className="Operator-section">
+          <span className="Name-field">
+            <a
+              href={`https://www.qrz.com/db?query=${checkin.Callsign}&mode=callsign`}
+              target="qrz"
+              title={checkin.Name}
+            >
+              {checkin.PreferredName || checkin.Name}
+            </a>
           </span>
+
+          {checkin.statuses.netControl && <span>[Net Control]</span>}
+          {checkin.statuses.relay && <span>[Relay]</span>}
+          {checkin.statuses.logger && <span>[Logger]</span>}
+          {checkin.statuses.vip && <span>[VIP]</span>}
+
+          {checkin.MemberID && <span className="MemberID-field">{checkin.MemberID}</span>}
+        </div>
+        <div className="Location-section">
+          {checkin.State && <span className="StateHunting-field">{checkin.State}</span>}
+          {checkin.City && <span className="City-field">{[checkin.City, checkin.State].join(', ')}</span>}
+          {checkin.County && <span className="County-field">{checkin.County}</span>}
+          {checkin.Country && <span className="Country-field">{checkin.Country}</span>}
+        </div>
+
+        {checkin.Remarks ? (
+          <div className="Remarks-field">
+            {checkin.statuses.other?.length > 0 && (
+              <span>
+                {checkin.statuses.other.join(' ')}
+                <br />
+              </span>
+            )}
+
+            <label>Remarks: </label>
+            {checkin.Remarks}
+          </div>
+        ) : (
+          ''
+        )}
+        {checkin.QSLInfo ? (
+          <div className="QSLInfo-field">
+            <label>QSL Info: </label>
+            {checkin.QSLInfo}
+          </div>
+        ) : (
+          ''
         )}
       </div>
-
-      <div className="Operator-section">
-        <span className="Name-field">
-          <a href={`https://www.qrz.com/db?query=${checkin.Callsign}&mode=callsign`} target="qrz" title={checkin.Name}>
-            {checkin.PreferredName || checkin.Name}
-          </a>
-        </span>
-
-        {checkin.statuses.netControl && <span>Net Control</span>}
-        {checkin.statuses.relay && <span>Relay</span>}
-        {checkin.statuses.logger && <span>Logger</span>}
-        {checkin.statuses.vip && <span>VIP</span>}
-
-        {checkin.MemberID && <span className="MemberID-field">{checkin.MemberID}</span>}
-      </div>
-      <div className="Location-section">
-        {checkin.State && <span className="StateHunting-field">{checkin.State}</span>}
-        {checkin.City && <span className="City-field">{[checkin.City, checkin.State].join(', ')}</span>}
-        {checkin.County && <span className="County-field">{checkin.County}</span>}
-        {checkin.Country && <span className="Country-field">{checkin.Country}</span>}
-      </div>
-
-      {checkin.Remarks ? (
-        <div className="Remarks-field">
-          <label>Remarks: </label>
-          {checkin.Remarks}
-        </div>
-      ) : (
-        ''
-      )}
-      {checkin.QSLInfo ? (
-        <div className="QSLInfo-field">
-          <label>QSL Info: </label>
-          {checkin.QSLInfo}
-        </div>
-      ) : (
-        ''
-      )}
     </div>
   )
 }
