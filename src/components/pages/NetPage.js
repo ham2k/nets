@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 
 import Header from '../nav/Header'
 
-import { netSelector, netCheckinsSelector } from '../../data/netlogger'
+import { netSelector, netCheckinsSelector, netLocalSelector } from '../../data/netlogger'
 import { upcasedCallsignSelector } from '../../data/settings'
 import { logSelector } from '../../data/logs'
 
@@ -17,6 +17,7 @@ export default function NetPage() {
   const { slug } = useParams()
   const net = useSelector(netSelector(slug))
   const checkins = useSelector(netCheckinsSelector(slug))
+  const local = useSelector(netLocalSelector(slug))
   const callsign = useSelector(upcasedCallsignSelector())
   const log = useSelector(logSelector())
 
@@ -39,7 +40,7 @@ export default function NetPage() {
             <span>Started {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
           </div>
 
-          <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} />
+          <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} local={local} />
 
           <CheckinsLoader net={net} />
         </main>

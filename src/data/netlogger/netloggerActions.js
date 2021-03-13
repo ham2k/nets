@@ -277,6 +277,33 @@ const CHECKIN_LIST_FIELDS = [
   'PreferredName',
 ]
 
+export const CHECKIN_STATUS_LABELS = {
+  '(nc)': 'Net Control',
+  '(rel)': 'Relay',
+  '(log)': 'Logger',
+  '(vip)': 'VIP',
+  '(op)': 'Operator',
+  '(c/o)': 'Checked out',
+  '(n/r)': 'Not Responding',
+  '(u)': 'Unavailable',
+  '(n/h)': 'Not heard',
+  '(p)': 'Portable',
+  '(m)': 'Mobile',
+}
+export const CHECKIN_STATUS_FLAGS = {
+  '(nc)': 'netControl',
+  '(rel)': 'relay',
+  '(log)': 'logger',
+  '(vip)': 'vip',
+  '(op)': 'operator',
+  '(c/o)': 'checkedOut',
+  '(n/r)': 'notResponding',
+  '(u)': 'unavailable',
+  '(n/h)': 'notHeard',
+  '(p)': 'portable',
+  '(m)': 'mobile',
+}
+
 function parseNetCheckins(bodyText) {
   // eslint-disable-next-line no-unused-vars
   const [preamble, data, postamble] = bodyText.split(/<!--\s*NetLogger (?:Start|End) Data\s*-->/)
@@ -298,7 +325,14 @@ function parseNetCheckins(bodyText) {
           })
 
           checkin.statuses = {}
-          checkin.Status.split(',').forEach((status) => (checkin.statuses[status] = true))
+          checkin.Status.split(',').forEach((status) => {
+            if (CHECKIN_STATUS_FLAGS[status]) {
+              checkin.statuses[CHECKIN_STATUS_FLAGS[status]] = true
+            } else {
+              checkin.statuses.other = checkin.statuses.other || []
+              checkin.statuses.other.push(status)
+            }
+          })
 
           if (checkin.Callsign) checkin.Callsign = checkin.Callsign.toUpperCase()
           if (checkin.Timestamp) checkin.Timestamp = `${checkin.Timestamp} UTC`

@@ -61,6 +61,10 @@ a:active,
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .xpill {
   display: inline-block;
   background-color: var(--pill-background-color);

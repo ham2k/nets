@@ -5,7 +5,7 @@ import { refreshNetData } from '../data/netlogger'
 
 import './CheckinsLoader.css'
 
-const RELOAD_INTERVAL = 5
+const RELOAD_INTERVAL = 20
 
 /* ================================================================================================================== */
 export default function CheckinsLoader({ net, operator }) {
