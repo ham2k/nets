@@ -125,6 +125,10 @@
   font-weight: bold;
 }
 
+.Checkin .Operator-section > span {
+  margin-right: 0.5em;
+}
+
 .Checkin .MemberID-field {
   margin-left: 1em;
 }

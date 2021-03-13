@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
 
@@ -50,7 +50,7 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo }) => {
 export default function CheckinCard({ checkin, index, net, checkins, local, operator, log }) {
   const dispatch = useDispatch()
 
-  const localInfo = local?.callsignInfo?.[checkin.Callsign] || []
+  const localInfo = useMemo(() => local?.callsignInfo?.[checkin.Callsign] || {}, [local, checkin])
 
   const onClick = useCallback(
     (event) => {
@@ -83,15 +83,15 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
         {localInfo.notHeard && <span>not heard</span>}
         {localInfo.worked && <span>worked</span>}
         {localInfo.notWorked && <span>not worked</span>}
-        {checkin.Status}
+        {checkin.statuses.other && <span>{checkin.statuses.other.join(' ')}</span>}
       </div>
 
       <div className="Callsign-field ">
         {checkin.Callsign && (
           <span className="pill callsign clickable" onClick={onClick}>
             {checkin.Callsign}
-            {checkin.statuses['(p)'] ? <strong>/P</strong> : ''}
-            {checkin.statuses['(m)'] ? <strong>/M</strong> : ''}
+            {checkin.statuses.portable ? <strong>/P</strong> : ''}
+            {checkin.statuses.mobile ? <strong>/M</strong> : ''}
           </span>
         )}
       </div>
@@ -102,6 +102,11 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
             {checkin.PreferredName || checkin.Name}
           </a>
         </span>
+
+        {checkin.statuses.netControl && <span>Net Control</span>}
+        {checkin.statuses.relay && <span>Relay</span>}
+        {checkin.statuses.logger && <span>Logger</span>}
+        {checkin.statuses.vip && <span>VIP</span>}
 
         {checkin.MemberID && <span className="MemberID-field">{checkin.MemberID}</span>}
       </div>

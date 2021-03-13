@@ -80,7 +80,6 @@ export const netloggerSlice = createSlice({
 
       state.netLocal[slug] = state.netLocal[slug] || {}
       state.netLocal[slug].callsignInfo = { ...state.netLocal[slug].callsignInfo, ...info }
-      console.log('setNetLocalCallsignInfo', state.netLocal[slug].callsignInfo)
     },
   },
 })
