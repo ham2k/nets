@@ -9,8 +9,8 @@ export default function CallsignSettings() {
   const callsign = useSelector(callsignSelector()) || ''
 
   return (
-    <span className="CallsignSettings">
-      <label htmlFor={'callsign_settings'}>Callsign</label>
+    <section className="CallsignSettings">
+      <label htmlFor={'callsign_settings'}>Your callsign:</label>
       <input
         id={'callsign_settings'}
         value={callsign}
@@ -18,6 +18,6 @@ export default function CallsignSettings() {
         onBlur={(e) => dispatch(setCallsign(callsign.toUpperCase()))}
         size={8}
       />
-    </span>
+    </section>
   )
 }

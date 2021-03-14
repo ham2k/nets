@@ -19,6 +19,8 @@
   --spacing-200: 1em;
   --spacing-400: 2em;
   --spacing-50: 0.25em;
+
+  --column-size: 35em;
 }
 
 body {
@@ -135,6 +137,22 @@ body {
 
   height: 100%;
   width: 100%;
+}
+
+.one-column {
+  max-width: var(--column-size);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.one-column-right {
+  max-width: var(--column-size);
+  margin-left: auto;
+}
+
+.one-column-left {
+  max-width: var(--column-size);
+  margin-right: auto;
 }
 
 /* == Other Layout Utils ================================================ */

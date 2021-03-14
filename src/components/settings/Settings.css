@@ -1,0 +1,17 @@
+.QuickSettings {
+  width: 25em;
+  margin-left: auto;
+}
+.QuickSettings section {
+  margin-bottom: var(--spacing-200);
+}
+
+.QuickSettings section h4 {
+  margin: 0;
+  padding: 0;
+  margin-bottom: var(--spacing-100);
+}
+
+.QuickSettings section > div {
+  margin-left: var(--spacing-200);
+}

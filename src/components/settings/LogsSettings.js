@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { Component, useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loadADIFromUri, logSelector } from '../../data/logs'
 
@@ -17,9 +17,14 @@ export default function LogsSettings() {
   }
 
   return (
-    <div className="LogSettings">
-      <label>{log?.records ? <span>{log.records.length} QSOs</span> : <span>No log</span>} </label>
-      <input type="file" onChange={handleFileSelected} />
-    </div>
+    <section className="LogSettings">
+      <h4>
+        Logs:
+        {log?.records ? <span>{log.records.length} QSOs loaded</span> : <span>No log loaded</span>}
+      </h4>
+      <div>
+        Load an ADIF log file: <input type="file" onChange={handleFileSelected} />
+      </div>
+    </section>
   )
 }

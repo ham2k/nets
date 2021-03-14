@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 import Header from '../nav/Header'
 
 import { netSelector, netCheckinsSelector, netLocalSelector } from '../../data/netlogger'
-import { upcasedCallsignSelector } from '../../data/settings'
+import { upcasedCallsignSelector, huntingSelector } from '../../data/settings'
 import { logSelector } from '../../data/logs'
 
 import CheckinsLoader from '../checkins/CheckinsLoader'
@@ -15,6 +15,7 @@ import CheckinsList from '../checkins/CheckinsList'
 /* ================================================================================================================== */
 export default function NetPage() {
   const { slug } = useParams()
+  const hunting = useSelector(huntingSelector())
   const net = useSelector(netSelector(slug))
   const checkins = useSelector(netCheckinsSelector(slug))
   const local = useSelector(netLocalSelector(slug))
@@ -46,7 +47,7 @@ export default function NetPage() {
           </div>
 
           <div className="flex-1 overflow-y-auto">
-            <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} local={local} />
+            <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} local={local} hunting={hunting} />
           </div>
         </main>
       </>

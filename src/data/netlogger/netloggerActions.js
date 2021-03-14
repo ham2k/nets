@@ -326,9 +326,10 @@ function parseNetCheckins(bodyText) {
 
           checkin.statuses = {}
           checkin.Status.split(',').forEach((status) => {
+            status = status.trim()
             if (CHECKIN_STATUS_FLAGS[status]) {
               checkin.statuses[CHECKIN_STATUS_FLAGS[status]] = true
-            } else {
+            } else if (status) {
               checkin.statuses.other = checkin.statuses.other || []
               checkin.statuses.other.push(status)
             }

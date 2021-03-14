@@ -4,8 +4,8 @@ import CheckinCard from './CheckinCard'
 
 import './Checkins.css'
 
-export default function CheckinsList({ net, checkins, operator, log, local }) {
-  const passthru = { net, checkins, operator, log, local }
+export default function CheckinsList({ net, checkins, operator, log, local, hunting }) {
+  const passthru = { net, checkins, operator, log, local, hunting }
 
   return (
     <div className="Checkins">

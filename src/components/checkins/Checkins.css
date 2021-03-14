@@ -55,6 +55,11 @@ border-left: var(--checkin-outer-border) solid #000;
   text-align: center;
 }
 
+.Checkin .Status-field span {
+  display: block;
+  white-space: nowrap;
+}
+
 .Checkin .Callsign-field {
   grid-area: callsign;
   text-align: center;
