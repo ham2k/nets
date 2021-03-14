@@ -16,6 +16,7 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
   if (checkin.statuses.notResponding) classes.push('ci_unavailable')
   if (checkin.statuses.unavailable) classes.push('ci_unavailable')
   if (localInfo?.notHeard) classes.push('ci_unavailable')
+  if (localInfo?.heard) classes.push('ci_heard')
 
   if (checkin.statuses.netControl) classes.push('ci_netcontrol')
   if (checkin.statuses.relay) classes.push('ci_relay')
@@ -58,10 +59,11 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
     (event) => {
       let newInfo = undefined
 
-      if (localInfo.worked) newInfo = { worked: false, notWorked: true, notHeard: false }
-      else if (localInfo.notWorked) newInfo = { worked: false, notWorked: false, notHeard: false }
-      else if (localInfo.notHeard) newInfo = { worked: true, notWorked: false, notHeard: false }
-      else newInfo = { worked: false, notWorked: false, notHeard: true }
+      if (localInfo.heard) newInfo = { worked: false, notWorked: false, notHeard: true, heard: false }
+      else if (localInfo.notHeard) newInfo = { worked: true, notWorked: false, notHeard: false, heard: false }
+      else if (localInfo.worked) newInfo = { worked: false, notWorked: true, notHeard: false, heard: false }
+      else if (localInfo.notWorked) newInfo = { worked: false, notWorked: false, notHeard: false, heard: false }
+      else newInfo = { worked: false, notWorked: false, notHeard: false, heard: true }
 
       if (newInfo) {
         dispatch(setNetLocalCallsignInfo({ slug: net.slug, info: { [checkin.Callsign]: newInfo } }))
@@ -87,13 +89,14 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
           {localInfo.notHeard && <span>not heard</span>}
           {localInfo.worked && <span>worked</span>}
           {localInfo.notWorked && <span>not worked</span>}
+          {localInfo.heard && <span className="heard">HEARD</span>}
           {checkin.statuses.checkedOut && <span className="secondary">checked out</span>}
           {checkin.statuses.notHeard && <span className="secondary">not heard</span>}
           {checkin.statuses.notResponding && <span className="secondary">not responding</span>}
           {checkin.statuses.unavailable && <span className="secondary">unavailable</span>}
         </div>
 
-        <div className="Callsign-field ">
+        <div className="Callsign-field">
           {checkin.Callsign && (
             <span className="pill callsign clickable" onClick={onClick}>
               {checkin.Callsign}
@@ -132,7 +135,6 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
           <div className="Remarks-field">
             {checkin.statuses.other?.length > 0 && (
               <span>
-                {checkin.statuses.other?.length}
                 {checkin.statuses.other.join(' ')}
                 <br />
               </span>

@@ -93,6 +93,15 @@ border-left: var(--checkin-outer-border) solid #000;
   text-transform: uppercase;
 }
 
+.Checkin.ci_heard .heard {
+  color: #107d10;
+  font-weight: bold;
+}
+
+.Checkin.ci_heard {
+  background-color: #a3cfa3;
+}
+
 .Checkin.ci_unavailable .CheckinCard > div {
   opacity: 0.25;
 }

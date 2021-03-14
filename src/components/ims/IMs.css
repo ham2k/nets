@@ -1,0 +1,33 @@
+.Messages .Message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-bottom: 0.3em;
+}
+
+.Messages .Timestamp-field {
+  flex: 0;
+  min-width: 5.5em;
+  display: inline-block;
+  text-align: right;
+  padding-right: 0.5em;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.Messages .Name-field {
+  flex: 0;
+  font-weight: bold;
+  display: inline-block;
+  padding-right: 0.5em;
+  white-space: nowrap;
+}
+
+.Messages .Message-field {
+  flex: 1;
+}
+
+.Messages .netcontrol .Name-field {
+  color: #60f;
+}

@@ -101,6 +101,7 @@ export const netsSelector = () => (state) => state.netlogger.nets
 export const serversSelector = () => (state) => Object.values(state.netlogger.serverInfo || {})
 export const netSelector = (slug) => (state) => state.netlogger.nets?.[slug]
 export const netCheckinsSelector = (slug) => (state) => state.netlogger.netCheckins?.[slug]
+export const netIMsSelector = (slug) => (state) => state.netlogger.netIMs?.[slug]
 export const netLocalSelector = (slug) => (state) => state.netlogger.netLocal?.[slug]
 export const netLocalCallsignInfoSelector = (slug) => (state) => state.netlogger.netLocal?.[slug]?.callsignInfo
 

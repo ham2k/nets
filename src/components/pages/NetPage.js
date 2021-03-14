@@ -5,12 +5,14 @@ import { Redirect } from 'react-router-dom'
 
 import Header from '../nav/Header'
 
-import { netSelector, netCheckinsSelector, netLocalSelector } from '../../data/netlogger'
+import { netSelector, netCheckinsSelector, netIMsSelector, netLocalSelector } from '../../data/netlogger'
 import { upcasedCallsignSelector, huntingSelector } from '../../data/settings'
 import { logSelector } from '../../data/logs'
 
 import CheckinsLoader from '../checkins/CheckinsLoader'
 import CheckinsList from '../checkins/CheckinsList'
+
+import MessagesList from '../ims/MessagesList'
 
 /* ================================================================================================================== */
 export default function NetPage() {
@@ -18,6 +20,7 @@ export default function NetPage() {
   const hunting = useSelector(huntingSelector())
   const net = useSelector(netSelector(slug))
   const checkins = useSelector(netCheckinsSelector(slug))
+  const messages = useSelector(netIMsSelector(slug))
   const local = useSelector(netLocalSelector(slug))
   const callsign = useSelector(upcasedCallsignSelector())
   const log = useSelector(logSelector())
@@ -46,8 +49,12 @@ export default function NetPage() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-2 overflow-y-auto">
             <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} local={local} hunting={hunting} />
+          </div>
+
+          <div className="flex-1 overflow-y-auto">
+            <MessagesList net={net} messages={messages} checkins={checkins} operator={callsign} />
           </div>
         </main>
       </>

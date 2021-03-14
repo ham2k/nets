@@ -403,6 +403,12 @@ function parseNetIMs(bodyText) {
           Timestamp: parts[4]?.trim(),
           IPAddress: parts[5]?.trim(),
         }
+
+        if (im.Timestamp) {
+          const parts = im.Timestamp.match(TWO_DIGIT_REGEX)
+          im.Timestamp = `${parts[0]}${parts[1]}-${parts[2]}-${parts[3]} ${parts[4]}:${parts[5]}:${parts[6]} UTC`
+        }
+
         ims.push(im)
       }
     })
