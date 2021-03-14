@@ -1,4 +1,4 @@
-.Checkins {
+.CheckinsSection {
   --highlight-border-size: 3px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 @media (max-width: 720px) {
-  .Checkins {
+  .CheckinsSection {
     --highlight-border-size: 1px;
   }
 

@@ -47,6 +47,13 @@ Form item: "NetName" = "NATA 40m Net"
 Form item: "ExtNumber" = "1"
 Form item: "ExtData" = "W2ASD-SEBAS|1029668135|11"
 
+POST http://www.netlogger1.org/cgi-bin/NetLogger/SendInstantMessage.php
+HTML Form URL Encoded: application/x-www-form-urlencoded
+Form item: "NetName" = "NATA 40m Net"
+Form item: "Callsign" = "W2ASD-SEBAS"
+Form item: "IsNetControl" = "x"
+Form item: "Message" = "Checkin?"
+
 GET http://www.netlogger1.org/cgi-bin/NetLogger/UnsubscribeFromNet.php?&Callsign=W2ASD-SEBAS%20-%20v3.1.7M&NetName=OMISS%2040m%20SSB%20Net
 
 GET http://www.netlogger1.org//cgi-bin/NetLogger/GetUpdates3.php?ProtocolVersion=2.3&NetName=NATA%2040m%20Net&DeltaUpdateTime=2021-02-25%2023:26:34&IMSerial=4147426&LastExtDataSerial=14571710

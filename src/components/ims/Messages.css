@@ -1,44 +1,33 @@
-.Messages {
+.MessagesSection {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+
+  overflow: hidden;
+  min-height: 0;
 }
 
-.Messages h4 {
+.MessagesSection h4 {
   margin: 0;
 }
 
-.Messages .header {
+.MessagesSection .header {
   border-top: 2px solid #ccc;
   padding-top: var(--spacing-100);
   padding-bottom: var(--spacing-100);
   flex: 0;
 }
 
-.Messages .footer {
-  padding-top: var(--spacing-100);
-  padding-bottom: var(--spacing-100);
+.MessagesSection .footer {
+  margin-top: var(--spacing-100);
+  margin-bottom: var(--spacing-100);
   flex: 0;
 }
 
 .MessagesList {
   flex: 1;
   overflow-y: auto;
-}
-
-/*
- * To achieve a "keep the scroll on the bottom as new messages come in" behavior,
- * we use a simple but effective hack:
- *   - reverse the order of messages
- *   - flip the list vertically to make the natural "scroll to top" behavior change to "scroll to bottom"
- *   - flip each message vertically to make them look normal again
-*/
-.MessagesList {
-  transform: scaleY(-1);
-}
-.MessagesList .Message {
-  transform: scaleY(-1);
 }
 
 .MessagesList .Message {

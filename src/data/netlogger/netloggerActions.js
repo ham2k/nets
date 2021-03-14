@@ -441,3 +441,35 @@ function parseNetExts(bodyText) {
 
   return exts
 }
+
+/* ================================================================================================================== */
+export const postMessageToNet = (slug, name, message) => (dispatch, getState) => {
+  const net = getState()?.netlogger?.nets?.[slug]
+  console.log('postMessageToNet', slug, net, message)
+  if (!net) return
+
+  const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/SendInstantMessage.php`)
+  const body = new URLSearchParams()
+  body.append('NetName', net.NetName)
+  body.append('Callsign', name)
+  body.append('IsNetControl', 'x')
+  body.append('Message', message)
+
+  return fetch(`/cors-proxy/${url}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+    body: body,
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.text()
+      } else {
+        throw new TypeError('Bad response')
+      }
+    })
+    .then((bodyText) => {
+      dispatch(refreshNetData(slug))
+    })
+}

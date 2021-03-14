@@ -1,12 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { callsignSelector, setCallsign } from '../../data/settings'
+import { callsignSelector, setCallsign, nameSelector, setName } from '../../data/settings'
 
 /* ================================================================================================================== */
 export default function CallsignSettings() {
   const dispatch = useDispatch()
-  const callsign = useSelector(callsignSelector()) || ''
+  const callsign = useSelector(callsignSelector())
+  const name = useSelector(nameSelector())
 
   return (
     <section className="CallsignSettings">
@@ -16,6 +17,14 @@ export default function CallsignSettings() {
         value={callsign}
         onChange={(e) => dispatch(setCallsign(e.target.value))}
         onBlur={(e) => dispatch(setCallsign(callsign.toUpperCase()))}
+        size={8}
+      />{' '}
+      <label htmlFor={'name_settings'}>Name:</label>
+      <input
+        id={'name_settings'}
+        value={name}
+        onChange={(e) => dispatch(setName(e.target.value))}
+        onBlur={(e) => dispatch(setName(name.toUpperCase()))}
         size={8}
       />
     </section>

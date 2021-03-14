@@ -5,32 +5,24 @@ import { Redirect } from 'react-router-dom'
 
 import Header from '../nav/Header'
 
-import { netSelector, netCheckinsSelector, netIMsSelector, netLocalSelector } from '../../data/netlogger'
-import { upcasedCallsignSelector, huntingSelector } from '../../data/settings'
-import { logSelector } from '../../data/logs'
+import { netSelector } from '../../data/netlogger'
 
 import CheckinsLoader from '../checkins/CheckinsLoader'
-import CheckinsList from '../checkins/CheckinsList'
+import CheckinsSection from '../checkins/CheckinsSection'
 
-import MessagesList from '../ims/MessagesList'
+import MessagesSection from '../ims/MessagesSection'
 
 /* ================================================================================================================== */
 export default function NetPage() {
   const { slug } = useParams()
-  const hunting = useSelector(huntingSelector())
   const net = useSelector(netSelector(slug))
-  const checkins = useSelector(netCheckinsSelector(slug))
-  const messages = useSelector(netIMsSelector(slug))
-  const local = useSelector(netLocalSelector(slug))
-  const callsign = useSelector(upcasedCallsignSelector())
-  const log = useSelector(logSelector())
 
   if (net && net.slug) {
     return (
       <>
         <Header />
-        <main className="NetPage overflow-y-auto">
-          <div className="flex-row-baseline pb-100 flex-0">
+        <main className="NetPage">
+          <section className="flex-row-baseline pb-100 flex-0">
             <div>
               <h2 className="p-0 m-0">{net.NetName}</h2>
               <div className="secondary">
@@ -47,25 +39,11 @@ export default function NetPage() {
               {' • '}
               <CheckinsLoader net={net} />
             </div>
-          </div>
+          </section>
 
-          <CheckinsList
-            className="flex-2 overflow-y-auto"
-            net={net}
-            checkins={checkins}
-            operator={callsign}
-            log={log}
-            local={local}
-            hunting={hunting}
-          />
+          <CheckinsSection className="flex-2" slug={slug} />
 
-          <MessagesList
-            className="flex-1 overflow-y-auto"
-            net={net}
-            messages={messages}
-            checkins={checkins}
-            operator={callsign}
-          />
+          <MessagesSection className="flex-1" slug={slug} />
         </main>
       </>
     )
