@@ -49,13 +49,23 @@ export default function NetPage() {
             </div>
           </div>
 
-          <div className="flex-2 overflow-y-auto">
-            <CheckinsList net={net} checkins={checkins} operator={callsign} log={log} local={local} hunting={hunting} />
-          </div>
+          <CheckinsList
+            className="flex-2 overflow-y-auto"
+            net={net}
+            checkins={checkins}
+            operator={callsign}
+            log={log}
+            local={local}
+            hunting={hunting}
+          />
 
-          <div className="flex-1 overflow-y-auto">
-            <MessagesList net={net} messages={messages} checkins={checkins} operator={callsign} />
-          </div>
+          <MessagesList
+            className="flex-1 overflow-y-auto"
+            net={net}
+            messages={messages}
+            checkins={checkins}
+            operator={callsign}
+          />
         </main>
       </>
     )

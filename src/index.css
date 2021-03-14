@@ -202,6 +202,14 @@ body {
   margin: 0;
 }
 
+.p-100 {
+  padding: var(--spacing-100);
+}
+
+.p-200 {
+  padding: var(--spacing-200);
+}
+
 .pb-100 {
   padding-bottom: var(--spacing-100);
 }
@@ -230,6 +238,22 @@ body {
 
 .mb-200 {
   margin-bottom: var(--spacing-100);
+}
+
+.ml-100 {
+  margin-left: var(--spacing-100);
+}
+
+.ml-200 {
+  margin-left: var(--spacing-200);
+}
+
+.mr-100 {
+  margin-right: var(--spacing-100);
+}
+
+.mr-200 {
+  margin-right: var(--spacing-200);
 }
 
 .ml-neg100 {

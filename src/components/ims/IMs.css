@@ -1,4 +1,47 @@
-.Messages .Message {
+.Messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.Messages h4 {
+  margin: 0;
+}
+
+.Messages .header {
+  border-top: 2px solid #ccc;
+  padding-top: var(--spacing-100);
+  padding-bottom: var(--spacing-100);
+  flex: 0;
+}
+
+.Messages .footer {
+  padding-top: var(--spacing-100);
+  padding-bottom: var(--spacing-100);
+  flex: 0;
+}
+
+.MessagesList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/*
+ * To achieve a "keep the scroll on the bottom as new messages come in" behavior,
+ * we use a simple but effective hack:
+ *   - reverse the order of messages
+ *   - flip the list vertically to make the natural "scroll to top" behavior change to "scroll to bottom"
+ *   - flip each message vertically to make them look normal again
+*/
+.MessagesList {
+  transform: scaleY(-1);
+}
+.MessagesList .Message {
+  transform: scaleY(-1);
+}
+
+.MessagesList .Message {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -6,7 +49,7 @@
   margin-bottom: 0.3em;
 }
 
-.Messages .Timestamp-field {
+.MessagesList .Timestamp-field {
   flex: 0;
   min-width: 5.5em;
   display: inline-block;
@@ -16,7 +59,7 @@
   font-size: 0.9em;
 }
 
-.Messages .Name-field {
+.MessagesList .Name-field {
   flex: 0;
   font-weight: bold;
   display: inline-block;
@@ -24,10 +67,10 @@
   white-space: nowrap;
 }
 
-.Messages .Message-field {
+.MessagesList .Message-field {
   flex: 1;
 }
 
-.Messages .netcontrol .Name-field {
+.MessagesList .netcontrol .Name-field {
   color: #60f;
 }

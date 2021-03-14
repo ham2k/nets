@@ -17,8 +17,6 @@
   padding-bottom: var(--spacing-50);
 }
 
-border-left: var(--checkin-outer-border) solid #000;
-
 @media (max-width: 720px) {
   .Checkins {
     --highlight-border-size: 1px;
