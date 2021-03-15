@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 
 import { refreshNetData } from '../../data/netlogger'
 
@@ -22,12 +24,8 @@ export default function CheckinsLoader({ net, operator }) {
   }, [dispatch, net.slug]) // run once
 
   return (
-    <>
-      {net.isLoading ? (
-        <span>Loading…</span>
-      ) : (
-        <button onClick={() => dispatch(refreshNetData(net.slug))}>Refresh</button>
-      )}
-    </>
+    <button onClick={() => dispatch(refreshNetData(net.slug))} disabled={net.isLoading}>
+      <FontAwesomeIcon icon={faSyncAlt} />
+    </button>
   )
 }

@@ -115,8 +115,20 @@
   font-weight: bold;
 }
 
+.Checkin.ci_netcontrol .tagNetControl {
+  background-color: rgb(174, 134, 235);
+  color: #f0f0f0;
+  font-weight: bold;
+}
+
 .Checkin.ci_relay .Operator-section {
   color: #c70;
+  font-weight: bold;
+}
+
+.Checkin.ci_relay .tagRelay {
+  background-color: rgb(221, 169, 96);
+  color: #f0f0f0;
   font-weight: bold;
 }
 
@@ -147,9 +159,11 @@
 }
 
 .Checkin .Callsign-field .pill {
+  display: inline-block;
   text-align: center;
   padding-left: 0.5em;
   padding-right: 0.5em;
+  min-width: 3.5em;
 
   background-color: #ccc;
   border: 1px solid #aaa;
@@ -198,8 +212,26 @@
   margin-left: 1em;
 }
 
-.Checkin.ci_confirmed_callsign .Callsign-field {
-  text-decoration: line-through;
+.Checkin .tag {
+  font-size: 80%;
+  font-weight: normal;
+  display: inline-block;
+  background-color: #ccc;
+  color: #555;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 3px;
+
+  margin-right: 0.3em;
+}
+
+.MemberID-field.tagMemberID {
+  font-weight: bold;
+  color: #000;
+}
+
+.Checkin.ci_confirmed_callsign .Callsign-field span {
+  text-decoration: line-through !important;
   color: rgb(150, 68, 68) !important;
 }
 
@@ -211,8 +243,8 @@
   background-color: #f5d5d5;
 }
 
-.Checkin.ci_worked_callsign .Callsign-field {
-  text-decoration: line-through;
+.Checkin.ci_worked_callsign .Callsign-field span {
+  text-decoration: line-through !important;
   color: rgb(161, 67, 67) !important;
 }
 

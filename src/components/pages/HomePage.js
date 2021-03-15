@@ -1,12 +1,12 @@
 import React from 'react'
 
-import LargeHeader from '../nav/LargeHeader'
-import NetsSelection from '../NetsSelection'
+import Header from '../nav/Header'
+import NetsSelection from '../nets/NetsSelection'
 
-function App() {
+function HomePage() {
   return (
     <>
-      <LargeHeader />
+      <Header className="larger" />
       <main className="HomePage overflow-auto">
         <NetsSelection />
       </main>
@@ -14,4 +14,4 @@ function App() {
   )
 }
 
-export default App
+export default HomePage

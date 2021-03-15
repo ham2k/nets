@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { metaSelector, getInitialData, refreshNets } from '../data/netlogger'
+import { metaSelector, getInitialData, refreshNets } from '../../data/netlogger'
 
 const RELOAD_INTERVAL = 30
 

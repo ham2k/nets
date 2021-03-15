@@ -117,12 +117,12 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
             </a>
           </span>
 
-          {checkin.statuses.netControl && <span>[Net Control]</span>}
-          {checkin.statuses.relay && <span>[Relay]</span>}
-          {checkin.statuses.logger && <span>[Logger]</span>}
-          {checkin.statuses.vip && <span>[VIP]</span>}
+          {checkin.statuses.netControl && <span className="tag tagNetControl">Net Control</span>}
+          {checkin.statuses.relay && <span className="tag tagRelay">Relay</span>}
+          {checkin.statuses.logger && <span className="tag tagLogger">Logger</span>}
+          {checkin.statuses.vip && <span className="tag tagVip">VIP</span>}
 
-          {checkin.MemberID && <span className="MemberID-field">{checkin.MemberID}</span>}
+          {checkin.MemberID && <span className="MemberID-field tag tagMemberID">{checkin.MemberID}</span>}
         </div>
         <div className="Location-section">
           {checkin.State && <span className="StateHunting-field">{checkin.State}</span>}
@@ -133,13 +133,10 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
 
         {checkin.Remarks ? (
           <div className="Remarks-field">
-            {checkin.statuses.other?.length > 0 && (
-              <span>
-                {checkin.statuses.other.join(' ')}
-                <br />
-              </span>
-            )}
-
+            {checkin.statuses.other?.map((status) => (
+              <span className="tag">{status}</span>
+            ))}
+            {checkin.statuses.other?.length > 0 && <br />}
             <label>Remarks: </label>
             {checkin.Remarks}
           </div>

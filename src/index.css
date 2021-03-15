@@ -142,8 +142,13 @@ body {
 
 .normal-content {
   max-width: var(--normal-width);
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.content-60 {
+  max-width: calc(0.6 * var(--normal-width));
 }
 
 .one-column {
@@ -319,6 +324,10 @@ body {
   font-size: 130%;
 }
 
+.smaller {
+  font-size: 70%;
+}
+
 .xpill {
   display: inline-block;
   background-color: var(--pill-background-color);
@@ -428,18 +437,13 @@ footer {
 
 header a,
 header a:link,
-header a:visited,
-footer a,
-footer a:link,
-footer a:visited {
+header a:visited {
   text-decoration: none;
   color: inherit;
 }
 
 header a:active,
-header a:hover,
-footer a:active,
-footer a:hover {
+header a:hover {
   text-decoration: none;
   color: var(--link-color);
 }

@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import classNames from 'classnames'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComments, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
 import { netSelector, netCheckinsSelector, netIMsSelector, postMessageToNet } from '../../data/netlogger'
 import { upcasedCallsignSelector, nameSelector } from '../../data/settings'
 
@@ -48,41 +51,45 @@ export default function MessagesSection({ slug, className, style }) {
   }, [])
 
   return (
-    <section className={classNames(className, 'MessagesSection')}>
-      <div className="header plr-200">
-        <h4>Almost Instant Messages</h4>
-      </div>
+    <div className={classNames(className, 'MessagesSection')}>
+      <section>
+        <div className="header plr-200">
+          <h4>
+            <FontAwesomeIcon icon={faComments} /> Almost Instant Messages
+          </h4>
+        </div>
 
-      <div className="MessagesList" ref={messagesElement}>
-        {messages.map((message, index) => (
-          <Message key={message.ID} message={message} {...passthru} />
-        ))}
-      </div>
+        <div className="MessagesList" ref={messagesElement}>
+          {messages.map((message, index) => (
+            <Message key={message.ID} message={message} {...passthru} />
+          ))}
+        </div>
 
-      <div className="footer flex-row-baseline plr-200">
-        <input
-          className="flex-1 mr-100 p-100"
-          type="text"
-          value={message}
-          id="messages_input"
-          onChange={(ev) => setMessage(ev.target.value)}
-          onKeyDown={(ev) => {
-            if (ev.key === 'Enter') {
+        <div className="footer flex-row-baseline plr-200">
+          <input
+            className="flex-1 mr-100 p-100"
+            type="text"
+            value={message}
+            id="messages_input"
+            onChange={(ev) => setMessage(ev.target.value)}
+            onKeyDown={(ev) => {
+              if (ev.key === 'Enter') {
+                dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
+                setMessage('')
+              }
+            }}
+          />
+          <button
+            className="p-100"
+            onClick={() => {
               dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
               setMessage('')
-            }
-          }}
-        />
-        <button
-          className="p-100"
-          onClick={() => {
-            dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
-            setMessage('')
-          }}
-        >
-          Send
-        </button>
-      </div>
-    </section>
+            }}
+          >
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </button>
+        </div>
+      </section>
+    </div>
   )
 }

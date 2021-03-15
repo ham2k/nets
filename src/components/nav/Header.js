@@ -1,30 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import classNames from 'classnames'
 
-import QuickSettings from '../settings/QuickSettings'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTools } from '@fortawesome/free-solid-svg-icons'
 
-export default function LargeHeader() {
-  const [settingsToggle, setSettingsToggle] = useState(false)
-
+export default function Header({ className }) {
   return (
-    <header className="Header flex-col-stretch">
+    <header className={classNames('Header', 'flex-col-stretch', className)}>
       <div className="flex-row-center">
         <h1 className="flex-1">
           <Link to={'/'}>
-            📻 ham2k <strong>Nets</strong>
+            📻 Ham2K <strong>Nets</strong> <span className="smaller">v0.1</span>
           </Link>
         </h1>
         <div className="flex-1 align-right">
-          <button onClick={() => setSettingsToggle(!settingsToggle)}>
-            {settingsToggle ? 'Hide Settings' : 'Show Settings'}
-          </button>
+          <Link to={'/app/settings'}>
+            <FontAwesomeIcon icon={faTools} />
+          </Link>
         </div>
       </div>
-      {settingsToggle && (
-        <div className="Settings flex-1">
-          <QuickSettings />
-        </div>
-      )}
     </header>
   )
 }

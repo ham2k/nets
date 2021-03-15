@@ -7,14 +7,16 @@ ul.NetSelection {
 .NetSelection li {
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #c5c5c5;
+  background-color: #e7e4e4;
   padding: var(--spacing-100);
   cursor: pointer;
+  margin-bottom: var(--spacing-100);
 }
 
 .NetSelection li.selected {
   font-weight: bold;
-  background-color: var(--content-background-color);
+  background-color: #d6d6d6;
   position: relative;
   left: 1px;
   border-left: 1px solid var(--content-background-color);

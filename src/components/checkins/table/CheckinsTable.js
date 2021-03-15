@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import { qualifierFor } from '../../data/logs/logsActions'
+import { qualifierFor } from '../../../data/logs/logsActions'
 
 import './CheckinsTable.css'
 

@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
+
 import Header from '../nav/Header'
 
 import { netSelector } from '../../data/netlogger'
@@ -10,7 +13,7 @@ import { netSelector } from '../../data/netlogger'
 import CheckinsLoader from '../checkins/CheckinsLoader'
 import CheckinsSection from '../checkins/CheckinsSection'
 
-import MessagesSection from '../ims/MessagesSection'
+import MessagesSection from '../messages/MessagesSection'
 
 /* ================================================================================================================== */
 export default function NetPage() {
@@ -24,7 +27,9 @@ export default function NetPage() {
         <main className="NetPage">
           <section className="flex-row-baseline pb-100 flex-0">
             <div>
-              <h2 className="p-0 m-0">{net.NetName}</h2>
+              <h2 className="p-0 m-0">
+                <FontAwesomeIcon icon={faProjectDiagram} /> {net.NetName}
+              </h2>
               <div className="secondary">
                 {net.Band} • {net.Frequency} MHz {net.Mode}
               </div>

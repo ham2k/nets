@@ -1,4 +1,5 @@
 .MessagesSection {
+  border-top: 4px solid #bbb;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -6,10 +7,18 @@
 
   overflow: hidden;
   min-height: 0;
+}
 
-  max-width: var(--normal-width);
-  margin-left: auto;
-  margin-right: auto;
+.MessagesSection section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  padding: 0;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .MessagesSection h4 {
@@ -17,16 +26,27 @@
 }
 
 .MessagesSection .header {
-  border-top: 2px solid #ccc;
+  flex: 0;
+
+  max-width: var(--normal-width);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
   padding-top: var(--spacing-100);
   padding-bottom: var(--spacing-100);
-  flex: 0;
 }
 
 .MessagesSection .footer {
+  flex: 0;
+
+  max-width: var(--normal-width);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
   margin-top: var(--spacing-100);
   margin-bottom: var(--spacing-100);
-  flex: 0;
 }
 
 .MessagesList {
@@ -35,6 +55,11 @@
 }
 
 .MessagesList .Message {
+  max-width: var(--normal-width);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
