@@ -3,9 +3,12 @@
 }
 
 .CheckinCard {
+  max-width: var(--normal-width);
+  margin-left: auto;
+  margin-right: auto;
+
   line-height: 24px;
 
-  width: 100%;
   display: grid;
   grid-template-columns: 2em 7em 1fr 2fr;
   grid-template-rows: auto;
@@ -17,7 +20,7 @@
   padding-bottom: var(--spacing-50);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 800px) {
   .CheckinsSection {
     --highlight-border-size: 1px;
   }
@@ -96,6 +99,9 @@
   font-weight: bold;
 }
 
+.Checkin.ci_heard.even {
+  background-color: #abd8ab;
+}
 .Checkin.ci_heard {
   background-color: #a3cfa3;
 }
@@ -136,7 +142,8 @@
 }
 
 .Checkin .Status-field > span {
-  margin-right: 0.5em;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
 }
 
 .Checkin .Callsign-field .pill {
@@ -193,16 +200,20 @@
 
 .Checkin.ci_confirmed_callsign .Callsign-field {
   text-decoration: line-through;
-  color: #f00 !important;
+  color: rgb(150, 68, 68) !important;
 }
 
-.Checkin.ci_worked_callsign {
+.Checkin.ci_worked_callsign.even {
+  background-color: #eecbcb;
+}
+
+.Checkin.ci_worked_callsign.odd {
   background-color: #f5d5d5;
 }
 
 .Checkin.ci_worked_callsign .Callsign-field {
   text-decoration: line-through;
-  color: #d66 !important;
+  color: rgb(161, 67, 67) !important;
 }
 
 .Checkin.ci_confirmed_state .StateHunting-field {

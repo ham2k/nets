@@ -49,7 +49,7 @@ export default function MessagesSection({ slug, className, style }) {
 
   return (
     <section className={classNames(className, 'MessagesSection')}>
-      <div className="header">
+      <div className="header plr-200">
         <h4>Almost Instant Messages</h4>
       </div>
 
@@ -59,7 +59,7 @@ export default function MessagesSection({ slug, className, style }) {
         ))}
       </div>
 
-      <div className="footer flex-row-baseline">
+      <div className="footer flex-row-baseline plr-200">
         <input
           className="flex-1 mr-100 p-100"
           type="text"

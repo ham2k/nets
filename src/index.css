@@ -20,7 +20,8 @@
   --spacing-400: 2em;
   --spacing-50: 0.25em;
 
-  --column-size: 35em;
+  --normal-width: 60em;
+  --small-width: 35em;
 }
 
 body {
@@ -35,7 +36,7 @@ body {
   font-size: var(--font-size-base);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 800px) {
   :root {
     --spacing-100: 0.3em;
     --spacing-200: 0.6em;
@@ -139,19 +140,25 @@ body {
   width: 100%;
 }
 
+.normal-content {
+  max-width: var(--normal-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .one-column {
-  max-width: var(--column-size);
+  max-width: var(--small-width);
   margin-left: auto;
   margin-right: auto;
 }
 
 .one-column-right {
-  max-width: var(--column-size);
+  max-width: var(--small-width);
   margin-left: auto;
 }
 
 .one-column-left {
-  max-width: var(--column-size);
+  max-width: var(--small-width);
   margin-right: auto;
 }
 
@@ -193,6 +200,10 @@ body {
   overflow-y: hidden;
 }
 
+.display-none {
+  display: none;
+}
+
 /* == Padding, Margin, Borders ================================================ */
 .p-0 {
   padding: 0;
@@ -212,6 +223,11 @@ body {
 
 .pb-100 {
   padding-bottom: var(--spacing-100);
+}
+
+.plr-0 {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .plr-100 {
@@ -381,12 +397,14 @@ main {
   /* justify-content: flex-start;
   align-items: stretch; */
 
+  background-color: var(--content-background-color);
+}
+
+section {
   padding-left: var(--spacing-200);
   padding-right: var(--spacing-200);
   padding-top: var(--spacing-100);
   padding-bottom: var(--spacing-100);
-
-  background-color: var(--content-background-color);
 }
 
 header {
@@ -400,6 +418,8 @@ header {
 }
 
 footer {
+  font-size: 90%;
+  text-align: center;
   padding-left: var(--spacing-200);
   padding-right: var(--spacing-200);
   padding-top: var(--spacing-50);

@@ -41,9 +41,9 @@ export default function NetPage() {
             </div>
           </section>
 
-          <CheckinsSection className="flex-2" slug={slug} />
+          <CheckinsSection className="flex-2 plr-0" slug={slug} />
 
-          <MessagesSection className="flex-1" slug={slug} />
+          <MessagesSection className="flex-1 p-0" slug={slug} />
         </main>
       </>
     )

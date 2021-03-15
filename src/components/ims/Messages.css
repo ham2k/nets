@@ -6,6 +6,10 @@
 
   overflow: hidden;
   min-height: 0;
+
+  max-width: var(--normal-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .MessagesSection h4 {

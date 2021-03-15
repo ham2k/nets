@@ -24,7 +24,7 @@ export default function NetsLoader() {
   }, [dispatch]) // run once
 
   return (
-    <div className="NetsLoader align-center">
+    <div className="NetsLoader align-center display-none">
       {meta.lastUpdated && (
         <span>Servers last updated: {new Date(meta.lastUpdated).toLocaleTimeString([], { timeStyle: 'short' })}</span>
       )}

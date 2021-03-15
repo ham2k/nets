@@ -26,9 +26,7 @@ export default function CheckinsLoader({ net, operator }) {
       {net.isLoading ? (
         <span>Loading…</span>
       ) : (
-        <button className="link" onClick={() => dispatch(refreshNetData(net.slug))}>
-          Refresh
-        </button>
+        <button onClick={() => dispatch(refreshNetData(net.slug))}>Refresh</button>
       )}
     </>
   )

@@ -10,11 +10,13 @@ const isNetControl = (checkins, name) => {
 export default function Messages({ net, message, operator, checkins, className }) {
   return (
     <div className={classNames('Message', isNetControl(checkins, message.Name) && 'netcontrol')} key={message.ID}>
-      <span className="Timestamp-field">
+      <div className="Timestamp-field">
         {new Date(message.Timestamp).toLocaleTimeString([], { timeStyle: 'short' })}
-      </span>
-      <span className="Name-field">{message.Name}</span>
-      <span className="Message-field">{message.Message}</span>
+      </div>
+      <div>
+        <span className="Name-field">{message.Name}</span>
+        <span className="Message-field">{message.Message}</span>
+      </div>
     </div>
   )
 }

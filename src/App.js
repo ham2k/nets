@@ -17,6 +17,8 @@ function App() {
         </Route>
       </Switch>
       <footer>
+        <b>ham2k Nets</b> is an alternative client for <a href="http://netlogger.org/">NetLogger</a> developed by{' '}
+        <a href="mailto:w2asd@w2asd.net">W2ASD</a> • <a href="https://twitter.com/sd">@sd</a>
         <NetsLoader />
       </footer>
     </div>
