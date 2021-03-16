@@ -6,11 +6,13 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import netloggerReducer from '../data/netlogger'
 import settingsReducer from '../data/settings'
 import logsReducer from '../data/logs'
+import qrzReducer from '../data/qrz'
 
 const rootReducer = combineReducers({
   netlogger: netloggerReducer,
   settings: settingsReducer,
   logs: logsReducer,
+  qrz: qrzReducer,
 })
 
 const persistConfig = {

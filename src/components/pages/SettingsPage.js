@@ -4,6 +4,7 @@ import Header from '../nav/Header'
 import CallsignSettings from '../settings/CallsignSettings'
 import LogsSettings from '../settings/LogsSettings'
 import HuntingSettings from '../settings/HuntingSettings'
+import QrzSettings from '../settings/QrzSettings'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTools } from '@fortawesome/free-solid-svg-icons'
@@ -20,6 +21,7 @@ function SettingsPage() {
           <CallsignSettings />
           <LogsSettings />
           <HuntingSettings />
+          <QrzSettings />
         </section>
       </main>
     </>

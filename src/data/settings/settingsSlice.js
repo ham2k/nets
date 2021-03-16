@@ -21,14 +21,19 @@ export const settingsSlice = createSlice({
     setHunting: (state, { payload }) => {
       state.hunting = { ...state.hunting, ...payload }
     },
+
+    setQrz: (state, { payload }) => {
+      state.qrz = { ...state.qrz, ...payload }
+    },
   },
 })
 
-export const { setCallsign, setName, setHunting } = settingsSlice.actions
+export const { setCallsign, setName, setHunting, setQrz } = settingsSlice.actions
 
 export const callsignSelector = () => (state) => state.settings.callsign || ''
 export const upcasedCallsignSelector = () => (state) => (state.settings.callsign || '').toUpperCase()
 export const nameSelector = () => (state) => state.settings.name || ''
 export const huntingSelector = () => (state) => state.settings.hunting || { states: true, callsigns: true }
+export const qrzSelector = () => (state) => state.settings.qrz || {}
 
 export default settingsSlice.reducer

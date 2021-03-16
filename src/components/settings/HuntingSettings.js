@@ -10,7 +10,7 @@ export default function HuntingSettings() {
 
   return (
     <section className="HuntingSettings">
-      <h4>Hunting</h4>
+      <h3>Hunting</h3>
       <div>
         <label>
           <input

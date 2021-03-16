@@ -18,10 +18,7 @@ export default function LogsSettings() {
 
   return (
     <section className="LogSettings">
-      <h4>
-        Logs:
-        {log?.records ? <span>{log.records.length} QSOs loaded</span> : <span>No log loaded</span>}
-      </h4>
+      <h3>Logs: {log?.records ? <span>{log.records.length} QSOs loaded</span> : <span>No log loaded</span>}</h3>
       <div>
         Load an ADIF log file: <input type="file" onChange={handleFileSelected} />
       </div>

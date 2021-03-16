@@ -11,6 +11,7 @@ export default function CallsignSettings() {
 
   return (
     <section className="CallsignSettings">
+      <h3>Operator Settings</h3>
       <label htmlFor={'callsign_settings'}>Your callsign:</label>
       <input
         id={'callsign_settings'}
