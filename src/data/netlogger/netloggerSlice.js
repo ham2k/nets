@@ -93,12 +93,16 @@ export const {
   setNetLocalCallsignInfo,
 } = netloggerSlice.actions
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const metaSelector = () => (state) => state.netlogger.meta
-export const netsSelector = () => (state) => state.netlogger.nets
+
 export const serversSelector = () => (state) => Object.values(state.netlogger.serverInfo || {})
+
+export const netsSelector = () => (state) => state.netlogger.nets
+export const activeNetsSelector = () => (state) =>
+  Object.keys(state.netlogger.nets || {})
+    .map((name) => state.netlogger.nets?.[name])
+    .filter((net) => net.status === 'active')
+
 export const netSelector = (slug) => (state) => state.netlogger.nets?.[slug]
 export const netCheckinsSelector = (slug) => (state) => state.netlogger.netCheckins?.[slug]
 export const netIMsSelector = (slug) => (state) => state.netlogger.netIMs?.[slug]

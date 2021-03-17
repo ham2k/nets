@@ -157,6 +157,8 @@ function parseNetsList(bodyText, serverInfo) {
 
         if (net.NetName) net.slug = slugify(net.NetName, SLUGIFY_OPTIONS)
 
+        net.status = 'active'
+
         nets.push(net)
       }
     })
@@ -226,6 +228,10 @@ export const refreshNetData = (slug) => (dispatch, getState) => {
 
 /* ================================================================================================================== */
 function parseNetDatastream(bodyText, net) {
+  if (bodyText.indexOf('*error - Can not get Updates for') >= 0) {
+    return { data: { ...net, status: 'ended' } }
+  }
+
   const data = parseNetData(bodyText)
   const checkins = parseNetCheckins(bodyText)
   const ims = parseNetIMs(bodyText)
@@ -253,6 +259,8 @@ function parseNetData(bodyText) {
     if (net.Date) net.Date = `${net.Date} UTC`
     if (net.NetName) net.slug = slugify(net.NetName, SLUGIFY_OPTIONS)
   }
+
+  net.status = 'active'
 
   return net
 }

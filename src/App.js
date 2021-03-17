@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from './components/pages/HomePage'
 import NetPage from './components/pages/NetPage'
 import SettingsPage from './components/pages/SettingsPage'
-import NetsLoader from './components/nets/NetsLoader'
 
 function App() {
   return (
@@ -23,7 +22,6 @@ function App() {
       <footer>
         <b>Nets</b> is an alternative client for <a href="http://netlogger.org/">NetLogger</a> developed by{' '}
         <a href="https://www.qrz.com/db/W2ASD">W2ASD</a> • <a href="https://twitter.com/sd">@sd</a>
-        <NetsLoader />
       </footer>
     </div>
   )

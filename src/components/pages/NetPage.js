@@ -46,6 +46,12 @@ export default function NetPage() {
             </div>
           </section>
 
+          {net.status !== 'active' && (
+            <section>
+              <h3>Net has ended</h3>
+            </section>
+          )}
+
           <CheckinsSection className="flex-2 plr-0" slug={slug} />
 
           <MessagesSection className="flex-1 p-0" slug={slug} />

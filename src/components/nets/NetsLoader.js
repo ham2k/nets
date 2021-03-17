@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 
-import { metaSelector, getInitialData, refreshNets } from '../../data/netlogger'
+import { metaSelector, getInitialData, activeNetsSelector, refreshNets } from '../../data/netlogger'
 
-const RELOAD_INTERVAL = 30
+const RELOAD_INTERVAL = 60
 
 /* ================================================================================================================== */
 export default function NetsLoader() {
   const meta = useSelector(metaSelector())
+  const nets = useSelector(activeNetsSelector())
 
   const dispatch = useDispatch()
 
@@ -24,11 +27,20 @@ export default function NetsLoader() {
   }, [dispatch]) // run once
 
   return (
-    <div className="NetsLoader align-center display-none">
-      {meta.lastUpdated && (
-        <span>Servers last updated: {new Date(meta.lastUpdated).toLocaleTimeString([], { timeStyle: 'short' })}</span>
+    <section className="NetsLoader normal-content content-60 flex-row-baseline">
+      {meta.isLoading ? (
+        <h3>Refreshing…</h3>
+      ) : (
+        <>
+          <h3>
+            {nets.length || 0} Active nets as of{' '}
+            {new Date(meta.lastUpdated).toLocaleTimeString([], { timeStyle: 'short' })}
+          </h3>
+          <button onClick={() => dispatch(refreshNets())} disabled={meta.isLoading}>
+            <FontAwesomeIcon icon={faSyncAlt} />
+          </button>
+        </>
       )}
-      {meta.isLoading && <span>Loading…</span>}
-    </div>
+    </section>
   )
 }

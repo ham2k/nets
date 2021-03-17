@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
 
-import { netsSelector } from '../../data/netlogger'
+import { activeNetsSelector } from '../../data/netlogger'
 
 import './Nets.css'
 
@@ -21,7 +21,7 @@ function sortNets(nets) {
 
 /* ================================================================================================================== */
 export default function NetsSelection({ selected }) {
-  const nets = useSelector(netsSelector())
+  const nets = useSelector(activeNetsSelector())
   const sortedNets = sortNets(nets)
   const history = useHistory()
 
