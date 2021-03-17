@@ -37,11 +37,11 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
     else classes.push('ci_new_callsign')
   }
 
-  if (hunting.states && checkin.State.trim()) {
-    if (log?.lookup?.[qsl]?.states[checkin.State]) classes.push('ci_confirmed_state')
-    else if (log?.lookup?.[qso]?.states[checkin.State]) classes.push('ci_worked_state')
-    else if (log?.lookup?.[qslMixed]?.states[checkin.State]) classes.push('ci_confirmed_state_mixed')
-    else if (log?.lookup?.[qsoMixed]?.states[checkin.State]) classes.push('ci_worked_state_mixed')
+  if (hunting.states && checkin.normalizedState) {
+    if (log?.lookup?.[qsl]?.states[checkin.normalizedState]) classes.push('ci_confirmed_state')
+    else if (log?.lookup?.[qso]?.states[checkin.normalizedState]) classes.push('ci_worked_state')
+    else if (log?.lookup?.[qslMixed]?.states[checkin.normalizedState]) classes.push('ci_confirmed_state_mixed')
+    else if (log?.lookup?.[qsoMixed]?.states[checkin.normalizedState]) classes.push('ci_worked_state_mixed')
     else classes.push('ci_new_state')
   }
 

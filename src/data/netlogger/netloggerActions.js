@@ -347,6 +347,8 @@ function parseNetCheckins(bodyText) {
           if (checkin.Timestamp) checkin.Timestamp = `${checkin.Timestamp} UTC`
           if (checkin.Name) checkin.Name = capitalizeWords(checkin.Name)
           if (checkin.PreferredName) checkin.PreferredName = capitalizeWords(checkin.PreferredName)
+          if (checkin.State) checkin.State = checkin.State.trim()
+          if (checkin.State) checkin.normalizedState = `${checkin.State.toUpperCase()} ${checkin.Country.toUpperCase()}`
           if (checkin.Country.toLowerCase() === 'united states') checkin.Country = 'USA'
           else checkin.Country = capitalizeWords(checkin.Country)
           if (checkin.County) checkin.County = capitalizeWords(checkin.County)
@@ -453,7 +455,7 @@ function parseNetExts(bodyText) {
 /* ================================================================================================================== */
 export const postMessageToNet = (slug, name, message) => (dispatch, getState) => {
   const net = getState()?.netlogger?.nets?.[slug]
-  console.log('postMessageToNet', slug, net, message)
+
   if (!net) return
 
   const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/SendInstantMessage.php`)

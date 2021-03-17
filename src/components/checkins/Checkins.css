@@ -19,7 +19,7 @@
   padding-top: var(--spacing-50);
   padding-bottom: var(--spacing-50);
 
-  margin-top: 0.2em;
+  padding-top: 0.2em;
 }
 
 @media (max-width: 800px) {
@@ -236,8 +236,7 @@
 }
 
 .Checkin.ci_worked_callsign .worked {
-  color: rgb(161, 67, 67);
-  font-weight: bold;
+  color: rgb(179, 132, 62);
 }
 
 .Checkin.ci_worked_callsign .Callsign-field span {
@@ -247,12 +246,14 @@
 
 .Checkin.ci_confirmed_state .StateHunting-field {
   text-decoration: line-through !important;
-  color: #f00 !important;
+  color: rgb(150, 68, 68) !important;
 }
 
 .Checkin.ci_worked_state .StateHunting-field {
   text-decoration: line-through !important;
-  color: #d66 !important;
+  color: rgb(167, 118, 28) !important;
+  border: 1px solid rgb(199, 187, 22);
+  background-color: rgb(230, 224, 173) !important;
 }
 
 .Checkin.ci_new_state .StateHunting-field {

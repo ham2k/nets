@@ -73,6 +73,7 @@ export default function MessagesSection({ slug, className, style }) {
               type="text"
               value={message}
               id="messages_input"
+              autoComplete="off"
               onChange={(ev) => setMessage(ev.target.value)}
               onKeyDown={(ev) => {
                 if (ev.key === 'Enter') {

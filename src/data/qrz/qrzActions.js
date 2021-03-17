@@ -2,6 +2,7 @@ import { setMeta } from './qrzSlice'
 import { AdifParser } from 'adif-parser-ts'
 
 import { loadLog } from '../logs/logsSlice'
+import { lookupHashForLog } from '../logs/logsActions'
 
 const BASE_URL = 'https://logbook.qrz.com/api'
 
@@ -37,9 +38,13 @@ export const getLogbook = ({ key }) => (dispatch) => {
     .then((bodyText) => {
       const qrz = parseQrzResponse(bodyText)
 
-      console.log(`QRZ records: ${qrz.ADIF?.records?.length}`)
+      const data = qrz.ADIF
 
-      dispatch(loadLog({ data: qrz.ADIF, name: 'QRZ Logbook' }))
+      data.name = 'QRZ Logbook'
+      data.source = 'https://logbook.qrz.com'
+      data.lookup = lookupHashForLog(data)
+
+      dispatch(loadLog({ data, name: 'QRZ Logbook' }))
       dispatch(setMeta({ loading: false, errors: [] }))
     })
     .catch((error) => {
