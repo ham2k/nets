@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import classNames from 'classnames'
 
@@ -65,30 +66,39 @@ export default function MessagesSection({ slug, className, style }) {
           ))}
         </div>
 
-        <div className="footer flex-row-baseline plr-200">
-          <input
-            className="flex-1 mr-100 p-100"
-            type="text"
-            value={message}
-            id="messages_input"
-            onChange={(ev) => setMessage(ev.target.value)}
-            onKeyDown={(ev) => {
-              if (ev.key === 'Enter') {
+        {operator ? (
+          <div className="footer flex-row-baseline plr-200">
+            <input
+              className="flex-1 mr-100 p-100"
+              type="text"
+              value={message}
+              id="messages_input"
+              onChange={(ev) => setMessage(ev.target.value)}
+              onKeyDown={(ev) => {
+                if (ev.key === 'Enter') {
+                  dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
+                  setMessage('')
+                }
+              }}
+            />
+            <button
+              className="p-100"
+              onClick={() => {
                 dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
                 setMessage('')
-              }
-            }}
-          />
-          <button
-            className="p-100"
-            onClick={() => {
-              dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
-              setMessage('')
-            }}
-          >
-            <FontAwesomeIcon icon={faPaperPlane} />
-          </button>
-        </div>
+              }}
+            >
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
+          </div>
+        ) : (
+          <div className="footer flex-row-baseline plr-200">
+            <div className="flex-1 mr-100 p-100">
+              To send Instant Messages first you need to configure your callsing and name in{' '}
+              <Link to="/app/settings">settings</Link>
+            </div>
+          </div>
+        )}
       </section>
     </div>
   )
