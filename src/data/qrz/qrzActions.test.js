@@ -18,7 +18,7 @@ describe('QRZ API Calls', () => {
       const store = mockStore({})
 
       store
-        .dispatch(getLogbook())
+        .dispatch(getLogbook({ key: '123' }))
         .then(() => {
           setImmediate(() => {
             const actions = store.getActions()
@@ -41,7 +41,7 @@ describe('QRZ API Calls', () => {
               call: 'OL90ROH',
             })
 
-            expect(action.payload.data.records[326]).toMatchObject({
+            expect(action.payload.data.records[325]).toMatchObject({
               call: 'ND8F',
             })
 

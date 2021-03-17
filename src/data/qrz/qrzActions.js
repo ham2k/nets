@@ -12,7 +12,7 @@ const HTML_ENTITIES = {
 }
 
 /* ================================================================================================================== */
-export const getLogbook = (key) => (dispatch) => {
+export const getLogbook = ({ key }) => (dispatch) => {
   dispatch(setMeta({ loading: true, errors: [] }))
 
   const url = new URL(BASE_URL)
@@ -59,7 +59,7 @@ export const getLogbook = (key) => (dispatch) => {
  * So we cannot use the standard URL manipulation classes and have to roll our own.
  */
 
-const QRZ_PARSING_REGEXP = /(RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=(.*?)(?=\s*$|&\s*(?:RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=)/gms
+const QRZ_PARSING_REGEXP = /(RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=(.*?)(?=\s*$|&\s*(?:RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=)/gs
 /*
  * `(RESULT|...)` Match (and capture) any of the QRZ parameter names
  * `=` followed by an equal sign
@@ -71,7 +71,6 @@ const QRZ_PARSING_REGEXP = /(RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|K
  *    `(?:)` is a non-capturing group
  *
  * `/g` for global search
- * `/m` for multiline search
  * `/s` to allow `.` to also match line breaks
  */
 
@@ -80,7 +79,7 @@ const HTML_ENTITY_REGEXP = /&\w+;/g
 function parseQrzResponse(str) {
   const pairs = {}
 
-  str = str.replace(HTML_ENTITY_REGEXP, (match) => encodeURIComponent(HTML_ENTITIES[match] || `[${match}]`))
+  str = str.replace(HTML_ENTITY_REGEXP, (match) => HTML_ENTITIES[match] || `[${match}]`)
 
   let match
   while ((match = QRZ_PARSING_REGEXP.exec(str))) {
