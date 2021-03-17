@@ -1,10 +1,9 @@
-import React, { useCallback, useMemo } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useMemo, useCallback } from 'react'
 import classNames from 'classnames'
 
 import { qualifierFor } from '../../data/logs/logsActions'
 
-import { setNetLocalCallsignInfo } from '../../data/netlogger'
+import CheckinControls from './CheckinControls'
 
 import './Checkins.css'
 
@@ -50,55 +49,45 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
 }
 
 /* ================================================================================================================== */
-export default function CheckinCard({ checkin, index, net, checkins, local, operator, log, hunting }) {
-  const dispatch = useDispatch()
-
+export default function CheckinCard({ checkin, index, net, checkins, local, operator, log, hunting, isOpen, onClick }) {
   const localInfo = useMemo(() => local?.callsignInfo?.[checkin.Callsign] || {}, [local, checkin])
 
-  const onClick = useCallback(
-    (event) => {
-      let newInfo = undefined
+  const selectiveOnClick = useCallback(
+    (ev) => {
+      if (ev.defaultPrevented) return
 
-      if (localInfo.heard) newInfo = { worked: false, notWorked: false, notHeard: true, heard: false }
-      else if (localInfo.notHeard) newInfo = { worked: true, notWorked: false, notHeard: false, heard: false }
-      else if (localInfo.worked) newInfo = { worked: false, notWorked: true, notHeard: false, heard: false }
-      else if (localInfo.notWorked) newInfo = { worked: false, notWorked: false, notHeard: false, heard: false }
-      else newInfo = { worked: false, notWorked: false, notHeard: false, heard: true }
-
-      if (newInfo) {
-        dispatch(setNetLocalCallsignInfo({ slug: net.slug, info: { [checkin.Callsign]: newInfo } }))
-      }
+      onClick && onClick(ev)
     },
-    [dispatch, checkin, localInfo, net]
+    [onClick]
   )
 
   return (
     <div
       className={classNames(
         'Checkin',
+        'clickable',
         (index + 1) % 2 === 0 ? 'even' : 'odd',
+        isOpen ? 'open' : 'closed',
         ...classNamesFor({ checkin, net, operator, log, localInfo, hunting })
       )}
+      onClick={selectiveOnClick}
     >
       <div className="CheckinCard">
         <div className="SerialNo-field">{checkin.SerialNo}</div>
 
-        <div className="Status-field">
-          {checkin.Callsign && checkin.Callsign === operator ? <span className="you">you</span> : ''}
-          {checkin.operating && <span className="operating">Current</span>}
-          {localInfo.notHeard && <span>not heard</span>}
-          {localInfo.worked && <span>worked</span>}
-          {localInfo.notWorked && <span>not worked</span>}
-          {localInfo.heard && <span className="heard">HEARD</span>}
-          {checkin.statuses.checkedOut && <span className="secondary">checked out</span>}
-          {checkin.statuses.notHeard && <span className="secondary">not heard</span>}
-          {checkin.statuses.notResponding && <span className="secondary">not responding</span>}
-          {checkin.statuses.unavailable && <span className="secondary">unavailable</span>}
+        <div className="Status-section">
+          <CheckinControls
+            net={net}
+            checkin={checkin}
+            localInfo={localInfo}
+            operator={operator}
+            activeControls={isOpen}
+          />
         </div>
 
         <div className="Callsign-field">
           {checkin.Callsign && (
-            <span className="pill callsign clickable" onClick={onClick}>
+            <span className="pill callsign clickable">
               {checkin.Callsign}
               {checkin.statuses.portable ? <strong>/P</strong> : ''}
               {checkin.statuses.mobile ? <strong>/M</strong> : ''}
@@ -124,6 +113,7 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
 
           {checkin.MemberID && <span className="MemberID-field tag tagMemberID">{checkin.MemberID}</span>}
         </div>
+
         <div className="Location-section">
           {checkin.State && <span className="StateHunting-field">{checkin.State}</span>}
           {checkin.City && <span className="City-field">{[checkin.City, checkin.State].join(', ')}</span>}
@@ -131,26 +121,24 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
           {checkin.Country && <span className="Country-field">{checkin.Country}</span>}
         </div>
 
-        {checkin.Remarks ? (
-          <div className="Remarks-field">
-            {checkin.statuses.other?.map((status) => (
-              <span className="tag">{status}</span>
-            ))}
-            {checkin.statuses.other?.length > 0 && <br />}
-            <label>Remarks: </label>
-            {checkin.Remarks}
-          </div>
-        ) : (
-          ''
-        )}
-        {checkin.QSLInfo ? (
-          <div className="QSLInfo-field">
-            <label>QSL Info: </label>
-            {checkin.QSLInfo}
-          </div>
-        ) : (
-          ''
-        )}
+        <div className="Remarks-section">
+          {checkin.Remarks && (
+            <div className="Remarks-field">
+              {checkin.statuses.other?.map((status) => (
+                <span className="tag">{status}</span>
+              ))}
+              {checkin.statuses.other?.length > 0 && <br />}
+              <label>Remarks: </label>
+              {checkin.Remarks}
+            </div>
+          )}
+          {checkin.QSLInfo && (
+            <div className="QSLInfo-field">
+              <label>QSL Info: </label>
+              {checkin.QSLInfo}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

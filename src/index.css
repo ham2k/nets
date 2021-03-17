@@ -345,6 +345,10 @@ body {
   cursor: pointer;
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
 .callsign {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

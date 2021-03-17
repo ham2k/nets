@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 
@@ -11,6 +11,8 @@ import CheckinCard from './CheckinCard'
 import './Checkins.css'
 
 export default function CheckinsSection({ slug, className }) {
+  const [openCheckin, setOpenCheckin] = useState()
+
   const hunting = useSelector(huntingSelector())
   const net = useSelector(netSelector(slug))
   const checkins = useSelector(netCheckinsSelector(slug))
@@ -24,7 +26,14 @@ export default function CheckinsSection({ slug, className }) {
     <section className={classNames(className, 'CheckinsSection', 'overflow-y-auto')}>
       {checkins &&
         checkins.map((checkin, index) => (
-          <CheckinCard key={checkin.SerialNo} {...passthru} checkin={checkin} index={index} />
+          <CheckinCard
+            key={checkin.SerialNo}
+            {...passthru}
+            checkin={checkin}
+            index={index}
+            isOpen={openCheckin === checkin.SerialNo}
+            onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
+          />
         ))}
     </section>
   )

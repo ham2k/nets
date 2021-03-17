@@ -14,10 +14,12 @@
   grid-template-rows: auto;
   grid-template-areas:
     ' serial  callsign  operator  location '
-    ' .       status    remarks   qsl    ';
+    ' .       status    status    remarks      ';
 
   padding-top: var(--spacing-50);
   padding-bottom: var(--spacing-50);
+
+  margin-top: 0.2em;
 }
 
 @media (max-width: 800px) {
@@ -31,9 +33,7 @@
     grid-template-areas:
       ' serial  callsign  operator   '
       ' .       status    location   '
-      ' .       .         remarks    '
-      ' .       .         qsl        ';
-
+      ' .       .         remarks    ';
     line-height: 20px;
   }
 }
@@ -50,20 +50,26 @@
   grid-area: serial;
 }
 
-.Checkin .Status-field {
+.Checkin .Status-section {
   grid-area: status;
   font-size: 90%;
-  text-align: center;
+
+  text-align: left;
+  padding-left: 1em;
 }
 
-.Checkin .Status-field span {
-  display: block;
+.Checkin .Status-section span {
+  display: inline-block;
   white-space: nowrap;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
 }
 
 .Checkin .Callsign-field {
   grid-area: callsign;
-  text-align: center;
+  text-align: left;
+  padding-left: 1em;
+  margin-bottom: 0.2em;
 }
 
 .Checkin .Operator-section {
@@ -74,14 +80,9 @@
   grid-area: location;
 }
 
-.Checkin .Remarks-field {
-  font-size: 90%;
+.Checkin .Remarks-section {
   grid-area: remarks;
-}
-
-.Checkin .QSLInfo-field {
   font-size: 90%;
-  grid-area: qsl;
 }
 
 .Checkin.ci_operator {
@@ -145,17 +146,6 @@
 
 .Checkin .SerialNo-field {
   text-align: right;
-}
-
-.Checkin .Status-field {
-  text-align: center;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-}
-
-.Checkin .Status-field > span {
-  margin-left: 0.25em;
-  margin-right: 0.25em;
 }
 
 .Checkin .Callsign-field .pill {
@@ -241,6 +231,11 @@
 
 .Checkin.ci_worked_callsign.odd {
   background-color: #f5d5d5;
+}
+
+.Checkin.ci_worked_callsign .worked {
+  color: rgb(161, 67, 67);
+  font-weight: bold;
 }
 
 .Checkin.ci_worked_callsign .Callsign-field span {
