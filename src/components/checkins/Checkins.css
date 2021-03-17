@@ -28,12 +28,22 @@
   }
 
   .CheckinCard {
-    grid-template-columns: 2em 5em 1fr;
+    grid-template-columns: 2em 7em 0em 1fr;
     grid-template-rows: auto;
     grid-template-areas:
-      ' serial  callsign  operator   '
-      ' .       status    location   '
-      ' .       .         remarks    ';
+      ' serial  callsign  operator  operator  '
+      ' .       status    location  location  '
+      ' .       .         remarks   remarks   ';
+    line-height: 20px;
+  }
+
+  .Checkin.open .CheckinCard {
+    grid-template-columns: 2em 7em 4em 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      ' serial  callsign  operator  operator  '
+      ' .       status    status    location  '
+      ' .       .         .         remarks   ';
     line-height: 20px;
   }
 }
@@ -148,16 +158,8 @@
   text-align: right;
 }
 
-.Checkin .Callsign-field .pill {
-  display: inline-block;
-  text-align: center;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  min-width: 3.5em;
-
-  background-color: #ccc;
-  border: 1px solid #aaa;
-  border-radius: 5px;
+.Checkin .Callsign-field .callsign {
+  font-weight: bold;
 }
 
 .Checkin .Name-field {

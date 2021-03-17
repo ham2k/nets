@@ -87,7 +87,7 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
 
         <div className="Callsign-field">
           {checkin.Callsign && (
-            <span className="pill callsign clickable">
+            <span className="callsign">
               {checkin.Callsign}
               {checkin.statuses.portable ? <strong>/P</strong> : ''}
               {checkin.statuses.mobile ? <strong>/M</strong> : ''}

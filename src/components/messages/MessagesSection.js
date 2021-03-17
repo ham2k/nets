@@ -53,8 +53,8 @@ export default function MessagesSection({ slug, className, style }) {
 
   return (
     <div className={classNames(className, 'MessagesSection')}>
-      <section>
-        <div className="header plr-200">
+      <section className="mlr-200">
+        <div className="header">
           <h4>
             <FontAwesomeIcon icon={faComments} /> Almost Instant Messages
           </h4>
@@ -67,7 +67,7 @@ export default function MessagesSection({ slug, className, style }) {
         </div>
 
         {operator ? (
-          <div className="footer flex-row-baseline plr-200">
+          <div className="footer flex-row-baseline">
             <input
               className="flex-1 mr-100 p-100"
               type="text"
