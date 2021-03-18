@@ -27,7 +27,7 @@ export default function NetsLoader() {
   }, [dispatch]) // run once
 
   return (
-    <section className="NetsLoader normal-content content-60 flex-row-baseline">
+    <section className="NetsLoader flex-row-baseline">
       {meta.isLoading ? (
         <h3>Refreshing…</h3>
       ) : (

@@ -96,8 +96,10 @@ export const lookupHashForLog = (log, options) => {
 
   log.records.forEach((record) => {
     let { call, dxcc, country, state, cnty, band, mode, gridsquare } = record
+    dxcc = dxcc || ''
     gridsquare = gridsquare ? gridsquare.slice(0, 4) : ''
-    state = state ? `${state.trim().toUpperCase()} ${country.toUpperCase()}` : ''
+    country = country || ''
+    state = state ? `${state.trim().toUpperCase()} ${country.toUpperCase()}`.trim() : ''
     cnty = cnty ? cnty.trim().toUpperCase() : ''
     const qsl = record.app_qrzlog_status === 'C' || record.lotw_qsl_rcvd === 'Y' || record.qsl_rcvd === 'Y'
 

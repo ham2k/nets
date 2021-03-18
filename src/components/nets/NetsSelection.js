@@ -1,11 +1,7 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useMemo } from 'react'
+import { useHistory } from 'react-router-dom'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
-
-import { activeNetsSelector } from '../../data/netlogger'
+import NetSelectionRow from './NetSelectionRow'
 
 import './Nets.css'
 
@@ -20,34 +16,21 @@ function sortNets(nets) {
 }
 
 /* ================================================================================================================== */
-export default function NetsSelection({ selected }) {
-  const nets = useSelector(activeNetsSelector())
-  const sortedNets = sortNets(nets)
+export default function NetsSelection({ nets, currentSlug }) {
   const history = useHistory()
 
+  const sortedNets = useMemo(() => sortNets(nets), [nets])
+
   return (
-    <section className="normal-content content-60">
+    <section className="narrow-section">
       <ul className="NetSelection">
         {sortedNets.map((net) => (
-          <li
+          <NetSelectionRow
             key={net.slug}
-            className={selected === net.slug ? 'selected' : ''}
-            onClick={(ev) => {
-              if (ev.defaultPrevented) return
-              ev.preventDefault()
-
-              history.push(`/${net.slug}`)
-            }}
-          >
-            <Link to={`/${net.slug}`}>
-              <FontAwesomeIcon icon={faProjectDiagram} /> {net.NetName}
-            </Link>
-            <div className="secondary">
-              {net.Band}
-              {' • '}
-              {net.Frequency} MHz {net.Mode}
-            </div>
-          </li>
+            net={net}
+            currentSlug={currentSlug}
+            onSelect={() => history.push(`/${net.slug}`)}
+          />
         ))}
       </ul>
     </section>

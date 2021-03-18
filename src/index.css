@@ -129,6 +129,30 @@ body {
   flex: 3;
 }
 
+.flex-justify-start {
+  justify-content: start;
+}
+
+.flex-justify-end {
+  justify-content: end;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex-justify-between {
+  justify-content: space-between;
+}
+
+.flex-justify-around {
+  justify-content: space-around;
+}
+
+.flex-justify-evenly {
+  justify-content: space-evenly;
+}
+
 .whole-window {
   position: absolute;
   top: 0;
@@ -138,13 +162,6 @@ body {
 
   height: 100%;
   width: 100%;
-}
-
-.normal-content {
-  max-width: var(--normal-width);
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .content-60 {
@@ -413,21 +430,33 @@ button.link {
 main {
   flex: 1;
   min-height: 0;
+  border: 0;
+  padding: 0;
   /* overflow: auto; */
 
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   /* justify-content: flex-start;
   align-items: stretch; */
 
   background-color: var(--content-background-color);
 }
 
-section {
-  padding-left: var(--spacing-200);
-  padding-right: var(--spacing-200);
+main > section {
+  max-width: var(--normal-width);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: var(--spacing-100);
   padding-bottom: var(--spacing-100);
+}
+
+main.narrow-content > section {
+  max-width: calc(0.6 * var(--normal-width));
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header {

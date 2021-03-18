@@ -7,12 +7,14 @@ import netloggerReducer from '../data/netlogger'
 import settingsReducer from '../data/settings'
 import logsReducer from '../data/logs'
 import qrzReducer from '../data/qrz'
+import uiReducer from '../data/ui'
 
 const rootReducer = combineReducers({
   netlogger: netloggerReducer,
   settings: settingsReducer,
   logs: logsReducer,
   qrz: qrzReducer,
+  ui: uiReducer,
 })
 
 const persistConfig = {
