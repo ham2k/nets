@@ -52,8 +52,8 @@ export default function MessagesSection({ slug, className, style }) {
   }, [])
 
   return (
-    <div className={classNames(className, 'MessagesSection')}>
-      <section className="mlr-200">
+    <div className={classNames(className, 'MessagesSection flex-col-stretch overflow-container')}>
+      <section className="plr-200">
         <div className="header">
           <h4>
             <FontAwesomeIcon icon={faComments} /> Almost Instant Messages

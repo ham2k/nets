@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 
 import * as serviceWorker from './serviceWorker'
 
+import './variables.css'
 import './index.css'
 
 ReactDOM.render(

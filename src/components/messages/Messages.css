@@ -1,12 +1,5 @@
 .MessagesSection {
   border-top: 4px solid #bbb;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-
-  overflow: hidden;
-  min-height: 0;
 }
 
 .MessagesSection section {
@@ -72,8 +65,8 @@
   min-width: 5.5em;
   display: inline-block;
   text-align: right;
-  padding-right: 0.5em;
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  padding-right: var(--spacing-100);
+  font-family: var(--font-monospaced);
   font-size: 0.9em;
 }
 
@@ -81,7 +74,7 @@
   flex: 0;
   font-weight: bold;
   display: inline-block;
-  padding-right: 0.5em;
+  padding-right: var(--spacing-100);
   white-space: nowrap;
 }
 
@@ -90,5 +83,5 @@
 }
 
 .MessagesList .netcontrol .Name-field {
-  color: #60f;
+  color: var(--checkin-netcontrol-text-color);
 }

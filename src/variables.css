@@ -1,0 +1,80 @@
+:root {
+  --font-regular: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-monospaced: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  --background-color: #e3e3e3;
+  --content-background-color: #f3f3f3;
+  --text-color: #333;
+  --inverse-text-color: #f0f0f0;
+  --secondary-text-color: #777;
+  --text-highlight-color: #c00;
+
+  --link-color: #c00;
+  --link-highlight-color: #f00;
+
+  --border-color: #aaa;
+
+  --pill-background-color: #aaa;
+
+  --tag-background-color: #ccc;
+  --tag-text-color: #555;
+
+  --row-odd-background-color: #f9f9f9;
+  --row-even-background-color: #f0f0f0;
+
+  --checkin-self-text-color: #0fa3a3;
+  --checkin-self-background-color: #bbf2f2;
+
+  --checkin-heard-text-color: #107d10;
+  --checkin-heard-odd-background-color: #a3cfa3;
+  --checkin-heard-even-background-color: #abd8ab;
+
+  --checkin-netcontrol-text-color: #60f;
+  --checkin-netcontrol-tag-color: rgb(174, 134, 235);
+
+  --checkin-relay-text-color: #60f;
+  --checkin-relay-tag-color: rgb(174, 134, 235);
+
+  --checkin-operating-text-color: #f229f2;
+  --checkin-operating-background-color: #e6bee6;
+
+  --checkin-confirmed-text-color: rgb(150, 68, 68);
+  --checkin-worked-text-color: rgb(179, 132, 62);
+  --checkin-worked-tag-color: rgb(230, 224, 173);
+
+  --checkin-worked-odd-background-color: #eecbcb;
+  --checkin-worked-even-background-color: #f5d5d5;
+
+  --checkin-hunting-tag-color: #5d5;
+  --checkin-hunting-mixed-tag-color: #bfdbbf;
+
+  --font-size-base: 12pt;
+  --font-size-mobile: 10pt;
+
+  --line-height-tight: 16pt;
+  --line-height: 18pt;
+
+  --spacing-100: 0.5em;
+  --spacing-200: 1em;
+  --spacing-400: 2em;
+  --spacing-50: 0.25em;
+
+  --normal-width: 60em;
+  --small-width: 35em;
+
+  --highlight-border-size: 4px;
+
+  --tag-border-radius: 3px;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --spacing-100: 0.3em;
+    --spacing-200: 0.6em;
+    --spacing-400: 1.2em;
+    --spacing-50: 0.15em;
+
+    --highlight-border-size: 2px;
+  }
+}

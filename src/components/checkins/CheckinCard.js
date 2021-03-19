@@ -49,7 +49,20 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
 }
 
 /* ================================================================================================================== */
-export default function CheckinCard({ checkin, index, net, checkins, local, operator, log, hunting, isOpen, onClick }) {
+export default function CheckinCard({
+  checkin,
+  index,
+  net,
+  checkins,
+  local,
+  operator,
+  log,
+  hunting,
+  isOpen,
+  onClick,
+  operatingRef,
+  operatorRef,
+}) {
   const localInfo = useMemo(() => local?.callsignInfo?.[checkin.Callsign] || {}, [local, checkin])
 
   const selectiveOnClick = useCallback(
@@ -72,7 +85,14 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
       )}
       onClick={selectiveOnClick}
     >
-      <div className="CheckinCard">
+      <div
+        className="CheckinCard"
+        ref={
+          (checkin.operating && operatingRef) ||
+          (operator && checkin.Callsign && checkin.Callsign === operator && operatorRef) ||
+          undefined
+        }
+      >
         <div className="SerialNo-field">{checkin.SerialNo}</div>
 
         <div className="Status-section">
@@ -125,7 +145,9 @@ export default function CheckinCard({ checkin, index, net, checkins, local, oper
           {checkin.Remarks && (
             <div className="Remarks-field">
               {checkin.statuses.other?.map((status) => (
-                <span className="tag">{status}</span>
+                <span className="tag" key={status}>
+                  {status}
+                </span>
               ))}
               {checkin.statuses.other?.length > 0 && <br />}
               <label>Remarks: </label>

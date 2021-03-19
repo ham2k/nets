@@ -10,7 +10,7 @@ import CheckinCard from './CheckinCard'
 
 import './Checkins.css'
 
-export default function CheckinsSection({ slug, className }) {
+export default function CheckinsSection({ slug, className, operatingRef, operatorRef }) {
   const [openCheckin, setOpenCheckin] = useState()
 
   const hunting = useSelector(huntingSelector())
@@ -23,18 +23,22 @@ export default function CheckinsSection({ slug, className }) {
   const passthru = { net, checkins, operator, log, local, hunting }
 
   return (
-    <section className={classNames(className, 'CheckinsSection', 'overflow-y-auto')}>
-      {checkins &&
-        checkins.map((checkin, index) => (
-          <CheckinCard
-            key={checkin.SerialNo}
-            {...passthru}
-            checkin={checkin}
-            index={index}
-            isOpen={openCheckin === checkin.SerialNo}
-            onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
-          />
-        ))}
-    </section>
+    <div className={classNames(className, 'CheckinsSection flex-col-stretch overflow-container')}>
+      <section className={'overflow-y-auto'}>
+        {checkins &&
+          checkins.map((checkin, index) => (
+            <CheckinCard
+              key={checkin.SerialNo}
+              {...passthru}
+              checkin={checkin}
+              index={index}
+              isOpen={openCheckin === checkin.SerialNo}
+              onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
+              operatingRef={operatingRef}
+              operatorRef={operatorRef}
+            />
+          ))}
+      </section>
+    </div>
   )
 }

@@ -15,13 +15,15 @@ export default function CheckinsLoader({ net, operator }) {
     dispatch(refreshNetData(net.slug))
 
     const interval = window.setInterval(() => {
-      dispatch(refreshNetData(net.slug))
+      if (net.status === 'active') {
+        dispatch(refreshNetData(net.slug))
+      }
     }, RELOAD_INTERVAL * 1000)
 
     return () => {
       interval && clearInterval(interval)
     }
-  }, [dispatch, net.slug]) // run once
+  }, [dispatch, net.slug, net.status]) // run once
 
   return (
     <button onClick={() => dispatch(refreshNetData(net.slug))} disabled={net.isLoading}>

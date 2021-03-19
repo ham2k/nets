@@ -1,13 +1,9 @@
-.CheckinsSection {
-  --highlight-border-size: 3px;
-}
-
 .CheckinCard {
   max-width: var(--normal-width);
   margin-left: auto;
   margin-right: auto;
 
-  line-height: 24px;
+  line-height: var(--line-height);
 
   display: grid;
   grid-template-columns: 2em 7em 1fr 2fr;
@@ -18,15 +14,9 @@
 
   padding-top: var(--spacing-50);
   padding-bottom: var(--spacing-50);
-
-  padding-top: 0.2em;
 }
 
 @media (max-width: 800px) {
-  .CheckinsSection {
-    --highlight-border-size: 1px;
-  }
-
   .CheckinCard {
     grid-template-columns: 2em 7em 0em 1fr;
     grid-template-rows: auto;
@@ -49,11 +39,11 @@
 }
 
 .Checkin.odd {
-  background-color: #f0f0f0;
+  background-color: var(--row-odd-background-color);
 }
 
 .Checkin.even {
-  background-color: #f9f9f9;
+  background-color: var(--row-even-background-color);
 }
 
 .Checkin .SerialNo-field {
@@ -65,21 +55,21 @@
   font-size: 90%;
 
   text-align: left;
-  padding-left: 1em;
+  padding-left: var(--spacing-200);
 }
 
 .Checkin .Status-section span {
   display: inline-block;
   white-space: nowrap;
-  margin-left: 0.25em;
-  margin-right: 0.25em;
+  margin-left: var(--spacing-50);
+  margin-right: var(--spacing-50);
 }
 
 .Checkin .Callsign-field {
   grid-area: callsign;
   text-align: left;
-  padding-left: 1em;
-  margin-bottom: 0.2em;
+  padding-left: var(--spacing-200);
+  margin-bottom: var(--spacing-50);
 }
 
 .Checkin .Operator-section {
@@ -96,25 +86,25 @@
 }
 
 .Checkin.ci_operator {
-  background-color: #bbf2f2;
+  background-color: var(--checkin-self-background-color);
 }
 
 .Checkin.ci_operator .you {
   font-weight: bold;
-  color: #0fa3a3;
+  color: var(--checkin-self-text-color);
   text-transform: uppercase;
 }
 
 .Checkin.ci_heard .heard {
-  color: #107d10;
+  color: var(--checkin-heard-text-color);
   font-weight: bold;
 }
 
 .Checkin.ci_heard.even {
-  background-color: #abd8ab;
+  background-color: var(--checkin-heard-even-background-color);
 }
 .Checkin.ci_heard {
-  background-color: #a3cfa3;
+  background-color: var(--checkin-heard-even-background-color);
 }
 
 .Checkin.ci_unavailable .CheckinCard > div {
@@ -122,35 +112,35 @@
 }
 
 .Checkin.ci_netcontrol .Operator-section {
-  color: #60f;
+  color: var(--checkin-netcontrol-text-color);
   font-weight: bold;
 }
 
 .Checkin.ci_netcontrol .tagNetControl {
-  background-color: rgb(174, 134, 235);
-  color: #f0f0f0;
+  background-color: var(--checkin-netcontrol-tag-color);
+  color: var(--inverse-text-text-color);
   font-weight: bold;
 }
 
 .Checkin.ci_relay .Operator-section {
-  color: #c70;
+  color: var(--checkin-relay-text-color);
   font-weight: bold;
 }
 
 .Checkin.ci_relay .tagRelay {
-  background-color: rgb(221, 169, 96);
-  color: #f0f0f0;
+  background-color: var(--checkin-relay-tag-color);
+  color: var(--inverse-text-color);
   font-weight: bold;
 }
 
 .Checkin.ci_operating {
-  border-top: var(--highlight-border-size) solid #f229f2;
-  border-bottom: var(--highlight-border-size) solid #f229f2;
-  background-color: #e6bee6;
+  border-top: var(--highlight-border-size) solid var(--checkin-operating-text-color);
+  border-bottom: var(--highlight-border-size) solid var(--checkin-operating-text-color);
+  background-color: var(--checkin-operating-background-color);
 }
 .Checkin.ci_operating .operating {
   font-weight: bold;
-  color: #f229f2;
+  color: var(--checkin-operating-text-color);
   text-transform: uppercase;
 }
 
@@ -167,11 +157,11 @@
 }
 
 .Checkin .Operator-section > span {
-  margin-right: 0.5em;
+  margin-right: var(--spacing-100);
 }
 
 .Checkin .MemberID-field {
-  margin-left: 1em;
+  margin-left: var(--spacing-200);
 }
 
 .Checkin .Country-field {
@@ -182,86 +172,85 @@
   display: inline-block;
   text-align: center;
   min-width: 2em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding-left: var(--spacing-100);
+  padding-right: var(--spacing-100);
 
-  border-radius: 5px;
+  border-radius: var(--tag-border-radius);
 }
 
 .Checkin .City-field {
-  margin-left: 0.5em;
+  margin-left: var(--spacing-100);
 }
 
 .Checkin .County-field {
-  margin-left: 1em;
+  margin-left: var(--spacing-200);
 }
 
 .Checkin .State-field {
-  margin-left: 0.5em;
+  margin-left: var(--spacing-100);
 }
 
 .Checkin .Country-field {
-  margin-left: 1em;
+  margin-left: var(--spacing-200);
 }
 
 .Checkin .tag {
   font-size: 80%;
   font-weight: normal;
   display: inline-block;
-  background-color: #ccc;
-  color: #555;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  border-radius: 3px;
+  background-color: var(--tag-background-color);
+  color: var(--tag-text-color);
+  padding-left: var(--spacing-100);
+  padding-right: var(--spacing-100);
+  border-radius: var(--tag-border-radius);
 
-  margin-right: 0.3em;
+  margin-right: var(--spacing-50);
 }
 
 .MemberID-field.tagMemberID {
   font-weight: bold;
-  color: #000;
+  color: var(--text-color);
 }
 
 .Checkin.ci_confirmed_callsign .Callsign-field span {
   text-decoration: line-through !important;
-  color: rgb(150, 68, 68) !important;
+  color: var(--checkin-confirmed-text-color) !important;
 }
 
 .Checkin.ci_worked_callsign.even {
-  background-color: #eecbcb;
+  background-color: var(--checkin-worked-even-background-color);
 }
 
 .Checkin.ci_worked_callsign.odd {
-  background-color: #f5d5d5;
+  background-color: var(--checkin-worked-odd-background-color);
 }
 
 .Checkin.ci_worked_callsign .worked {
-  color: rgb(179, 132, 62);
+  color: var(--checkin-worked-text-color);
 }
 
 .Checkin.ci_worked_callsign .Callsign-field span {
   text-decoration: line-through !important;
-  color: rgb(161, 67, 67) !important;
+  color: var(--checkin-worked-text-color) !important;
 }
 
 .Checkin.ci_confirmed_state .StateHunting-field {
   text-decoration: line-through !important;
-  color: rgb(150, 68, 68) !important;
+  color: var(--checkin-confirmed-text-color) !important;
 }
 
 .Checkin.ci_worked_state .StateHunting-field {
   text-decoration: line-through !important;
-  color: rgb(167, 118, 28) !important;
-  border: 1px solid rgb(199, 187, 22);
-  background-color: rgb(230, 224, 173) !important;
+  color: var(--checkin-worked-text-color) !important;
+  background-color: var(--checkin-worked-tag-color) !important;
 }
 
 .Checkin.ci_new_state .StateHunting-field {
-  background-color: #5d5;
+  background-color: var(--checkin-hunting-tag-color);
 }
 
 .Checkin.ci_worked_state_mixed .StateHunting-field {
-  background-color: #bfdbbf;
+  background-color: var(--checkin-hunting-mixed-tag-color);
 }
 
 .Checkin a,

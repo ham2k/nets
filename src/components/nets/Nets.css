@@ -20,7 +20,7 @@ ul.NetSelection {
 
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .NetSelection li .icon {
@@ -51,4 +51,32 @@ ul.NetSelection {
 .NetSelection a:hover {
   text-decoration: none;
   color: var(--link-color);
+}
+
+.NetHeader-status > span {
+  display: inline-block;
+
+  margin-right: var(--spacing-100);
+}
+
+.NetHeader-status .tag {
+  display: inline-block;
+  text-align: center;
+  min-width: 2em;
+  padding-top: var(--spacing-50);
+  padding-bottom: var(--spacing-50);
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+
+  border-radius: var(--tag-border-radius);
+}
+
+.NetHeader-status .current {
+  border: 1px solid var(--checkin-operating-text-color);
+  background-color: var(--checkin-operating-background-color);
+}
+
+.NetHeader-status .you {
+  border: 1px solid var(--checkin-self-text-color);
+  background-color: var(--checkin-self-background-color);
 }

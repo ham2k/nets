@@ -1,33 +1,6 @@
-:root {
-  --background-color: #e3e3e3;
-  --content-background-color: #f3f3f3;
-  --text-color: #333;
-  --secondary-text-color: #777;
-  --text-highlight-color: #c00;
-
-  --link-color: #c00;
-  --link-highlight-color: #f00;
-
-  --border-color: #aaa;
-
-  --pill-background-color: #aaa;
-
-  --font-size-base: 12pt;
-  --font-size-mobile: 10pt;
-
-  --spacing-100: 0.5em;
-  --spacing-200: 1em;
-  --spacing-400: 2em;
-  --spacing-50: 0.25em;
-
-  --normal-width: 60em;
-  --small-width: 35em;
-}
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-regular);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -37,13 +10,6 @@ body {
 }
 
 @media (max-width: 800px) {
-  :root {
-    --spacing-100: 0.3em;
-    --spacing-200: 0.6em;
-    --spacing-400: 1.2em;
-    --spacing-50: 0.15em;
-  }
-
   body {
     font-size: var(--font-size-mobile);
   }
@@ -153,6 +119,10 @@ body {
   justify-content: space-evenly;
 }
 
+.align-self-center {
+  align-self: center;
+}
+
 .whole-window {
   position: absolute;
   top: 0;
@@ -226,6 +196,11 @@ body {
   display: none;
 }
 
+.overflow-container {
+  overflow: hidden;
+  min-height: 0;
+}
+
 /* == Padding, Margin, Borders ================================================ */
 .p-0 {
   padding: 0;
@@ -294,6 +269,11 @@ body {
   margin-right: var(--spacing-200);
 }
 
+.mlr-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .mlr-100 {
   margin-left: var(--spacing-100);
   margin-right: var(--spacing-100);
@@ -360,9 +340,9 @@ body {
   background-color: var(--pill-background-color);
   font-weight: bold;
   font-size: 90%;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  border-radius: 0.7em;
+  padding-left: var(--spacing-100);
+  padding-right: var(--spacing-100);
+  border-radius: var(--tag-border-radius);
   text-align: center;
 }
 
@@ -377,18 +357,18 @@ body {
 }
 
 .callsign {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: var(--font-monospaced);
 }
 
 /* == Default Tag Styles ================================================ */
 
 label {
   font-weight: bold;
-  margin-right: 0.5em;
+  margin-right: var(--spacing-100);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: var(--font-monospaced);
 }
 
 a:link,
@@ -457,6 +437,24 @@ main.narrow-content > section {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+section.normal-content {
+  max-width: var(--normal-width);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: var(--spacing-100);
+  padding-bottom: var(--spacing-100);
+}
+
+section.narrow-content {
+  max-width: calc(0.6 * var(--normal-width));
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: var(--spacing-100);
+  padding-bottom: var(--spacing-100);
 }
 
 header {
