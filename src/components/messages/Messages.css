@@ -26,6 +26,8 @@
   margin-left: auto;
   margin-right: auto;
 
+  margin-bottom: var(--spacing-100);
+
   padding-top: var(--spacing-100);
   padding-bottom: var(--spacing-100);
 }

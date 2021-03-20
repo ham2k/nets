@@ -50,7 +50,7 @@ export default function NetPage() {
       <>
         <Header />
         <main className="NetPage">
-          <NetHeader net={net} className="flex-0" onViewChange={onViewChange} currentView={currentView} />
+          <NetHeader net={net} className="flex-0 bb-1" onViewChange={onViewChange} currentView={currentView} />
 
           <CheckinsSection
             className="flex-2 plr-0"

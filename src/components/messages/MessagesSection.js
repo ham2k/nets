@@ -53,8 +53,8 @@ export default function MessagesSection({ slug, className, style }) {
 
   return (
     <div className={classNames(className, 'MessagesSection flex-col-stretch overflow-container')}>
-      <section className="plr-200">
-        <div className="header">
+      <section className="">
+        <div className="header bb-1 plr-200">
           <h4>
             <FontAwesomeIcon icon={faComments} /> Almost Instant Messages
           </h4>
@@ -66,40 +66,42 @@ export default function MessagesSection({ slug, className, style }) {
           ))}
         </div>
 
-        {operator ? (
-          <div className="footer flex-row-baseline">
-            <input
-              className="flex-1 mr-100 p-100"
-              type="text"
-              value={message}
-              id="messages_input"
-              autoComplete="off"
-              onChange={(ev) => setMessage(ev.target.value)}
-              onKeyDown={(ev) => {
-                if (ev.key === 'Enter') {
+        <div className="footer">
+          {operator ? (
+            <div className="flex-row-baseline">
+              <input
+                className="flex-1 mr-100 p-100"
+                type="text"
+                value={message}
+                id="messages_input"
+                autoComplete="off"
+                onChange={(ev) => setMessage(ev.target.value)}
+                onKeyDown={(ev) => {
+                  if (ev.key === 'Enter') {
+                    dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
+                    setMessage('')
+                  }
+                }}
+              />
+              <button
+                className="p-100"
+                onClick={() => {
                   dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
                   setMessage('')
-                }
-              }}
-            />
-            <button
-              className="p-100"
-              onClick={() => {
-                dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
-                setMessage('')
-              }}
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </button>
-          </div>
-        ) : (
-          <div className="footer flex-row-baseline plr-200">
-            <div className="flex-1 mr-100 p-100">
-              To send Instant Messages first you need to configure your callsing and name in{' '}
-              <Link to="/app/settings">settings</Link>
+                }}
+              >
+                <FontAwesomeIcon icon={faPaperPlane} />
+              </button>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="flex-row-baseline plr-200">
+              <div className="flex-1 mr-100 p-100">
+                To send Instant Messages first you need to configure your callsing and name in{' '}
+                <Link to="/app/settings">settings</Link>
+              </div>
+            </div>
+          )}
+        </div>
       </section>
     </div>
   )
