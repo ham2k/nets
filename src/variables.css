@@ -55,13 +55,13 @@
   --line-height-tight: 16pt;
   --line-height: 18pt;
 
-  --spacing-100: 0.5em;
-  --spacing-200: 1em;
-  --spacing-400: 2em;
-  --spacing-50: 0.25em;
+  --spacing-100: 0.5rem;
+  --spacing-200: 1rem;
+  --spacing-400: 2rem;
+  --spacing-50: 0.25rem;
 
-  --normal-width: 60em;
-  --small-width: 35em;
+  --normal-width: 60rem;
+  --small-width: 35rem;
 
   --highlight-border-size: 4px;
 
@@ -70,10 +70,10 @@
 
 @media (max-width: 800px) {
   :root {
-    --spacing-100: 0.3em;
-    --spacing-200: 0.6em;
-    --spacing-400: 1.2em;
-    --spacing-50: 0.15em;
+    --spacing-100: 0.3rem;
+    --spacing-200: 0.6rem;
+    --spacing-400: 1.2rem;
+    --spacing-50: 0.15rem;
 
     --highlight-border-size: 2px;
   }

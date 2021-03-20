@@ -53,30 +53,45 @@ ul.NetSelection {
   color: var(--link-color);
 }
 
-.NetHeader-status > span {
-  display: inline-block;
-
-  margin-right: var(--spacing-100);
-}
-
 .NetHeader-status .tag {
   display: inline-block;
   text-align: center;
-  min-width: 2em;
+  min-width: 2rem;
   padding-top: var(--spacing-50);
   padding-bottom: var(--spacing-50);
   padding-left: var(--spacing-200);
   padding-right: var(--spacing-200);
 
   border-radius: var(--tag-border-radius);
+  margin: 0 var(--spacing-50);
 }
 
-.NetHeader-status .current {
+.NetHeader-status .checkins {
+  border: 1px solid var(--tag-text-color);
+  background-color: var(--tag-background-color);
+}
+
+.NetHeader-status .operating {
   border: 1px solid var(--checkin-operating-text-color);
   background-color: var(--checkin-operating-background-color);
 }
 
-.NetHeader-status .you {
+.NetHeader-status .operator {
   border: 1px solid var(--checkin-self-text-color);
   background-color: var(--checkin-self-background-color);
+}
+
+.NetHeader-status .heard {
+  border: 1px solid var(--checkin-heard-text-color);
+  background-color: var(--checkin-heard-odd-background-color);
+}
+
+.NetHeader-status .heard.current {
+  outline: 2px solid var(--checkin-heard-text-color);
+  outline-offset: -3px;
+}
+
+.NetHeader-status .checkins.current {
+  outline: 2px solid var(--tag-text-color);
+  outline-offset: -3px;
 }

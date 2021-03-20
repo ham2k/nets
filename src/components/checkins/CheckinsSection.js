@@ -10,7 +10,7 @@ import CheckinCard from './CheckinCard'
 
 import './Checkins.css'
 
-export default function CheckinsSection({ slug, className, operatingRef, operatorRef }) {
+export default function CheckinsSection({ slug, className, currentView, operatingRef, operatorRef }) {
   const [openCheckin, setOpenCheckin] = useState()
 
   const hunting = useSelector(huntingSelector())
@@ -23,7 +23,9 @@ export default function CheckinsSection({ slug, className, operatingRef, operato
   const passthru = { net, checkins, operator, log, local, hunting }
 
   return (
-    <div className={classNames(className, 'CheckinsSection flex-col-stretch overflow-container')}>
+    <div
+      className={classNames(className, 'CheckinsSection flex-col-stretch overflow-container', `view-${currentView}`)}
+    >
       <section className={'overflow-y-auto'}>
         {checkins &&
           checkins.map((checkin, index) => (

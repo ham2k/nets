@@ -6,7 +6,7 @@
   line-height: var(--line-height);
 
   display: grid;
-  grid-template-columns: 2em 7em 1fr 2fr;
+  grid-template-columns: 2rem 7rem 1fr 2fr;
   grid-template-rows: auto;
   grid-template-areas:
     ' serial  callsign  operator  location '
@@ -18,7 +18,7 @@
 
 @media (max-width: 800px) {
   .CheckinCard {
-    grid-template-columns: 2em 7em 0em 1fr;
+    grid-template-columns: 2rem 7rem 0rem 1fr;
     grid-template-rows: auto;
     grid-template-areas:
       ' serial  callsign  operator  operator  '
@@ -28,7 +28,7 @@
   }
 
   .Checkin.open .CheckinCard {
-    grid-template-columns: 2em 7em 4em 1fr;
+    grid-template-columns: 2rem 7rem 4rem 1fr;
     grid-template-rows: auto;
     grid-template-areas:
       ' serial  callsign  operator  operator  '
@@ -171,7 +171,7 @@
 .Checkin .StateHunting-field {
   display: inline-block;
   text-align: center;
-  min-width: 2em;
+  min-width: 2rem;
   padding-left: var(--spacing-100);
   padding-right: var(--spacing-100);
 
@@ -263,4 +263,49 @@
 .Checkin a:hover {
   text-decoration: underline;
   color: var(--link-color);
+}
+
+.CheckinsSection.view-heard .Checkin,
+.CheckinsSection.view-heard .Checkin.ci_heard.ci_unavailable {
+  max-height: 2em;
+  overflow-y: hidden;
+  opacity: 0.6;
+}
+
+.CheckinsSection.view-heard .CheckinCard,
+.CheckinsSection.view-heard .ci_heard.ci_unavailable .CheckinCard {
+  font-size: 70%;
+}
+
+.CheckinsSection.view-heard .Checkin.open {
+  max-height: inherit;
+}
+
+.CheckinsSection.view-heard .Checkin.ci_heard {
+  max-height: inherit;
+  opacity: 1;
+}
+
+.CheckinsSection.view-heard .ci_heard .CheckinCard {
+  font-size: 100%;
+}
+
+.CheckinsSection.view-heard .CheckinCard {
+  font-size: 0.7rem;
+}
+
+/* .CheckinsSection.view-heard .Checkin.ci_heard.ci_unavailable {
+  max-height: 2em;
+  overflow-y: hidden;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.CheckinsSection.view-heard .ci_heard .CheckinCard {
+  font-size: 100%;
+} */
+
+.CheckinsSection.view-heard .Checkin.ci_operator,
+.CheckinsSection.view-heard .Checkin.ci_operating {
+  opacity: 1;
 }

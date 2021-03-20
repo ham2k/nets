@@ -6,17 +6,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
 
 import CheckinsLoader from '../checkins/CheckinsLoader'
-import { netCheckinsSelector } from '../../data/netlogger'
+import { netCheckinsSelector, netLocalSelector } from '../../data/netlogger'
 import { upcasedCallsignSelector } from '../../data/settings'
 
-export default function NetHeader({ net, className, operatingRef, operatorRef }) {
+export default function NetHeader({ net, className, onViewChange, currentView }) {
   const checkins = useSelector(netCheckinsSelector(net.slug))
+  const local = useSelector(netLocalSelector(net.slug))
   const operator = useSelector(upcasedCallsignSelector())
 
   const checkinCount = checkins.filter((checkin) => checkin.Callsign).length
   const inactiveCheckinCount = checkins.filter(
-    (checkin) => checkin.statuses.checkedOut || checkin.statuses.notResponding || checkin.statuses.unavailable
+    (checkin) =>
+      checkin.statuses.checkedOut ||
+      checkin.statuses.notResponding ||
+      checkin.statuses.unavailable ||
+      local?.callsignInfo?.[checkin.Callsign]?.notHeard
   ).length
+  const heardCount = checkins.filter((checkin) => local?.callsignInfo?.[checkin.Callsign]?.heard).length
+
   const currentCheckin = checkins.find((checkin) => checkin.operating)
   const selfCheckin = operator && checkins.find((checkin) => checkin.Callsign === operator)
 
@@ -50,32 +57,51 @@ export default function NetHeader({ net, className, operatingRef, operatorRef })
           </span>
         )}
 
-        <span>
+        <span
+          className={classNames('tag checkins clickable', currentView === 'checkins' && 'current')}
+          onClick={(ev) => {
+            onViewChange && onViewChange('checkins')
+            ev.stopPropagation()
+          }}
+        >
           {checkinCount} checkins
           {inactiveCheckinCount > 0 ? `, ${checkinCount - inactiveCheckinCount} active` : ''}
         </span>
 
-        {currentCheckin && (
+        {(heardCount > 0 || currentView === 'heard') && (
           <span
-            className="tag current clickable"
+            className={classNames('tag heard clickable', currentView === 'heard' && 'current')}
             onClick={(ev) => {
-              operatingRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+              onViewChange && onViewChange('heard')
               ev.stopPropagation()
             }}
           >
-            #{currentCheckin.SerialNo} <span className="callsign">{currentCheckin.Callsign}</span>{' '}
-            {currentCheckin.PreferredName || currentCheckin.Name} is operating
+            {heardCount} heard
+          </span>
+        )}
+
+        {currentCheckin && (
+          <span
+            className="tag operating clickable"
+            onClick={(ev) => {
+              onViewChange && onViewChange('operating')
+              ev.stopPropagation()
+            }}
+          >
+            #{currentCheckin.SerialNo}{' '}
+            <strong>
+              <span className="callsign">{currentCheckin.Callsign}</span>{' '}
+              {currentCheckin.PreferredName || currentCheckin.Name}
+            </strong>{' '}
+            is operating
           </span>
         )}
 
         {selfCheckin && (
           <span
-            className="tag you clickable"
+            className="tag operator clickable"
             onClick={(ev) => {
-              if (currentCheckin.Callsign === operator)
-                operatingRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-              else operatorRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-
+              onViewChange && onViewChange('operator')
               ev.stopPropagation()
             }}
           >
