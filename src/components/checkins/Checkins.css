@@ -222,11 +222,13 @@
   color: var(--checkin-confirmed-text-color) !important;
 }
 
-.Checkin.ci_worked_callsign.even {
+.Checkin.ci_worked_callsign.even,
+.Checkin.ci_confirmed_callsign.even {
   background-color: var(--checkin-worked-even-background-color);
 }
 
-.Checkin.ci_worked_callsign.odd {
+.Checkin.ci_worked_callsign.odd,
+.Checkin.ci_confirmed_callsign.odd {
   background-color: var(--checkin-worked-odd-background-color);
 }
 
@@ -255,13 +257,14 @@
 }
 
 .Checkin.ci_worked_state_mixed .StateHunting-field {
-  background-color: var(--checkin-hunting-mixed-tag-color);
+  background-color: var(--checkin-worked-mixed-tag-color);
 }
 
 .Checkin a,
-.Checkin a:link {
-  text-decoration: none;
+.Checkin a:link,
+.Checkin a:visited {
   color: inherit;
+  text-decoration: none;
 }
 
 .Checkin a:active,

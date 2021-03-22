@@ -1,16 +1,14 @@
 import React, { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones, faBook } from '@fortawesome/free-solid-svg-icons'
 
 import { setNetLocalCallsignInfo } from '../../data/netlogger'
 import { insertRecord } from '../../data/qrz/qrzActions'
-import { qrzSelector } from '../../data/settings'
 
 /* ================================================================================================================== */
 export default function CheckinControls({ net, checkin, localInfo, operator, activeControls }) {
   const dispatch = useDispatch()
-  const qrz = useSelector(qrzSelector())
 
   const onWorkedClick = useCallback(
     (ev) => {
@@ -60,7 +58,6 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
 
       dispatch(
         insertRecord({
-          key: qrz.key,
           record: {
             call: checkin.Callsign,
             qso_date: nowDate,
@@ -95,7 +92,7 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
       ev.stopPropagation()
       ev.preventDefault()
     },
-    [dispatch, checkin, localInfo, net, operator, qrz]
+    [dispatch, checkin, localInfo, net, operator]
   )
 
   return (

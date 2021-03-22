@@ -13,7 +13,9 @@ const HTML_ENTITIES = {
 }
 
 /* ================================================================================================================== */
-export const getLogbook = ({ key }) => (dispatch) => {
+export const getLogbook = () => (dispatch, getState) => {
+  const key = getState()?.settings?.qrz?.key
+
   dispatch(setMeta({ loading: true, errors: [] }))
 
   const url = new URL(BASE_URL)
@@ -54,7 +56,9 @@ export const getLogbook = ({ key }) => (dispatch) => {
 }
 
 /* ================================================================================================================== */
-export const insertRecord = ({ key, record }) => (dispatch) => {
+export const insertRecord = ({ key, record }) => (dispatch, getState) => {
+  const key = getState()?.settings?.qrz?.key
+
   dispatch(setMeta({ loading: true, errors: [] }))
 
   const url = new URL(BASE_URL)

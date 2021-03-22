@@ -11,7 +11,8 @@ export default function Header({ className }) {
       <div className="flex-row-center">
         <h1 className="flex-1">
           <Link to={'/'}>
-            📻 Ham2K <strong>Nets</strong> <span className="smaller">v0.1</span>
+            <span className="h2k">Ham2K</span>
+            <span className="h2k-app">Nets</span> <span className="smaller">v0.1</span>
           </Link>
         </h1>
         <div className="flex-1 align-right">

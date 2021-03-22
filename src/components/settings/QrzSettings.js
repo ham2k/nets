@@ -19,7 +19,7 @@ export default function QrzSettings() {
         onChange={(e) => dispatch(setQrz({ key: e.target.value }))}
         size={24}
       />{' '}
-      <button onClick={() => dispatch(getLogbook({ key: qrz.key }))}>Fetch Logbook</button>
+      <button onClick={() => dispatch(getLogbook())}>Fetch Logbook</button>
     </section>
   )
 }

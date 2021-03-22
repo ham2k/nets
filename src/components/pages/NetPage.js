@@ -25,8 +25,8 @@ export default function NetPage() {
   const [currentView, setCurrentView] = useState('')
 
   useEffect(() => {
-    dispatch(setUI({ currentSlug: net.slug }))
-  }, [dispatch, net.slug])
+    dispatch(setUI({ currentSlug: net?.slug }))
+  }, [dispatch, net?.slug])
 
   const onViewChange = useCallback(
     (mode) => {
