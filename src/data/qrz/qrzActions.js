@@ -1,5 +1,5 @@
 import { setMeta } from './qrzSlice'
-import { AdifParser } from 'adif-parser-ts'
+import { AdifFormatter, AdifParser } from 'adif-parser-ts'
 
 import { loadLog } from '../logs/logsSlice'
 import { lookupHashForLog } from '../logs/logsActions'
@@ -53,6 +53,48 @@ export const getLogbook = ({ key }) => (dispatch) => {
     })
 }
 
+/* ================================================================================================================== */
+export const insertRecord = ({ key, record }) => (dispatch) => {
+  dispatch(setMeta({ loading: true, errors: [] }))
+
+  const url = new URL(BASE_URL)
+  const body = new URLSearchParams()
+  body.append('KEY', key)
+  body.append('ACTION', 'INSERT')
+  body.append('ADIF', AdifFormatter.formatAdi({ records: [record] }))
+
+  return fetch(`/cors-proxy/${url}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: body,
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.text()
+      } else {
+        console.log('QRZ Error: bad response')
+        throw new TypeError('Bad response')
+      }
+    })
+    .then((bodyText) => {
+      const qrz = parseQrzResponse(bodyText)
+
+      const data = qrz.ADIF
+      console.log(data)
+      // data.name = 'QRZ Logbook'
+      // data.source = 'https://logbook.qrz.com'
+      // data.lookup = lookupHashForLog(data)
+
+      // dispatch(loadLog({ data, name: 'QRZ Logbook' }))
+      dispatch(setMeta({ loading: false, errors: [] }))
+    })
+    .catch((error) => {
+      console.log('QRZ Error', error)
+      dispatch(setMeta({ loading: false, errors: 'QRZ Error' }))
+    })
+}
+
+/* ================================================================================================================== */
 /*
  * QRZ's API uses an "ad-hoc" encoding style.
  * Requests and responses are key/value pairs, supposedly encoded as "URL-encoded Form Data",

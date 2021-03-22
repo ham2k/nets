@@ -353,7 +353,22 @@ body {
 /* == Misc Utilities ================================================ */
 
 .clickable {
-  cursor: pointer;
+  cursor: pointer !important;
+}
+
+.unselectable {
+  user-select: none;
+  cursor: default;
+}
+
+.selectable-text {
+  user-select: text;
+  cursor: text;
+}
+
+.selectable-all {
+  user-select: all;
+  cursor: text;
 }
 
 .no-wrap {

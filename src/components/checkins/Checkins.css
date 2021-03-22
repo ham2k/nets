@@ -32,8 +32,9 @@
     grid-template-rows: auto;
     grid-template-areas:
       ' serial  callsign  operator  operator  '
-      ' .       status    status    location  '
-      ' .       .         .         remarks   ';
+      ' .       .         location  location  '
+      ' .       status    status    status    '
+      ' .       .         remarks   remarks   ';
     line-height: 20px;
   }
 }
@@ -107,7 +108,11 @@
   background-color: var(--checkin-heard-even-background-color);
 }
 
-.Checkin.ci_unavailable .CheckinCard > div {
+.Checkin.ci_unavailable .SerialNo-field,
+.Checkin.ci_unavailable .Callsign-field,
+.Checkin.ci_unavailable .Operator-section,
+.Checkin.ci_unavailable .Location-section,
+.Checkin.ci_unavailable .Remarks-section {
   opacity: 0.25;
 }
 

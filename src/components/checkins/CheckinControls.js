@@ -1,13 +1,16 @@
 import React, { useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones, faBook } from '@fortawesome/free-solid-svg-icons'
 
 import { setNetLocalCallsignInfo } from '../../data/netlogger'
+import { insertRecord } from '../../data/qrz/qrzActions'
+import { qrzSelector } from '../../data/settings'
 
 /* ================================================================================================================== */
 export default function CheckinControls({ net, checkin, localInfo, operator, activeControls }) {
   const dispatch = useDispatch()
+  const qrz = useSelector(qrzSelector())
 
   const onWorkedClick = useCallback(
     (ev) => {
@@ -24,6 +27,7 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
       }
 
       ev.stopPropagation()
+      ev.preventDefault()
     },
     [dispatch, checkin, localInfo, net]
   )
@@ -43,8 +47,55 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
       }
 
       ev.stopPropagation()
+      ev.preventDefault()
     },
     [dispatch, checkin, localInfo, net]
+  )
+
+  const onSaveToQRZ = useCallback(
+    (ev) => {
+      const nowStr = new Date().toISOString()
+      const nowDate = nowStr.slice(0, 10).replaceAll('-', '')
+      const nowTime = nowStr.slice(11, 19).replaceAll(':', '')
+
+      dispatch(
+        insertRecord({
+          key: qrz.key,
+          record: {
+            call: checkin.Callsign,
+            qso_date: nowDate,
+            time_on: nowTime,
+            rst_rcvd: localInfo.signalReceived,
+            rst_sent: localInfo.signalSent,
+            name: checkin.Name,
+            band: net.Band,
+            mode: net.Mode,
+            freq: net.Frequency,
+            qth: checkin.City,
+            state: checkin.State,
+            cnty: checkin.Cnty,
+            dxcc: checkin.DXCC,
+            country: checkin.Country,
+            App_NetLogger_Preferred_Name: checkin.PreferredName,
+            operator: operator,
+            station_callsign: operator,
+            App_NetLogger_Net: net.NetName,
+            comment: net.NetName,
+          },
+        })
+      ).then(() => {
+        dispatch(
+          setNetLocalCallsignInfo({
+            slug: net.slug,
+            info: { [checkin.Callsign]: { ...localInfo, savedToQRZ: true } },
+          })
+        )
+      })
+
+      ev.stopPropagation()
+      ev.preventDefault()
+    },
+    [dispatch, checkin, localInfo, net, operator, qrz]
   )
 
   return (
@@ -77,7 +128,44 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
           <button onClick={onWorkedClick}>
             <FontAwesomeIcon icon={faBook} />
           </button>
-          {localInfo.worked && <span className="worked">Worked</span>}
+          {localInfo.worked && (
+            <span>
+              <span className="worked">Worked</span>
+              <label htmlFor="logging-signal-sent">
+                Sent{' '}
+                <input
+                  value={localInfo.signalSent || ''}
+                  size={4}
+                  disabled={localInfo.savedToQRZ}
+                  onChange={(ev) =>
+                    dispatch(
+                      setNetLocalCallsignInfo({
+                        slug: net.slug,
+                        info: { [checkin.Callsign]: { ...localInfo, signalSent: ev.target.value } },
+                      })
+                    )
+                  }
+                />
+              </label>
+              <label htmlFor="logging-signal-received">
+                Rec'd{' '}
+                <input
+                  value={localInfo.signalReceived || ''}
+                  size={4}
+                  disabled={localInfo.savedToQRZ}
+                  onChange={(ev) =>
+                    dispatch(
+                      setNetLocalCallsignInfo({
+                        slug: net.slug,
+                        info: { [checkin.Callsign]: { ...localInfo, signalReceived: ev.target.value } },
+                      })
+                    )
+                  }
+                />
+              </label>
+              {localInfo.savedToQRZ ? <button disabled>QRZ!</button> : <button onClick={onSaveToQRZ}>&gt; QRZ</button>}
+            </span>
+          )}
           {localInfo.notWorked && <span>Not Worked</span>}
         </div>
       ) : (

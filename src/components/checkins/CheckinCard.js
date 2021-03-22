@@ -27,7 +27,8 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
   let qslMixed = qualifierFor({ qsl: true })
   let qsoMixed = qualifierFor({ qsl: false })
 
-  if (hunting.callsigns) {
+  if (localInfo?.sentToQRZ) classes.push('ci_worked_callsign')
+  else if (hunting.callsigns) {
     if (localInfo?.notWorked) classes.push('ci_new_callsign')
     else if (log?.lookup?.[qsl]?.callsigns[checkin.Callsign]) classes.push('ci_confirmed_callsign')
     else if (log?.lookup?.[qso]?.callsigns[checkin.Callsign]) classes.push('ci_worked_callsign')
@@ -68,7 +69,14 @@ export default function CheckinCard({
   const selectiveOnClick = useCallback(
     (ev) => {
       if (ev.defaultPrevented) return
+      if (ev.target?.tagName === 'A') return
+      if (ev.target?.tagName === 'INPUT') return
+      if (ev.target?.tagName === 'BUTTON') return
+      if (ev.target?.tagName === 'LABEL') return
+      if (ev.target?.tagName === 'TEXTAREA') return
 
+      ev.stopPropagation()
+      ev.preventDefault()
       onClick && onClick(ev)
     },
     [onClick]
@@ -78,7 +86,7 @@ export default function CheckinCard({
     <div
       className={classNames(
         'Checkin',
-        'clickable',
+        'clickable unselectable',
         (index + 1) % 2 === 0 ? 'even' : 'odd',
         isOpen ? 'open' : 'closed',
         ...classNamesFor({ checkin, net, operator, log, localInfo, hunting })
@@ -107,7 +115,7 @@ export default function CheckinCard({
 
         <div className="Callsign-field">
           {checkin.Callsign && (
-            <span className="callsign">
+            <span className="callsign selectable-text">
               {checkin.Callsign}
               {checkin.statuses.portable ? <strong>/P</strong> : ''}
               {checkin.statuses.mobile ? <strong>/M</strong> : ''}
@@ -116,7 +124,7 @@ export default function CheckinCard({
         </div>
 
         <div className="Operator-section">
-          <span className="Name-field">
+          <span className="Name-field selectable-text">
             <a
               href={`https://www.qrz.com/db?query=${checkin.Callsign}&mode=callsign`}
               target="qrz"
@@ -134,7 +142,7 @@ export default function CheckinCard({
           {checkin.MemberID && <span className="MemberID-field tag tagMemberID">{checkin.MemberID}</span>}
         </div>
 
-        <div className="Location-section">
+        <div className="Location-section selectable-text">
           {checkin.State && <span className="StateHunting-field">{checkin.State}</span>}
           {checkin.City && <span className="City-field">{[checkin.City, checkin.State].join(', ')}</span>}
           {checkin.County && <span className="County-field">{checkin.County}</span>}
@@ -145,17 +153,19 @@ export default function CheckinCard({
           {checkin.Remarks && (
             <div className="Remarks-field">
               {checkin.statuses.other?.map((status) => (
-                <span className="tag" key={status}>
+                <span className="tag selectable-text" key={status}>
                   {status}
                 </span>
               ))}
               {checkin.statuses.other?.length > 0 && <br />}
-              <label>Remarks: </label>
-              {checkin.Remarks}
+              <span className="">
+                <label>Remarks: </label>
+                {checkin.Remarks}
+              </span>
             </div>
           )}
           {checkin.QSLInfo && (
-            <div className="QSLInfo-field">
+            <div className="QSLInfo-field selectable-text">
               <label>QSL Info: </label>
               {checkin.QSLInfo}
             </div>
