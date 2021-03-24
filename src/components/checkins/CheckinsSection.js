@@ -26,7 +26,7 @@ export default function CheckinsSection({ slug, className, currentView, operatin
     <div
       className={classNames(className, 'CheckinsSection flex-col-stretch overflow-container', `view-${currentView}`)}
     >
-      <section className={'overflow-y-auto'}>
+      <section className={'overflow-y-auto ptb-100'}>
         {checkins &&
           checkins.map((checkin, index) => (
             <CheckinCard

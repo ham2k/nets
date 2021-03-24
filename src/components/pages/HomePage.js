@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Header from '../nav/Header'
+import HomeHeader from '../nav/HomeHeader'
 import NetsSelection from '../nets/NetsSelection'
 import NetsLoader from '../nets/NetsLoader'
 import { useSelector } from 'react-redux'
@@ -13,7 +13,8 @@ function HomePage() {
 
   return (
     <>
-      <Header className="larger" />
+      <HomeHeader />
+
       <main className="HomePage overflow-auto narrow-content">
         <NetsLoader />
 

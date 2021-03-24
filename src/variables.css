@@ -7,7 +7,7 @@
   --content-background-color: #f3f3f3;
   --text-color: #333;
   --inverse-text-color: #f0f0f0;
-  --secondary-text-color: #777;
+  --secondary-text-color: #666;
   --text-highlight-color: #c00;
 
   --link-color: #c00;
@@ -21,8 +21,8 @@
   --tag-background-color: #ccc;
   --tag-text-color: #555;
 
-  --row-odd-background-color: #f9f9f9;
-  --row-even-background-color: #f0f0f0;
+  --row-odd-background-color: var(--content-background-color);
+  --row-even-background-color: #e6e6e6;
 
   --checkin-self-text-color: #0fa3a3;
   --checkin-self-background-color: #bbf2f2;

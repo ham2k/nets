@@ -12,6 +12,7 @@ import CheckinsSection from '../checkins/CheckinsSection'
 
 import MessagesSection from '../messages/MessagesSection'
 import NetHeader from '../nets/NetHeader'
+import NetControls from '../nets/NetControls'
 
 /* ================================================================================================================== */
 export default function NetPage() {
@@ -82,14 +83,17 @@ export default function NetPage() {
   if (net && net.slug) {
     return (
       <>
-        <Header />
+        <Header>
+          <NetHeader net={net} />
+        </Header>
+
         <main
           className="NetPage"
           ref={dragContainerRef}
           onMouseUp={dividerIsDragging ? onDragMouseUp : undefined}
           onMouseMove={dividerIsDragging ? onDragMouseMove : undefined}
         >
-          <NetHeader net={net} className="flex-0 bb-1" onViewChange={onViewChange} currentView={currentView} />
+          <NetControls net={net} className="flex-0 bb-1" onViewChange={onViewChange} currentView={currentView} />
 
           <CheckinsSection
             className="flex-1 plr-0"

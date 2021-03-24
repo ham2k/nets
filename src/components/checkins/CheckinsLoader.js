@@ -26,8 +26,8 @@ export default function CheckinsLoader({ net, operator }) {
   }, [dispatch, net.slug, net.status]) // run once
 
   return (
-    <button onClick={() => dispatch(refreshNetData(net.slug))} disabled={net.isLoading}>
+    <span className="clickable" onClick={() => dispatch(refreshNetData(net.slug))} disabled={net.isLoading}>
       <FontAwesomeIcon icon={faSyncAlt} />
-    </button>
+    </span>
   )
 }
