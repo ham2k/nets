@@ -5,6 +5,7 @@ export const uiSlice = createSlice({
 
   initialState: {
     currentSlug: undefined,
+    chatHeight: 200,
   },
 
   reducers: {

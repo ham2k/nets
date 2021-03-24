@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 import Header from '../nav/Header'
 
 import { netSelector } from '../../data/netlogger'
-import { setUI } from '../../data/ui'
+import { setUI, uiSelector } from '../../data/ui'
 
 import CheckinsSection from '../checkins/CheckinsSection'
 
@@ -21,6 +21,8 @@ export default function NetPage() {
 
   const { slug } = useParams()
   const net = useSelector(netSelector(slug))
+
+  const chatHeight = useSelector(uiSelector())?.chatHeight || 200
 
   const [currentView, setCurrentView] = useState('')
 
@@ -45,26 +47,62 @@ export default function NetPage() {
     [currentView]
   )
 
+  const dragContainerRef = useRef()
+  const [dividerIsDragging, setDividerIsDragging] = useState(false)
+
+  const onDragMouseDown = useCallback(
+    (ev) => {
+      setDividerIsDragging(true)
+      ev.preventDefault()
+    },
+    [setDividerIsDragging]
+  )
+
+  const onDragMouseUp = useCallback(
+    (ev) => {
+      setDividerIsDragging(false)
+      dragContainerRef.current.style.cursor = undefined
+      ev.preventDefault()
+    },
+    [setDividerIsDragging, dragContainerRef]
+  )
+
+  const onDragMouseMove = useCallback(
+    (ev) => {
+      if (ev.buttons && ev.movementY) {
+        console.log(ev)
+        dragContainerRef.current.style.cursor = 'row-resize'
+        dispatch(setUI({ chatHeight: chatHeight - ev.movementY }))
+        ev.preventDefault()
+      }
+    },
+    [dispatch, chatHeight, dragContainerRef]
+  )
+
   if (net && net.slug) {
     return (
       <>
         <Header />
-        <main className="NetPage">
+        <main
+          className="NetPage"
+          ref={dragContainerRef}
+          onMouseUp={dividerIsDragging ? onDragMouseUp : undefined}
+          onMouseMove={dividerIsDragging ? onDragMouseMove : undefined}
+        >
           <NetHeader net={net} className="flex-0 bb-1" onViewChange={onViewChange} currentView={currentView} />
 
           <CheckinsSection
-            className="flex-2 plr-0"
+            className="flex-1 plr-0"
             slug={slug}
             currentView={currentView}
             operatingRef={operatingRef}
             operatorRef={operatorRef}
           />
 
-          <MessagesSection
-            className="
-          flex-1 p-0"
-            slug={slug}
-          />
+          <div className="flex-0 p-0 flex-col-stretch" style={{ minHeight: chatHeight }}>
+            <div className="Divider flex-0" onMouseMove={onDragMouseDown}></div>
+            <MessagesSection className="flex-1" slug={slug} />
+          </div>
         </main>
       </>
     )

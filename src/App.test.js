@@ -28,7 +28,7 @@ describe('App', () => {
       )
     })
 
-    expect(app.getByText(/Ham2k/i)).toBeInTheDocument()
+    expect(app.getByText(/Ham2K Nets/i)).toBeInTheDocument()
 
     expect(app.getByText(/ARTS W4CN weekly 2m SSB net/i)).toBeInTheDocument()
   })

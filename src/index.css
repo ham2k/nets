@@ -190,6 +190,7 @@ body {
 
 .overflow-y-auto {
   overflow-y: auto;
+  scroll-padding: 0 0 0 0;
 }
 
 .overflow-y-hidden {
@@ -241,6 +242,16 @@ body {
   padding-right: var(--spacing-200) !important;
 }
 
+.ptb-50 {
+  padding-top: var(--spacing-50) !important;
+  padding-bottom: var(--spacing-50) !important;
+}
+
+.ptb-100 {
+  padding-top: var(--spacing-100) !important;
+  padding-bottom: var(--spacing-100) !important;
+}
+
 .mt-100 {
   margin-top: var(--spacing-100) !important;
 }
@@ -286,6 +297,16 @@ body {
 .mlr-200 {
   margin-left: var(--spacing-200) !important;
   margin-right: var(--spacing-200) !important;
+}
+
+.mtb-50 {
+  margin-top: var(--spacing-50) !important;
+  margin-bottom: var(--spacing-50) !important;
+}
+
+.mtb-100 {
+  margin-top: var(--spacing-100) !important;
+  margin-bottom: var(--spacing-100) !important;
 }
 
 .ml-neg100 {
@@ -546,4 +567,12 @@ header.larger h1 {
   border: 0.08em solid #000;
   border-top-right-radius: 0.2em;
   border-bottom-right-radius: 0.2em;
+}
+
+.Divider {
+  background-color: var(--border-color);
+  min-height: 0.5rem;
+  max-height: 0.5rem;
+  height: 0.5rem;
+  cursor: row-resize;
 }

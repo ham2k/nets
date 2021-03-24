@@ -53,13 +53,15 @@ export default function MessagesSection({ slug, className, style }) {
 
   return (
     <div className={classNames(className, 'MessagesSection flex-col-stretch overflow-container')}>
-      <section className="">
-        <div className="header bb-1 plr-200">
+      <div className="bb-1 flex-0">
+        <section className="normal-content ptb-100">
           <h4>
             <FontAwesomeIcon icon={faComments} /> Almost Instant Messages
           </h4>
-        </div>
+        </section>
+      </div>
 
+      <section className="flex-1">
         <div className="MessagesList" ref={messagesElement}>
           {messages.map((message, index) => (
             <Message key={message.ID} message={message} {...passthru} />
