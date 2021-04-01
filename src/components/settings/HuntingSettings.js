@@ -1,3 +1,4 @@
+import { Checkbox, FormControlLabel, FormGroup, Paper, Typography } from '@material-ui/core'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -9,26 +10,29 @@ export default function HuntingSettings() {
   const hunting = useSelector(huntingSelector())
 
   return (
-    <section className="HuntingSettings">
-      <h3>Hunting</h3>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            checked={hunting.states}
-            onChange={(ev) => dispatch(setHunting({ states: ev.target.checked }))}
-          />{' '}
-          States
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={hunting.callsigns}
-            onChange={(ev) => dispatch(setHunting({ callsigns: ev.target.checked }))}
-          />{' '}
-          Callsigns
-        </label>
-      </div>
-    </section>
+    <Paper elevation={2}>
+      <Typography component="h2" variant="h5">
+        Hunting
+      </Typography>
+
+      <FormGroup row>
+        <FormControlLabel
+          label="States"
+          control={
+            <Checkbox checked={hunting.states} onChange={(ev) => dispatch(setHunting({ states: ev.target.checked }))} />
+          }
+        />
+
+        <FormControlLabel
+          label="Callsigns"
+          control={
+            <Checkbox
+              checked={hunting.callsigns}
+              onChange={(ev) => dispatch(setHunting({ callsigns: ev.target.checked }))}
+            />
+          }
+        />
+      </FormGroup>
+    </Paper>
   )
 }

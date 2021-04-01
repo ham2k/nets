@@ -1,10 +1,13 @@
 import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeadphones, faBook } from '@fortawesome/free-solid-svg-icons'
+
+import { Button, Grid, IconButton, TextField } from '@material-ui/core'
+import HearingIcon from '@material-ui/icons/Hearing'
+import MenuBookIcon from '@material-ui/icons/MenuBook'
 
 import { setNetLocalCallsignInfo } from '../../data/netlogger'
 import { insertRecord } from '../../data/qrz/qrzActions'
+import { Chip, Typography } from '@material-ui/core'
 
 /* ================================================================================================================== */
 export default function CheckinControls({ net, checkin, localInfo, operator, activeControls }) {
@@ -96,81 +99,106 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
   )
 
   return (
-    <div className="CheckinControls">
-      {checkin.Callsign && checkin.Callsign === operator ? <span className="you">YOU</span> : ''}
+    <Typography variant="body2">
+      {checkin.Callsign && checkin.Callsign === operator ? (
+        <div>
+          <Chip variant="outline" size="small" className="tagSelf" label="YOU" />
+        </div>
+      ) : (
+        ''
+      )}
 
-      {checkin.statuses.checkedOut && <span className="secondary">Checked Out</span>}
-      {checkin.statuses.notResponding && <span className="secondary">Not Responding</span>}
-      {checkin.statuses.unavailable && <span className="secondary">Unavailable</span>}
+      {checkin.statuses.checkedOut && (
+        <div>
+          <Chip size="small" className="tagUnavailable" label="Checked Out" />
+        </div>
+      )}
+      {checkin.statuses.notResponding && <Chip size="small" className="tagUnavailable" label="Not Responding" />}
+      {checkin.statuses.unavailable && <Chip size="small" className="tagUnavailable" label="Unavailable" />}
 
-      {checkin.operating && <span className="operating">Current</span>}
+      {checkin.operating && <Chip variant="outline" ssize="small" className="tagOperating" label="Current" />}
 
       {activeControls ? (
         <div className="no-wrap">
-          <button onClick={onReceptionClick}>
-            <FontAwesomeIcon icon={faHeadphones} />
-          </button>
-          {localInfo.notHeard && <span>Not Heard</span>}
-          {localInfo.heard && <span className="heard">HEARD</span>}
+          <IconButton onClick={onReceptionClick} className="tagHeard">
+            <HearingIcon fontSize="small" />
+          </IconButton>
+          {localInfo.notHeard && <Chip variant="outline" size="small" className="tagNotHeard" label="Not Heard" />}
+          {localInfo.heard && <Chip variant="outline" size="small" className="tagHeard" label="HEARD" />}
         </div>
       ) : (
         <>
-          {localInfo.notHeard && <span>Not Heard</span>}
-          {localInfo.heard && <span className="heard">HEARD</span>}
+          {localInfo.notHeard && <Chip variant="outline" size="small" className="tagNotHeard" label="Not Heard" />}
+          {localInfo.heard && <Chip variant="outline" size="small" className="tagHeard" label="HEARD" />}
         </>
       )}
 
       {activeControls ? (
         <div className="no-wrap">
-          <button onClick={onWorkedClick}>
-            <FontAwesomeIcon icon={faBook} />
-          </button>
+          <IconButton onClick={onWorkedClick} className="tagWorked">
+            <MenuBookIcon fontSize="small" />
+          </IconButton>
           {localInfo.worked && (
-            <span>
-              <span className="worked">Worked</span>
-              <label htmlFor="logging-signal-sent">
-                Sent{' '}
-                <input
-                  value={localInfo.signalSent || ''}
-                  size={4}
-                  disabled={localInfo.savedToQRZ}
-                  onChange={(ev) =>
-                    dispatch(
-                      setNetLocalCallsignInfo({
-                        slug: net.slug,
-                        info: { [checkin.Callsign]: { ...localInfo, signalSent: ev.target.value } },
-                      })
-                    )
-                  }
-                />
-              </label>
-              <label htmlFor="logging-signal-received">
-                Rec'd{' '}
-                <input
-                  value={localInfo.signalReceived || ''}
-                  size={4}
-                  disabled={localInfo.savedToQRZ}
-                  onChange={(ev) =>
-                    dispatch(
-                      setNetLocalCallsignInfo({
-                        slug: net.slug,
-                        info: { [checkin.Callsign]: { ...localInfo, signalReceived: ev.target.value } },
-                      })
-                    )
-                  }
-                />
-              </label>
-              {localInfo.savedToQRZ ? <button disabled>QRZ!</button> : <button onClick={onSaveToQRZ}>&gt; QRZ</button>}
-            </span>
+            <>
+              <Chip variant="outline" size="small" className="tagWorked" label="Worked" />
+              <Grid container spacing={1}>
+                <Grid item xs={4}>
+                  <TextField
+                    label="Sent"
+                    size="small"
+                    type="number"
+                    variant="outlined"
+                    value={localInfo.signalSent || ''}
+                    disabled={localInfo.savedToQRZ}
+                    onChange={(ev) =>
+                      dispatch(
+                        setNetLocalCallsignInfo({
+                          slug: net.slug,
+                          info: { [checkin.Callsign]: { ...localInfo, signalSent: ev.target.value } },
+                        })
+                      )
+                    }
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <TextField
+                    label="Received"
+                    size="small"
+                    type="number"
+                    variant="outlined"
+                    value={localInfo.signalReceived || ''}
+                    disabled={localInfo.savedToQRZ}
+                    onChange={(ev) =>
+                      dispatch(
+                        setNetLocalCallsignInfo({
+                          slug: net.slug,
+                          info: { [checkin.Callsign]: { ...localInfo, signalReceived: ev.target.value } },
+                        })
+                      )
+                    }
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  {localInfo.savedToQRZ ? (
+                    <Button disabled>QRZ!</Button>
+                  ) : (
+                    <Button variant="contained" onClick={onSaveToQRZ}>
+                      &gt; QRZ
+                    </Button>
+                  )}
+                </Grid>
+              </Grid>
+            </>
           )}
-          {localInfo.notWorked && <span>Not Worked</span>}
+
+          {localInfo.notWorked && <Chip variant="outline" size="small" className="tagNotWorked" label="Not Worked" />}
         </div>
       ) : (
         <>
-          {localInfo.worked && <span className="worked">Worked</span>}
-          {localInfo.notWorked && <span>Not Worked</span>}
+          {localInfo.worked && <Chip variant="outline" size="small" className="tagWorked" label="Worked" />}
+          {localInfo.notWorked && <Chip variant="outline" size="small" className="tagNotWorked" label="Not Worked" />}
         </>
       )}
-    </div>
+    </Typography>
   )
 }

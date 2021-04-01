@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+
+import { IconButton } from '@material-ui/core'
+import ReplayIcon from '@material-ui/icons/Replay'
 
 import { refreshNetData } from '../../data/netlogger'
 
@@ -26,8 +27,8 @@ export default function CheckinsLoader({ net, operator }) {
   }, [dispatch, net.slug, net.status]) // run once
 
   return (
-    <span className="clickable" onClick={() => dispatch(refreshNetData(net.slug))} disabled={net.isLoading}>
-      <FontAwesomeIcon icon={faSyncAlt} />
-    </span>
+    <IconButton onClick={() => dispatch(refreshNetData(net.slug))} disabled={net.isLoading}>
+      <ReplayIcon />
+    </IconButton>
   )
 }

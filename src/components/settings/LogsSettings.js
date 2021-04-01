@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { Paper, Typography } from '@material-ui/core'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loadADIFromUri, logSelector } from '../../data/logs'
@@ -17,11 +18,14 @@ export default function LogsSettings() {
   }
 
   return (
-    <section className="LogSettings">
-      <h3>Logs: {log?.records ? <span>{log.records.length} QSOs loaded</span> : <span>No log loaded</span>}</h3>
-      <div>
+    <Paper elevation={2}>
+      <Typography component="h2" variant="h5">
+        Logs: {log?.records ? <span>{log.records.length} QSOs loaded</span> : <span>No log loaded</span>}
+      </Typography>
+
+      <p>
         Load an ADIF log file: <input type="file" onChange={handleFileSelected} />
-      </div>
-    </section>
+      </p>
+    </Paper>
   )
 }

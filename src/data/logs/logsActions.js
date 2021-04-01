@@ -99,6 +99,7 @@ export const lookupHashForLog = (log, options) => {
     dxcc = dxcc || ''
     gridsquare = gridsquare ? gridsquare.slice(0, 4) : ''
     country = country || ''
+    if (country === 'United States') country = 'USA'
     state = state ? `${state.trim().toUpperCase()} ${country.toUpperCase()}`.trim() : ''
     cnty = cnty ? cnty.trim().toUpperCase() : ''
     const qsl = record.app_qrzlog_status === 'C' || record.lotw_qsl_rcvd === 'Y' || record.qsl_rcvd === 'Y'
@@ -117,7 +118,7 @@ export const lookupHashForLog = (log, options) => {
     qualifiers.forEach((qualifier) => {
       appendEntry(qualifier, 'callsigns', call)
       if (dxcc) appendEntry(qualifier, 'dxcc', dxcc)
-      if (state) appendEntry(qualifier, 'states', state)
+      if (state) appendEntry(qualifier, 'states', [state, country].join(' ').toUpperCase())
       if (gridsquare) appendEntry(qualifier, 'grids', gridsquare)
       if (cnty) appendEntry(qualifier, 'counties', cnty)
     })

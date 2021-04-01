@@ -157,6 +157,10 @@ function parseNetsList(bodyText, serverInfo) {
 
         if (net.NetName) net.slug = slugify(net.NetName, SLUGIFY_OPTIONS)
 
+        if (net.Frequency) {
+          net.Frequency = net.Frequency.replace(/\s*mhz/gi, '')
+        }
+
         net.status = 'active'
 
         nets.push(net)
@@ -348,7 +352,8 @@ function parseNetCheckins(bodyText) {
           if (checkin.Name) checkin.Name = capitalizeWords(checkin.Name)
           if (checkin.PreferredName) checkin.PreferredName = capitalizeWords(checkin.PreferredName)
           if (checkin.State) checkin.State = checkin.State.trim()
-          if (checkin.State) checkin.normalizedState = `${checkin.State.toUpperCase()} ${checkin.Country.toUpperCase()}`
+          if (checkin.State)
+            checkin.normalizedState = [checkin.State, checkin.Country || 'United States'].join(' ').toUpperCase()
           if (checkin.Country.toLowerCase() === 'united states') checkin.Country = 'USA'
           else checkin.Country = capitalizeWords(checkin.Country)
           if (checkin.County) checkin.County = capitalizeWords(checkin.County)
