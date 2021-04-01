@@ -1,11 +1,76 @@
 import React, { useMemo, useCallback } from 'react'
 import classNames from 'classnames'
+import { Chip, Container, Grid, Link, makeStyles, Typography } from '@material-ui/core'
 
 import { qualifierFor } from '../../data/logs/logsActions'
 
 import CheckinControls from './CheckinControls'
 
 import './Checkins.css'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+
+    '&.odd': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&.even': {
+      backgroundColor: 'inherit',
+    },
+
+    '&.ci_heard.odd': {
+      backgroundColor: theme.palette.spotting_heard.odd_bg,
+    },
+    '&.ci_heard.even': {
+      backgroundColor: theme.palette.spotting_heard.bg,
+    },
+
+    '&.ci_operating': {
+      backgroundColor: theme.palette.spotting_operating.bg,
+    },
+
+    '&.ci_worked_callsign.odd': {
+      backgroundColor: theme.palette.spotting_worked.odd_bg,
+    },
+    '&.ci_worked_callsign.even': {
+      backgroundColor: theme.palette.spotting_worked.bg,
+    },
+    '&.ci_confirmed_callsign.odd': {
+      backgroundColor: theme.palette.spotting_worked.odd_bg,
+    },
+    '&.ci_confirmed_callsign.even': {
+      backgroundColor: theme.palette.spotting_worked.bg,
+    },
+  },
+  card: {
+    '.ci_unavailable &': {
+      opacity: 0.3,
+    },
+
+    '.ci_heard & .callsign': {
+      fontWeight: 'bold',
+      color: theme.palette.spotting_heard.main,
+    },
+
+    '.ci_operating & .callsign': {
+      fontWeight: 'bold',
+      color: theme.palette.spotting_operating.main,
+    },
+
+    '.ci_worked_callsign & .callsign': {
+      fontWeight: 'bold',
+      color: theme.palette.spotting_worked.main,
+    },
+
+    '.ci_confirmed_callsign & .callsign': {
+      fontWeight: 'bold',
+      color: theme.palette.spotting_worked.main,
+      textDecoration: 'strike-thru',
+    },
+  },
+}))
 
 /* ================================================================================================================== */
 const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
@@ -51,6 +116,7 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
 
 /* ================================================================================================================== */
 export default function CheckinCard({
+  className,
   checkin,
   index,
   net,
@@ -64,6 +130,8 @@ export default function CheckinCard({
   operatingRef,
   operatorRef,
 }) {
+  const classes = useStyles()
+
   const localInfo = useMemo(() => local?.callsignInfo?.[checkin.Callsign] || {}, [local, checkin])
 
   const selectiveOnClick = useCallback(
@@ -85,7 +153,8 @@ export default function CheckinCard({
   return (
     <div
       className={classNames(
-        'Checkin',
+        className,
+        classes.root,
         'clickable unselectable',
         (index + 1) % 2 === 0 ? 'even' : 'odd',
         isOpen ? 'open' : 'closed',
@@ -93,85 +162,97 @@ export default function CheckinCard({
       )}
       onClick={selectiveOnClick}
     >
-      <div
-        className="CheckinCard"
-        ref={
-          (checkin.operating && operatingRef) ||
-          (operator && checkin.Callsign && checkin.Callsign === operator && operatorRef) ||
-          undefined
-        }
-      >
-        <div className="SerialNo-field">{checkin.SerialNo}</div>
+      <Container maxWidth="md">
+        <Typography>
+          <Grid
+            container
+            className={classes.card}
+            ref={
+              (checkin.operating && operatingRef) ||
+              (operator && checkin.Callsign && checkin.Callsign === operator && operatorRef) ||
+              undefined
+            }
+          >
+            <Grid item container xs={2}>
+              <Grid item xs={4}>
+                {checkin.SerialNo}
+              </Grid>
 
-        <div className="Status-section">
-          <CheckinControls
-            net={net}
-            checkin={checkin}
-            localInfo={localInfo}
-            operator={operator}
-            activeControls={isOpen}
-          />
-        </div>
+              <Grid item xs={8}>
+                {checkin.Callsign && (
+                  <Typography className="callsign selectable-text">
+                    {checkin.Callsign}
+                    {checkin.statuses.portable ? <strong>/P</strong> : ''}
+                    {checkin.statuses.mobile ? <strong>/M</strong> : ''}
+                  </Typography>
+                )}
+              </Grid>
 
-        <div className="Callsign-field">
-          {checkin.Callsign && (
-            <span className="callsign selectable-text">
-              {checkin.Callsign}
-              {checkin.statuses.portable ? <strong>/P</strong> : ''}
-              {checkin.statuses.mobile ? <strong>/M</strong> : ''}
-            </span>
-          )}
-        </div>
+              <Grid item xs={12} className="Status-section">
+                <CheckinControls
+                  net={net}
+                  checkin={checkin}
+                  localInfo={localInfo}
+                  operator={operator}
+                  activeControls={isOpen}
+                />
+              </Grid>
+            </Grid>
 
-        <div className="Operator-section">
-          <span className="Name-field selectable-text">
-            <a
-              href={`https://www.qrz.com/db?query=${checkin.Callsign}&mode=callsign`}
-              target="qrz"
-              title={checkin.Name}
-            >
-              {checkin.PreferredName || checkin.Name}
-            </a>
-          </span>
+            <Grid xs={4} item>
+              <Link
+                color="inherit"
+                href={`https://www.qrz.com/db?query=${checkin.Callsign}&mode=callsign`}
+                target="qrz"
+                title={checkin.Name}
+              >
+                {checkin.PreferredName || checkin.Name}
+              </Link>
 
-          {checkin.statuses.netControl && <span className="tag tagNetControl">Net Control</span>}
-          {checkin.statuses.relay && <span className="tag tagRelay">Relay</span>}
-          {checkin.statuses.logger && <span className="tag tagLogger">Logger</span>}
-          {checkin.statuses.vip && <span className="tag tagVip">VIP</span>}
+              {checkin.statuses.netControl && (
+                <Chip className="tagNetControl" label="Net Control" color="spotting_control" />
+              )}
+              {checkin.statuses.relay && <Chip className="tagRelay" label="Relay" color="spotting_relay" />}
+              {checkin.statuses.logger && <Chip className="tagLogger" label="Logger" color="spotting_relay" />}
+              {checkin.statuses.vip && <Chip className="tagVip" label="VIP" />}
 
-          {checkin.MemberID && <span className="MemberID-field tag tagMemberID">{checkin.MemberID}</span>}
-        </div>
+              {checkin.MemberID && <Chip className="MemberID-field tagMemberID" label={checkin.MemberID} />}
+            </Grid>
 
-        <div className="Location-section selectable-text">
-          {checkin.State && <span className="StateHunting-field">{checkin.State}</span>}
-          {checkin.City && <span className="City-field">{[checkin.City, checkin.State].join(', ')}</span>}
-          {checkin.County && <span className="County-field">{checkin.County}</span>}
-          {checkin.Country && <span className="Country-field">{checkin.Country}</span>}
-        </div>
+            <Grid xs={6} item container>
+              <Grid xs={12}>
+                {checkin.State && <Chip className="StateHunting-field" label={checkin.State} />}
+                {checkin.City && <span className="City-field">{[checkin.City, checkin.State].join(', ')}</span>}
+                {checkin.County && <span className="County-field">{checkin.County}</span>}
+                {checkin.Country && <span className="Country-field">{checkin.Country}</span>}
+              </Grid>
 
-        <div className="Remarks-section">
-          {checkin.Remarks && (
-            <div className="Remarks-field">
-              {checkin.statuses.other?.map((status) => (
-                <span className="tag selectable-text" key={status}>
-                  {status}
-                </span>
-              ))}
-              {checkin.statuses.other?.length > 0 && <br />}
-              <span className="">
-                <label>Remarks: </label>
-                {checkin.Remarks}
-              </span>
-            </div>
-          )}
-          {checkin.QSLInfo && (
-            <div className="QSLInfo-field selectable-text">
-              <label>QSL Info: </label>
-              {checkin.QSLInfo}
-            </div>
-          )}
-        </div>
-      </div>
+              <Grid xs={12} item className="Remarks-section">
+                {checkin.Remarks && (
+                  <div className="Remarks-field">
+                    {checkin.statuses.other?.map((status) => (
+                      <span className="tag selectable-text" key={status}>
+                        {status}
+                      </span>
+                    ))}
+                    {checkin.statuses.other?.length > 0 && <br />}
+                    <span className="">
+                      <label>Remarks: </label>
+                      {checkin.Remarks}
+                    </span>
+                  </div>
+                )}
+                {checkin.QSLInfo && (
+                  <div className="QSLInfo-field selectable-text">
+                    <label>QSL Info: </label>
+                    {checkin.QSLInfo}
+                  </div>
+                )}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Typography>
+      </Container>
     </div>
   )
 }

@@ -157,6 +157,10 @@ function parseNetsList(bodyText, serverInfo) {
 
         if (net.NetName) net.slug = slugify(net.NetName, SLUGIFY_OPTIONS)
 
+        if (net.Frequency) {
+          net.Frequency = net.Frequency.replace(/\s*mhz/gi, '')
+        }
+
         net.status = 'active'
 
         nets.push(net)

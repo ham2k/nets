@@ -476,6 +476,7 @@ button.link {
 }
 
 main {
+  padding-top: 100px;
   flex: 1;
   min-height: 0;
   border: 0;

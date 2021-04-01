@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 
+import { makeStyles } from '@material-ui/core'
+
 import { netSelector, netCheckinsSelector, netLocalSelector } from '../../data/netlogger'
 import { upcasedCallsignSelector, huntingSelector } from '../../data/settings'
 import { logSelector } from '../../data/logs'
@@ -10,7 +12,14 @@ import CheckinCard from './CheckinCard'
 
 import './Checkins.css'
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    overflowY: 'auto',
+  },
+}))
+
 export default function CheckinsSection({ slug, className, currentView, operatingRef, operatorRef }) {
+  const classes = useStyles()
   const [openCheckin, setOpenCheckin] = useState()
 
   const hunting = useSelector(huntingSelector())
@@ -23,24 +32,20 @@ export default function CheckinsSection({ slug, className, currentView, operatin
   const passthru = { net, checkins, operator, log, local, hunting }
 
   return (
-    <div
-      className={classNames(className, 'CheckinsSection flex-col-stretch overflow-container', `view-${currentView}`)}
-    >
-      <section className={'overflow-y-auto ptb-100'}>
-        {checkins &&
-          checkins.map((checkin, index) => (
-            <CheckinCard
-              key={checkin.SerialNo}
-              {...passthru}
-              checkin={checkin}
-              index={index}
-              isOpen={openCheckin === checkin.SerialNo}
-              onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
-              operatingRef={operatingRef}
-              operatorRef={operatorRef}
-            />
-          ))}
-      </section>
+    <div className={classNames(className, classes.root, `view-${currentView}`)}>
+      {checkins &&
+        checkins.map((checkin, index) => (
+          <CheckinCard
+            key={checkin.SerialNo}
+            {...passthru}
+            checkin={checkin}
+            index={index}
+            isOpen={openCheckin === checkin.SerialNo}
+            onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
+            operatingRef={operatingRef}
+            operatorRef={operatorRef}
+          />
+        ))}
     </div>
   )
 }

@@ -1,4 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import classNames from 'classnames'
+
+import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 
 import Header from '../nav/Header'
 import CallsignSettings from '../settings/CallsignSettings'
@@ -6,36 +11,79 @@ import LogsSettings from '../settings/LogsSettings'
 import HuntingSettings from '../settings/HuntingSettings'
 import QrzSettings from '../settings/QrzSettings'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTools } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux'
 import { uiSelector } from '../../data/ui'
 import { netSelector } from '../../data/netlogger'
-import { Link } from 'react-router-dom'
+import Footer from '../nav/Footer'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  header: {
+    flex: 0,
+  },
+  footer: {
+    flex: 0,
+  },
+  content: {
+    flex: 1,
+    overflow: 'auto',
+  },
+  subHeader: {
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    marginBottom: theme.spacing(2),
+
+    [theme.breakpoints.down('xs')]: {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+      marginBottom: theme.spacing(1),
+    },
+
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+  },
+  overflowContainer: {
+    overflow: 'hidden',
+    minHeight: 0,
+  },
+}))
 
 function SettingsPage() {
+  const classes = useStyles()
+
   const { currentSlug } = useSelector(uiSelector())
   const net = useSelector(netSelector(currentSlug))
 
   return (
-    <>
-      <Header showSettings={false} />
-      <main className="SettingsPage narrow-content">
-        <section className="">
-          <div className="flex-row-baseline">
-            <h2>
-              <FontAwesomeIcon icon={faTools} /> Settings
-            </h2>
+    <div className={classNames('SettingsPage', classes.root, classes.overflowContainer)}>
+      <Header className={classes.header} hideSettings={true} />
 
-            <div>{net && net.NetName && <Link to={`/${net.slug}`}>⬅ back to {net.NetName}</Link>}</div>
-          </div>
-          <CallsignSettings />
-          <HuntingSettings />
-          <LogsSettings />
-          <QrzSettings />
-        </section>
-      </main>
-    </>
+      <Paper className={classNames(classes.subHeader)} elevation={3}>
+        <Typography component="h2" variant="h6" color="inherit" noWrap className={classes.title}>
+          Settings
+        </Typography>
+        <div>{net && net.NetName && <Link to={`/${net.slug}`}>⬅ back to {net.NetName}</Link>}</div>
+      </Paper>
+
+      <Container maxWidth="lg" className={classes.content}>
+        <CallsignSettings />
+        <HuntingSettings />
+        <LogsSettings />
+        <QrzSettings />
+      </Container>
+
+      <Paper square className={classNames(classes.footer)} elevation={3}>
+        <Footer />
+      </Paper>
+    </div>
   )
 }
 

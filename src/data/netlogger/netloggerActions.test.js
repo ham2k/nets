@@ -95,7 +95,7 @@ describe('NetLogger API Calls', () => {
               NetName: '160m net on 1900kHz',
               slug: '160m-net-on-1900khz',
               NetControl: 'KE8USA',
-              Frequency: '1.9MHz',
+              Frequency: '1.9',
             })
             expect(action.payload[3]).toMatchObject({
               NetName: 'BARS Thursday Night Net',

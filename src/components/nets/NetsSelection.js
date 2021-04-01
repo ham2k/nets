@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import NetSelectionRow from './NetSelectionRow'
-
-import './Nets.css'
+import NetSelectionCard from './NetSelectionCard'
 
 /* ================================================================================================================== */
 function sortNets(nets) {
@@ -22,17 +20,15 @@ export default function NetsSelection({ nets, currentSlug }) {
   const sortedNets = useMemo(() => sortNets(nets), [nets])
 
   return (
-    <section className="narrow-section">
-      <ul className="NetSelection">
-        {sortedNets.map((net) => (
-          <NetSelectionRow
-            key={net.slug}
-            net={net}
-            currentSlug={currentSlug}
-            onSelect={() => history.push(`/${net.slug}`)}
-          />
-        ))}
-      </ul>
-    </section>
+    <div>
+      {sortedNets.map((net) => (
+        <NetSelectionCard
+          key={net.slug}
+          net={net}
+          currentSlug={currentSlug}
+          onSelect={() => history.push(`/${net.slug}`)}
+        />
+      ))}
+    </div>
   )
 }
