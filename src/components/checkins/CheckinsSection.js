@@ -31,21 +31,34 @@ export default function CheckinsSection({ slug, className, currentView, operatin
 
   const passthru = { net, checkins, operator, log, local, hunting }
 
+  let filteredCheckins
+  if (currentView === 'heard') {
+    filteredCheckins = (checkins || []).filter(
+      (checkin) =>
+        local?.callsignInfo?.[checkin.Callsign]?.heard ||
+        checkin.Callsign === operator ||
+        checkin.operating ||
+        checkin.statuses.netControl ||
+        checkin.statuses.relay
+    )
+  } else {
+    filteredCheckins = checkins || []
+  }
+
   return (
     <div className={classNames(className, classes.root, `view-${currentView}`)}>
-      {checkins &&
-        checkins.map((checkin, index) => (
-          <CheckinCard
-            key={checkin.SerialNo}
-            {...passthru}
-            checkin={checkin}
-            index={index}
-            isOpen={openCheckin === checkin.SerialNo}
-            onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
-            operatingRef={operatingRef}
-            operatorRef={operatorRef}
-          />
-        ))}
+      {filteredCheckins.map((checkin, index) => (
+        <CheckinCard
+          key={checkin.SerialNo}
+          {...passthru}
+          checkin={checkin}
+          index={index}
+          isOpen={openCheckin === checkin.SerialNo}
+          onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
+          operatingRef={operatingRef}
+          operatorRef={operatorRef}
+        />
+      ))}
     </div>
   )
 }

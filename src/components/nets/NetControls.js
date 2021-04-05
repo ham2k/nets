@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     '& .ci_operating': {
       color: theme.palette.spotting_operating.main,
     },
@@ -96,13 +97,13 @@ export default function NetControls({ net, className, onViewChange, currentView 
       )}
       {selfCheckin && (
         <div
-          className="operator clickable"
+          className="ci_self clickable"
           onClick={(ev) => {
             onViewChange && onViewChange('operator')
             ev.stopPropagation()
           }}
         >
-          You are #{selfCheckin.SerialNo} <span className="callsign">{selfCheckin.Callsign}</span>
+          &nbsp; You are #{selfCheckin.SerialNo} <span className="callsign">{selfCheckin.Callsign}</span>
         </div>
       )}
       <div>
