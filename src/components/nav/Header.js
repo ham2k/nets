@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'start',
+    alignItems: 'baseline',
   },
+  toolbar: {},
   titleMain: {
     paddingRight: theme.spacing(2),
   },
@@ -26,7 +28,7 @@ export default function Header({ className, children, title, hideSettings }) {
 
   return (
     <AppBar position="static" className={classNames(className, classes.root)} role="banner">
-      <Toolbar>
+      <Toolbar className={classNames(classes.toolbar)}>
         {/* <IconButton color="inherit" aria-label="open drawer">
           <MenuIcon />
         </IconButton> */}
@@ -59,6 +61,9 @@ export default function Header({ className, children, title, hideSettings }) {
               </Link>
             </Typography>
           )}
+          <Typography component="div" color="inherit" noWrap>
+            v0.0.3
+          </Typography>
 
           {children}
         </div>
