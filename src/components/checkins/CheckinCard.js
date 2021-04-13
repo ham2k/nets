@@ -292,7 +292,7 @@ export default function CheckinCard({
       onClick={selectiveOnClick}
     >
       <Container maxWidth="md">
-        <Typography>
+        <Typography component="div">
           <Grid
             container
             className={classes.card}
@@ -329,22 +329,16 @@ export default function CheckinCard({
                 {checkin.PreferredName || checkin.Name}
               </Link>
 
-              {checkin.statuses.netControl && (
-                <Chip size="small" className="tagControl" label="Net Control" color="spotting_control" />
-              )}
-              {checkin.statuses.relay && (
-                <Chip size="small" className="tagControl" label="Relay" color="spotting_relay" />
-              )}
-              {checkin.statuses.logger && (
-                <Chip size="small" className="tagControl" label="Logger" color="spotting_relay" />
-              )}
+              {checkin.statuses.netControl && <Chip size="small" className="tagControl" label="Net Control" />}
+              {checkin.statuses.relay && <Chip size="small" className="tagControl" label="Relay" />}
+              {checkin.statuses.logger && <Chip size="small" className="tagControl" label="Logger" />}
               {checkin.statuses.vip && <Chip size="small" className="tagControl" label="VIP" />}
 
               {checkin.MemberID && <span className="segment fieldMemberID">{checkin.MemberID}</span>}
             </Grid>
 
             <Grid item xs={1} sm={1} md={1} lg={1} className="gridSpacer1" />
-            <Grid item xs={3} sm={0} md={0} lg={0} className="gridSpacer2" />
+            <Grid item xs={3} sm={false} md={false} lg={false} className="gridSpacer2" />
 
             <Grid item xs={11} sm={4} md={6} lg={6} className="gridControls">
               <CheckinControls

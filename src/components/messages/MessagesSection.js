@@ -100,7 +100,7 @@ export default function MessagesSection({ slug, className }) {
         {operator ? (
           <>
             <input
-              class={classes.messageInput}
+              className={classes.messageInput}
               type="text"
               value={message}
               id="messages_input"
@@ -114,7 +114,7 @@ export default function MessagesSection({ slug, className }) {
               }}
             />
             <IconButton
-              class={classes.messageSubmit}
+              className={classes.messageSubmit}
               onClick={() => {
                 dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
                 setMessage('')
