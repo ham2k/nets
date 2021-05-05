@@ -27,7 +27,7 @@ export default function Footer({ className }) {
   return (
     <footer className={classNames(className, classes.root)}>
       <b>Ham2K Nets</b> is an alternative client for <a href="http://netlogger.org/">NetLogger</a> developed by{' '}
-      <a href="https://www.qrz.com/db/W2ASD">W2ASD</a> • <a href="https://twitter.com/sd">@sd</a>
+      <a href="https://www.qrz.com/db/KI2D">KI2D</a> • <a href="https://twitter.com/sd">@sd</a>
     </footer>
   )
 }
