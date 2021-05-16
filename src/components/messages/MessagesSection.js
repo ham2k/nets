@@ -56,35 +56,48 @@ export default function MessagesSection({ slug, className }) {
 
   const [message, setMessage] = useState('')
 
-  const passthru = { net, operator, checkins }
-
   const messagesElement = useRef(null)
 
+  const [atBottom, setAtBottom] = useState(null)
+
   useEffect(() => {
-    if (messagesElement.current) {
-      let atBottom = true
+    // Scroll to bottom on first load
+    const element = messagesElement.current
+    if (element) {
+      element.scroll({ top: element.scrollHeight, behavior: 'auto' })
+      setAtBottom(true)
+    }
+  }, [messagesElement])
 
-      messagesElement.current.scroll({ top: messagesElement.current.scrollHeight, behavior: 'auto' })
-
-      messagesElement.current.addEventListener('DOMNodeInserted', (event) => {
-        const { currentTarget: target } = event
-
+  useEffect(() => {
+    // Add handlers to keep the chat pinned to bottom, unless the user has scrolled
+    const element = messagesElement.current
+    if (element && atBottom !== null) {
+      const handleDOMNodeInserted = (event) => {
         if (atBottom) {
-          target.scroll({ top: target.scrollHeight, behavior: 'smooth' })
+          setImmediate(() => element.scroll({ top: element.scrollHeight, behavior: 'smooth' }))
         }
-      })
-
-      messagesElement.current.addEventListener('scroll', (event) => {
+      }
+      const handleScroll = (event) => {
         const { target } = event
 
         if (target.scrollTop + target.clientHeight + 1 >= target.scrollHeight) {
-          atBottom = true
+          setAtBottom(true)
         } else {
-          atBottom = false
+          setAtBottom(false)
         }
-      })
+      }
+
+      element.addEventListener('DOMNodeInserted', handleDOMNodeInserted)
+      element.addEventListener('scroll', handleScroll)
+      return () => {
+        element.removeEventListener('DOMNodeInserted', handleDOMNodeInserted)
+        element.removeEventListener('scroll', handleScroll)
+      }
     }
-  }, [messagesElement])
+  }, [messagesElement, atBottom])
+
+  const passthru = { net, operator, checkins }
 
   return (
     <div className={classNames(className, classes.root)}>

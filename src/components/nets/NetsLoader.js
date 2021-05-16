@@ -43,7 +43,7 @@ export default function NetsLoader({ className }) {
 
   return (
     <div className={classNames(className, classes.root)}>
-      {meta.isLoading ? (
+      {meta.isLoading || !meta.lastUpdated ? (
         <Typography component="h3" variant="h6" color="inherit" noWrap className={classes.title}>
           Refreshing…
         </Typography>
