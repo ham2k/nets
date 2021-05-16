@@ -99,10 +99,10 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
   )
 
   return (
-    <Typography variant="body2">
+    <Typography variant="body2" component="div">
       {checkin.Callsign && checkin.Callsign === operator ? (
         <div>
-          <Chip variant="outline" size="small" className="tagSelf" label="YOU" />
+          <Chip variant="outlined" size="small" className="tagSelf" label="YOU" />
         </div>
       ) : (
         ''
@@ -116,20 +116,20 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
       {checkin.statuses.notResponding && <Chip size="small" className="tagUnavailable" label="Not Responding" />}
       {checkin.statuses.unavailable && <Chip size="small" className="tagUnavailable" label="Unavailable" />}
 
-      {checkin.operating && <Chip variant="outline" ssize="small" className="tagOperating" label="Current" />}
+      {checkin.operating && <Chip variant="outlined" ssize="small" className="tagOperating" label="Current" />}
 
       {activeControls ? (
         <div className="no-wrap">
           <IconButton onClick={onReceptionClick} className="tagHeard">
             <HearingIcon fontSize="small" />
           </IconButton>
-          {localInfo.notHeard && <Chip variant="outline" size="small" className="tagNotHeard" label="Not Heard" />}
-          {localInfo.heard && <Chip variant="outline" size="small" className="tagHeard" label="HEARD" />}
+          {localInfo.notHeard && <Chip variant="outlined" size="small" className="tagNotHeard" label="Not Heard" />}
+          {localInfo.heard && <Chip variant="outlined" size="small" className="tagHeard" label="HEARD" />}
         </div>
       ) : (
         <>
-          {localInfo.notHeard && <Chip variant="outline" size="small" className="tagNotHeard" label="Not Heard" />}
-          {localInfo.heard && <Chip variant="outline" size="small" className="tagHeard" label="HEARD" />}
+          {localInfo.notHeard && <Chip variant="outlined" size="small" className="tagNotHeard" label="Not Heard" />}
+          {localInfo.heard && <Chip variant="outlined" size="small" className="tagHeard" label="HEARD" />}
         </>
       )}
 
@@ -140,7 +140,7 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
           </IconButton>
           {localInfo.worked && (
             <>
-              <Chip variant="outline" size="small" className="tagWorked" label="Worked" />
+              <Chip variant="outlined" size="small" className="tagWorked" label="Worked" />
               <Grid container spacing={1}>
                 <Grid item xs={4}>
                   <TextField
@@ -191,12 +191,12 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
             </>
           )}
 
-          {localInfo.notWorked && <Chip variant="outline" size="small" className="tagNotWorked" label="Not Worked" />}
+          {localInfo.notWorked && <Chip variant="outlined" size="small" className="tagNotWorked" label="Not Worked" />}
         </div>
       ) : (
         <>
-          {localInfo.worked && <Chip variant="outline" size="small" className="tagWorked" label="Worked" />}
-          {localInfo.notWorked && <Chip variant="outline" size="small" className="tagNotWorked" label="Not Worked" />}
+          {localInfo.worked && <Chip variant="outlined" size="small" className="tagWorked" label="Worked" />}
+          {localInfo.notWorked && <Chip variant="outlined" size="small" className="tagNotWorked" label="Not Worked" />}
         </>
       )}
     </Typography>
