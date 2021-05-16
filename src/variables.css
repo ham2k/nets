@@ -27,9 +27,9 @@
   --checkin-self-text-color: #0fa3a3;
   --checkin-self-background-color: #bbf2f2;
 
-  --checkin-heard-text-color: #107d10;
-  --checkin-heard-odd-background-color: #a3cfa3;
-  --checkin-heard-even-background-color: #abd8ab;
+  --checkin-wanted-text-color: #107d10;
+  --checkin-wanted-odd-background-color: #a3cfa3;
+  --checkin-wanted-even-background-color: #abd8ab;
 
   --checkin-netcontrol-text-color: #60f;
   --checkin-netcontrol-tag-color: rgb(174, 134, 235);

@@ -62,7 +62,7 @@ export default function Header({ className, children, title, hideSettings }) {
             </Typography>
           )}
           <Typography component="div" color="inherit" noWrap>
-            v0.0.3
+            v0.0.4-alpha
           </Typography>
 
           {children}

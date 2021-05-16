@@ -40,13 +40,9 @@ export default function NetControls({ net, className, onViewChange, currentView 
 
   const checkinCount = checkins.filter((checkin) => checkin.Callsign).length
   const inactiveCheckinCount = checkins.filter(
-    (checkin) =>
-      checkin.statuses.checkedOut ||
-      checkin.statuses.notResponding ||
-      checkin.statuses.unavailable ||
-      local?.callsignInfo?.[checkin.Callsign]?.notHeard
+    (checkin) => checkin.statuses.checkedOut || checkin.statuses.notResponding || checkin.statuses.unavailable
   ).length
-  const heardCount = checkins.filter((checkin) => local?.callsignInfo?.[checkin.Callsign]?.heard).length
+  const wantedCount = checkins.filter((checkin) => local?.callsignInfo?.[checkin.Callsign]?.wanted).length
 
   const currentCheckin = checkins.find((checkin) => checkin.operating)
   const selfCheckin = operator && checkins.find((checkin) => checkin.Callsign === operator)
@@ -58,7 +54,7 @@ export default function NetControls({ net, className, onViewChange, currentView 
     checkinsLabel = `${checkinCount} checkins`
   }
 
-  let heardsLabel = `${heardCount} marked as heard`
+  let wantedLabel = `${wantedCount} wanted`
 
   return (
     <div className={classes.root}>
@@ -71,7 +67,7 @@ export default function NetControls({ net, className, onViewChange, currentView 
         aria-label="disabled tabs example"
       >
         <Tab label={checkinsLabel} value="checkins" />
-        <Tab label={heardsLabel} value="heard" />
+        <Tab label={wantedLabel} value="wanted" />
       </Tabs>
 
       {net.status !== 'active' && (
@@ -125,15 +121,15 @@ export default function NetControls({ net, className, onViewChange, currentView 
     //       {inactiveCheckinCount > 0 ? `, ${checkinCount - inactiveCheckinCount} active` : ''}
     //     </div>
 
-    //     {(heardCount > 0 || currentView === 'heard') && (
+    //     {(wantedCount > 0 || currentView === 'wanted') && (
     //       <div
-    //         className={classNames('tab heard', currentView === 'heard' && 'current')}
+    //         className={classNames('tab wanted', currentView === 'wanted' && 'current')}
     //         onClick={(ev) => {
-    //           onViewChange && onViewChange('heard')
+    //           onViewChange && onViewChange('wanted')
     //           ev.stopPropagation()
     //         }}
     //       >
-    //         {heardCount} heard
+    //         {wantedCount} wanted
     //       </div>
     //     )}
 

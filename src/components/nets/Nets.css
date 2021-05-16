@@ -61,6 +61,6 @@ ul.NetSelection {
   color: var(--checkin-self-text-color);
 }
 
-.NetControls .tab.heard {
-  color: var(--checkin-heard-text-color);
+.NetControls .tab.wanted {
+  color: var(--checkin-wanted-text-color);
 }

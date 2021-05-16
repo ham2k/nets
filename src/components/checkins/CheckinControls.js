@@ -2,7 +2,9 @@ import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { Button, Grid, IconButton, TextField } from '@material-ui/core'
-import HearingIcon from '@material-ui/icons/Hearing'
+import MicIcon from '@material-ui/icons/Mic'
+import StarIcon from '@material-ui/icons/Star'
+import StarBorderIcon from '@material-ui/icons/StarBorder'
 import MenuBookIcon from '@material-ui/icons/MenuBook'
 
 import { setNetLocalCallsignInfo } from '../../data/netlogger'
@@ -35,17 +37,12 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
 
   const onReceptionClick = useCallback(
     (ev) => {
-      let newInfo = undefined
-
-      if (localInfo.heard) newInfo = { heard: false, notHeard: true }
-      else if (localInfo.notHeard) newInfo = { heard: false, notHeard: false }
-      else newInfo = { heard: true, notHeard: false }
-
-      if (newInfo) {
-        dispatch(
-          setNetLocalCallsignInfo({ slug: net.slug, info: { [checkin.Callsign]: { ...localInfo, ...newInfo } } })
-        )
-      }
+      dispatch(
+        setNetLocalCallsignInfo({
+          slug: net.slug,
+          info: { [checkin.Callsign]: { ...localInfo, wanted: !localInfo.wanted } },
+        })
+      )
 
       ev.stopPropagation()
       ev.preventDefault()
@@ -116,20 +113,32 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
       {checkin.statuses.notResponding && <Chip size="small" className="tagUnavailable" label="Not Responding" />}
       {checkin.statuses.unavailable && <Chip size="small" className="tagUnavailable" label="Unavailable" />}
 
-      {checkin.operating && <Chip variant="outlined" ssize="small" className="tagOperating" label="Current" />}
+      {checkin.operating && (
+        <Chip variant="outlined" size="small" className="tagOperating" label="Operating" icon={<MicIcon />} />
+      )}
 
       {activeControls ? (
         <div className="no-wrap">
-          <IconButton onClick={onReceptionClick} className="tagHeard">
-            <HearingIcon fontSize="small" />
-          </IconButton>
-          {localInfo.notHeard && <Chip variant="outlined" size="small" className="tagNotHeard" label="Not Heard" />}
-          {localInfo.heard && <Chip variant="outlined" size="small" className="tagHeard" label="HEARD" />}
+          {localInfo.wanted ? (
+            <>
+              <IconButton onClick={onReceptionClick} className="tagWanted">
+                <StarIcon fontSize="small" />
+              </IconButton>
+              <Chip variant="outlined" size="small" className="tagWanted" label="Wanted" icon={<StarIcon />} />
+            </>
+          ) : (
+            <>
+              <IconButton onClick={onReceptionClick} className="tagWanted">
+                <StarBorderIcon fontSize="small" />
+              </IconButton>
+            </>
+          )}
         </div>
       ) : (
         <>
-          {localInfo.notHeard && <Chip variant="outlined" size="small" className="tagNotHeard" label="Not Heard" />}
-          {localInfo.heard && <Chip variant="outlined" size="small" className="tagHeard" label="HEARD" />}
+          {localInfo.wanted && (
+            <Chip variant="outlined" size="small" className="tagWanted" label="Wanted" icon={<StarIcon />} />
+          )}
         </>
       )}
 

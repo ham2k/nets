@@ -32,10 +32,10 @@ export default function CheckinsSection({ slug, className, currentView, operatin
   const passthru = { net, checkins, operator, log, local, hunting }
 
   let filteredCheckins
-  if (currentView === 'heard') {
+  if (currentView === 'wanted') {
     filteredCheckins = (checkins || []).filter(
       (checkin) =>
-        local?.callsignInfo?.[checkin.Callsign]?.heard ||
+        local?.callsignInfo?.[checkin.Callsign]?.wanted ||
         checkin.Callsign === operator ||
         checkin.operating ||
         checkin.statuses.netControl ||

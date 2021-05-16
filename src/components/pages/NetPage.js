@@ -116,9 +116,9 @@ export default function NetPage() {
         operatingRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       } else if (mode === 'operator') {
         operatorRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      } else if (mode === 'heard') {
-        if (currentView === 'heard') setCurrentView('')
-        else setCurrentView('heard')
+      } else if (mode === 'wanted') {
+        if (currentView === 'wanted') setCurrentView('')
+        else setCurrentView('wanted')
       } else {
         if (currentView === 'checkins') setCurrentView('')
         else setCurrentView('checkins')

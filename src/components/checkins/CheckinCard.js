@@ -20,15 +20,22 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'inherit',
     },
 
-    '&.ci_heard.odd': {
-      backgroundColor: theme.palette.spotting_heard.odd_bg,
+    '&.ci_wanted.odd': {
+      backgroundColor: theme.palette.spotting_wanted.odd_bg,
     },
-    '&.ci_heard.even': {
-      backgroundColor: theme.palette.spotting_heard.bg,
+    '&.ci_wanted.even': {
+      backgroundColor: theme.palette.spotting_wanted.bg,
     },
 
     '&.ci_operating': {
-      backgroundColor: theme.palette.spotting_operating.bg,
+      paddingTop: theme.spacing(0.5),
+      borderTopStyle: 'solid',
+      borderTopWidth: theme.spacing(0.5),
+      borderTopColor: theme.palette.spotting_operating.main,
+      paddingBottom: theme.spacing(0.5),
+      borderBottomStyle: 'solid',
+      borderBottomWidth: theme.spacing(0.5),
+      borderBottomColor: theme.palette.spotting_operating.main,
     },
 
     '&.ci_worked_callsign.odd': {
@@ -98,19 +105,19 @@ const useStyles = makeStyles((theme) => ({
       opacity: 0.3,
     },
 
-    '.ci_heard & .callsign': {
+    '.ci_wanted & .callsign': {
       fontWeight: 'bold',
-      color: theme.palette.spotting_heard.main,
+      color: theme.palette.spotting_wanted.main,
     },
 
-    '& .MuiChip-root.tagHeard': {
-      color: theme.palette.spotting_heard.main,
-      backgroundColor: theme.palette.spotting_heard.bg,
-      borderColor: theme.palette.spotting_heard.main,
+    '& .MuiChip-root.tagWanted': {
+      color: theme.palette.spotting_wanted.main,
+      backgroundColor: theme.palette.spotting_wanted.bg,
+      borderColor: theme.palette.spotting_wanted.main,
     },
 
-    '& .tagHeard .MuiSvgIcon-root': {
-      color: theme.palette.spotting_heard.main,
+    '& .tagWanted .MuiSvgIcon-root': {
+      color: theme.palette.spotting_wanted.main,
     },
 
     '& .MuiChip-root.tagWorked': {
@@ -135,7 +142,12 @@ const useStyles = makeStyles((theme) => ({
 
     '& .MuiChip-root.tagOperating': {
       color: theme.palette.spotting_operating.main,
+      backgroundColor: theme.palette.spotting_operating.bg,
       borderColor: theme.palette.spotting_operating.main,
+    },
+
+    '& .MuiChip-root.tagOperating .MuiChip-icon': {
+      color: theme.palette.spotting_operating.main,
     },
 
     '& .MuiChip-root.tagControl': {
@@ -208,8 +220,7 @@ const classNamesFor = ({ checkin, net, operator, log, localInfo, hunting }) => {
   if (checkin.statuses.checkedOut) classes.push('ci_unavailable')
   if (checkin.statuses.notResponding) classes.push('ci_unavailable')
   if (checkin.statuses.unavailable) classes.push('ci_unavailable')
-  if (localInfo?.notHeard) classes.push('ci_unavailable')
-  if (localInfo?.heard) classes.push('ci_heard')
+  if (localInfo?.wanted) classes.push('ci_wanted')
 
   if (checkin.statuses.netControl) classes.push('ci_netcontrol')
   if (checkin.statuses.relay) classes.push('ci_relay')

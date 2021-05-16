@@ -96,16 +96,16 @@
   text-transform: uppercase;
 }
 
-.Checkin.ci_heard .heard {
-  color: var(--checkin-heard-text-color);
+.Checkin.ci_wanted .wanted {
+  color: var(--checkin-wanted-text-color);
   font-weight: bold;
 }
 
-.Checkin.ci_heard.even {
-  background-color: var(--checkin-heard-even-background-color);
+.Checkin.ci_wanted.even {
+  background-color: var(--checkin-wanted-even-background-color);
 }
-.Checkin.ci_heard {
-  background-color: var(--checkin-heard-even-background-color);
+.Checkin.ci_wanted {
+  background-color: var(--checkin-wanted-even-background-color);
 }
 
 .Checkin.ci_unavailable .SerialNo-field,
@@ -273,47 +273,45 @@
   color: var(--link-color);
 }
 
-.CheckinsSection.view-heard .Checkin,
-.CheckinsSection.view-heard .Checkin.ci_heard.ci_unavailable {
+.CheckinsSection.view-wanted .Checkin {
   max-height: 2em;
   overflow-y: hidden;
   opacity: 0.6;
 }
 
-.CheckinsSection.view-heard .CheckinCard,
-.CheckinsSection.view-heard .ci_heard.ci_unavailable .CheckinCard {
+.CheckinsSection.view-wanted .CheckinCard {
   font-size: 70%;
 }
 
-.CheckinsSection.view-heard .Checkin.open {
+.CheckinsSection.view-wanted .Checkin.open {
   max-height: inherit;
 }
 
-.CheckinsSection.view-heard .Checkin.ci_heard {
+.CheckinsSection.view-wanted .Checkin.ci_wanted {
   max-height: inherit;
   opacity: 1;
 }
 
-.CheckinsSection.view-heard .ci_heard .CheckinCard {
+.CheckinsSection.view-wanted .ci_wanted .CheckinCard {
   font-size: 100%;
 }
 
-.CheckinsSection.view-heard .CheckinCard {
+.CheckinsSection.view-wanted .CheckinCard {
   font-size: 0.7rem;
 }
 
-/* .CheckinsSection.view-heard .Checkin.ci_heard.ci_unavailable {
+/* .CheckinsSection.view-wanted .Checkin.ci_wanted.ci_unavailable {
   max-height: 2em;
   overflow-y: hidden;
   font-size: 0.7rem;
   opacity: 0.8;
 }
 
-.CheckinsSection.view-heard .ci_heard .CheckinCard {
+.CheckinsSection.view-wanted .ci_wanted .CheckinCard {
   font-size: 100%;
 } */
 
-.CheckinsSection.view-heard .Checkin.ci_operator,
-.CheckinsSection.view-heard .Checkin.ci_operating {
+.CheckinsSection.view-wanted .Checkin.ci_operator,
+.CheckinsSection.view-wanted .Checkin.ci_operating {
   opacity: 1;
 }

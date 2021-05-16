@@ -22,7 +22,7 @@ const baseTheme = createMuiTheme({
     spotting_relay: {
       main: '#60f',
     },
-    spotting_heard: {
+    spotting_wanted: {
       main: '#107d10',
 
       bg: lighten('#107d10', 0.8),
