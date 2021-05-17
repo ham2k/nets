@@ -14,6 +14,7 @@ import QrzSettings from '../settings/QrzSettings'
 import { uiSelector } from '../../data/ui'
 import { netSelector } from '../../data/netlogger'
 import Footer from '../nav/Footer'
+import { Helmet } from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,22 +72,23 @@ function SettingsPage() {
 
   return (
     <div className={classNames('SettingsPage', classes.root, classes.overflowContainer)}>
-      <Header className={classes.header} hideSettings={true} />
+      <Helmet>
+        <title>Ham2k Nets - Settings</title>
+      </Helmet>
 
+      <Header className={classes.header} hideSettings={true} />
       <Paper className={classNames(classes.subHeader)} elevation={3}>
         <Typography component="h2" variant="h6" color="inherit" noWrap className={classes.title}>
           Settings
         </Typography>
         <div>{net && net.NetName && <Link to={`/${net.slug}`}>⬅ back to {net.NetName}</Link>}</div>
       </Paper>
-
       <Container maxWidth="md" className={classes.content}>
         <CallsignSettings />
         <HuntingSettings />
         <LogsSettings />
         <QrzSettings />
       </Container>
-
       <Paper square className={classNames(classes.footer)} elevation={3}>
         <Footer />
       </Paper>

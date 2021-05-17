@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useParams } from 'react-router-dom'
 import classNames from 'classnames'
-
+import { Helmet } from 'react-helmet'
 import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 
@@ -161,6 +161,9 @@ export default function NetPage() {
   if (net && net.slug) {
     return (
       <div className={classNames('NetPage', classes.root, classes.overflowContainer)}>
+        <Helmet>
+          <title>{net.NetName} - Ham2k Nets</title>
+        </Helmet>
         <Header className={classes.header} />
 
         <Paper square className={classNames(classes.subHeader)} elevation={3}>

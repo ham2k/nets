@@ -9,6 +9,7 @@ import { uiSelector } from '../../data/ui'
 import { Container, makeStyles, Paper } from '@material-ui/core'
 import classNames from 'classnames'
 import Footer from '../nav/Footer'
+import { Helmet } from 'react-helmet'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,18 +53,19 @@ function HomePage() {
   const { currentSlug } = useSelector(uiSelector())
   return (
     <div className={classNames('HomePage', classes.root, classes.overflowContainer)}>
-      <Header className={classes.header} />
+      <Helmet>
+        <title>Ham2k Nets</title>
+      </Helmet>
 
+      <Header className={classes.header} />
       <Paper className={classNames(classes.subHeader)} elevation={3}>
         <Container maxWidth="md">
           <NetsLoader />
         </Container>
       </Paper>
-
       <Container maxWidth="md" className={classes.content}>
         <NetsSelection nets={nets} currentSlug={currentSlug} />
       </Container>
-
       <Paper square className={classNames(classes.footer)} elevation={3}>
         <Footer />
       </Paper>
