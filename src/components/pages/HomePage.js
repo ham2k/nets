@@ -23,15 +23,17 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     flex: 0,
+    marginTop: theme.spacing(1),
   },
   content: {
     flex: 1,
     overflow: 'auto',
+    paddingBottom: theme.spacing(2),
   },
   subHeader: {
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
 
     [theme.breakpoints.down('xs')]: {
       paddingLeft: theme.spacing(2),
