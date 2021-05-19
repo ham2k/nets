@@ -91,3 +91,68 @@ Content-Type: application/x-www-form-urlencoded\r\n
 [Full request URI:
 [HTTP request 1/1]
 [Response in frame: 63170]
+
+GET http://www.netlogger.org/cgi-bin/NetLogger/OpenNet20.php?NetName=ENY%20ARES%20RACES&Token=123&Frequency=3993&NetControl=KI2D&Logger=W2ASD-SEBAS%20-%20v3.1.7M&Mode=SSB&Band=80m&EnableMessaging=Y&UpdateInterval=20000&MiscNetParameters=
+_success_ <!--NetLogger NetControl Start-->KI2D<!--NetLogger NetControl End--><!--NetLogger LoggerName Start-->W2ASD-SEBAS - v3.1.7M<!--NetLogger LoggerName End-->\n
+
+POST /cgi-bin/NetLogger/SendUpdates3.php HTTP/1.0 (application/x-www-form-urlencoded)
+HTML Form URL Encoded: application/x-www-form-urlencoded
+Form item: "ProtocolVersion" = "2.3"
+Form item: "NetName" = "ENY ARES RACES"
+Form item: "Token" = "123"
+Form item: "UpdatesFromNetControl" = "`1|future use 2|future use 3|`^future use 4|future use 5^"
+
+_success_ \n
+
+GET /cgi-bin/NetLogger/GetSystemMessages.php HTTP/1.0
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"\n
+     "http://www.w3.org/TR/html4/loose.dtd">\n
+    <html>\n
+    <head>\n
+    <title>\n
+    </title>\n
+    </head>\n
+    <body>\n
+    *success* <!--NetLogger SystemMessages Start-->16|Admin|2020-04-11 14:37:29|1|2034-12-31 00:00:00||Welcome to NetLogger!<br />\r\n
+    <br />\r\n
+    If you are running your first net on NetLogger please read the following operating tip:<br />\r\n
+    <br />\r\n
+    At the conclusion of your net please remember to click the <b>CLOSE NET</b> button to terminate your net in an orderly fashion. (Further details about running a net can be found in the in-program HELP menu.)<br />\r\n
+    <br />\r\n
+    --- NetLogger Development and Support Team ---<br />\r\n
+    <a href="http://www.netlogger.org">www.netlogger.org</a>\r\n
+    \r\n
+    |~<!--NetLogger SystemMessages End-->\n
+    </body>\n
+    </html>
+
+GET /cgi-bin/NetLogger/CloseNet.php?NetName=ENY%20ARES%20RACES&Token=123 HTTP/1.0\r\n
+
+POST /cgi-bin/NetLogger/SendUpdates3.php HTTP/1.0\r\n
+Host: www.netlogger.org\r\n
+
+    Form item: "ProtocolVersion" = "2.3"
+    Form item: "NetName" = "ENY ARES RACES"
+    Form item: "Token" = "123"
+    Form item: "UpdatesFromNetControl" = "A|1|KC2OWV|Waterford|NJ|Allan R Cassady Jr|(no club info)| |Camden|FM29oq|645 Autumn Crest Dr|08089| | |United States|291|Allan~`1|future use 2|future use 3|`^future use 4|future use 5^"
+
+_success_ \n
+
+Form item: "UpdatesFromNetControl" = "A|2|KN2X|Wurtsboro|NY|John J Lavelle Jr|(no club info)| |Sullivan|FN21so|376 Wilsey Valley Rd|12790| | |United States|291|John~`2|future use 2|future use 3|`^future use 4|future use 5^"
+
+Form item: "UpdatesFromNetControl" = "`3|future use 2|future use 3|`^future use 4|future use 5^"
+Form item: "UpdatesFromNetControl" = "`1|future use 2|future use 3|`^future use 4|future use 5^"
+
+Form item: "UpdatesFromNetControl" = "U|1|KC2OQV|Grahamsville|NY|William T Conjura|(no club info)| |Sullivan|FN21rt|25 Groo Rd|12740| | |United States|291|William~`1|future use 2|future use 3|`^future use 4|future use 5^"
+
+Form item: "UpdatesFromNetControl" = "`3|future use 2|future use 3|`^future use 4|future use 5^"
+
+Insert
+Form item: "UpdatesFromNetControl" = "U|2| | | | | | | | | | | | | | | ~U|3|W2COD|Pine Bush|NY|MARK| |F QRZ--LoTW-and-US-Mail-(Cards)|Sullivan|FN21|160 Frey Road|12566|(ff)|12977|United States|291|Mark~U|4|KN2X|Wurtsboro|NY|John J Lavelle
+
+Form item: "UpdatesFromNetControl" = "U|3|W2COD|Pine Bush|NY|MARK| |F QRZ--LoTW-and-US-Mail-(Cards)|Sullivan|FN21|160 Frey Road|12566|(ff),(rel)|12977|United States|291|Mark~`3|future use 2|future use 3|`^future use 4|future use 5^"
+
+Form item: "UpdatesFromNetControl" = "U|4|KN2X|Wurtsboro|NY|John J Lavelle Jr|(no club info)| |Sullivan|FN21so|376 Wilsey Valley Rd|12790|(vip)| |United States|291|John~`4|future use 2|future use 3|`^future use 4|future use 5^"
+
+Form item: "UpdatesFromNetControl" = "U|4|KN2X|Wurtsboro|NY|John J Lavelle Jr|(no club info)| |Sullivan|FN21so|376 Wilsey Valley Rd|12790|(clg),(log),(vip)| |United States|291|John~`4|future use 2|future use 3|`^future use 4|future use 5^"
