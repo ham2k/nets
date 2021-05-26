@@ -6,16 +6,14 @@ import { Helmet } from 'react-helmet'
 import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 
-import Header from '../nav/Header'
+import Header from '../../nav/Header'
 
-import { netSelector } from '../../data/netlogger'
-import { setUI, uiSelector } from '../../data/ui'
+import { netSelector } from '../../../data/netlogger'
+import { setUI, uiSelector } from '../../../data/ui'
 
-import CheckinsSection from '../checkins/CheckinsSection'
-
-import MessagesSection from '../messages/MessagesSection'
-import NetHeader from '../nets/NetHeader'
-import NetControls from '../nets/NetControls'
+import MessagesSection from '../../messages/MessagesSection'
+import NetInfoSection from './NetInfoSection'
+import NetCheckinsSection from './NetCheckinsSection'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,36 +94,15 @@ export default function NetPage() {
   const classes = useStyles()
 
   const dispatch = useDispatch()
-  const operatingRef = useRef()
-  const operatorRef = useRef()
 
   const { slug } = useParams()
   const net = useSelector(netSelector(slug))
 
   const chatHeight = useSelector(uiSelector())?.chatHeight || 200
 
-  const [currentView, setCurrentView] = useState('')
-
   useEffect(() => {
     dispatch(setUI({ currentSlug: net?.slug }))
   }, [dispatch, net?.slug])
-
-  const onViewChange = useCallback(
-    (mode) => {
-      if (mode === 'operating') {
-        operatingRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      } else if (mode === 'operator') {
-        operatorRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      } else if (mode === 'wanted') {
-        if (currentView === 'wanted') setCurrentView('')
-        else setCurrentView('wanted')
-      } else {
-        if (currentView === 'checkins') setCurrentView('')
-        else setCurrentView('checkins')
-      }
-    },
-    [currentView]
-  )
 
   const dragContainerRef = useRef()
   const [dividerIsDragging, setDividerIsDragging] = useState(false)
@@ -164,18 +141,10 @@ export default function NetPage() {
         <Helmet>
           <title>{net.NetName} - Ham2k Nets</title>
         </Helmet>
-        <Header className={classes.header} />
+        <Header className={classes.header} title={net.NetName} />
 
         <Paper square className={classNames(classes.subHeader)} elevation={3}>
-          <Container maxWidth="md">
-            <NetHeader net={net} />
-            <NetControls
-              className={classes.netControls}
-              net={net}
-              onViewChange={onViewChange}
-              currentView={currentView}
-            />
-          </Container>
+          <NetInfoSection net={net} onSectionClick={() => {}} />
         </Paper>
 
         <div
@@ -185,19 +154,12 @@ export default function NetPage() {
           onMouseMove={dividerIsDragging ? onDragMouseMove : undefined}
         >
           <div className={classes.splitTop}>
-            <CheckinsSection
-              className={classes.netCheckins}
-              slug={slug}
-              currentView={currentView}
-              operatingRef={operatingRef}
-              operatorRef={operatorRef}
-            />
+            <NetCheckinsSection expanded={true} className={classes.netCheckins} slug={slug} />
           </div>
 
           <div className={classes.splitBottom} style={{ minHeight: chatHeight }}>
+            <div className={classes.splitDivider} onMouseMove={onDragMouseDown} />
             <Paper elevation={3} square>
-              <div className={classes.splitDivider} onMouseMove={onDragMouseDown} />
-
               <Container className={classes.header} maxWidth="md">
                 <Typography variant="h6">
                   <QuestionAnswerIcon /> Almost Instant Messages

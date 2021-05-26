@@ -6,8 +6,6 @@ import { qualifierFor } from '../../data/logs/logsActions'
 
 import CheckinControls from './CheckinControls'
 
-import './Checkins.css'
-
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(1),

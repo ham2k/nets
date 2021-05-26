@@ -10,8 +10,6 @@ import { logSelector } from '../../data/logs'
 
 import CheckinCard from './CheckinCard'
 
-import './Checkins.css'
-
 const useStyles = makeStyles((theme) => ({
   root: {
     overflowY: 'auto',
