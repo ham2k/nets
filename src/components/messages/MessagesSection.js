@@ -26,6 +26,13 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flex: 1,
     overflowY: 'auto',
+    minHeight: 0,
+    '& > div': {
+      maxHeight: 0, // To prevent it from stretching the containing div, and allow scrolling
+    },
+  },
+  scroll: {
+    overflowY: 'auto',
   },
   footer: {
     flex: 0,

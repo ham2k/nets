@@ -6,6 +6,8 @@ import NetPage from './components/pages/NetPage'
 import SettingsPage from './components/pages/SettingsPage'
 import { createMuiTheme, CssBaseline, lighten, makeStyles, responsiveFontSizes, ThemeProvider } from '@material-ui/core'
 
+import './global.css'
+
 /* https://material.io/resources/color/ */
 const baseTheme = createMuiTheme({
   palette: {

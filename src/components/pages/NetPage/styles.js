@@ -63,6 +63,14 @@ const baseStyles = (theme) => ({
     minHeight: 0,
   },
 
+  splitArea: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'stretch',
+    flex: 1,
+    overflow: 'hidden',
+  },
+
   splitContainer: {
     display: 'flex',
     flexDirection: 'column',

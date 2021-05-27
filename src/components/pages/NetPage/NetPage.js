@@ -17,6 +17,7 @@ import NetCheckinsSection from './NetCheckinsSection'
 
 import baseStyles from './styles'
 import NetChatSection from './NetChatSection'
+import SplitPane from 'react-split-pane'
 
 const useStyles = makeStyles((theme) => ({ ...baseStyles(theme) }))
 
@@ -71,32 +72,26 @@ export default function NetPage() {
 
   if (net && net.slug) {
     return (
-      <div className={classNames('NetPage', classes.pageRoot, classes.overflowContainer)}>
+      <div className={classNames('NetPage', classes.pageRoot)}>
         <Helmet>
           <title>{net.NetName} - Ham2k Nets</title>
         </Helmet>
 
         <Header className={classes.pageHeader} title={net.NetName} />
 
-        <NetInfoSection net={net} expanded={true} onSectionClick={() => {}} />
+        <div style={{ flex: 0 }}>
+          <NetInfoSection net={net} expanded={true} onSectionClick={() => {}} />
+        </div>
 
-        <div
-          className={classes.splitContainer}
-          ref={dragContainerRef}
-          onMouseUp={dividerIsDragging ? onDragMouseUp : undefined}
-          onMouseMove={dividerIsDragging ? onDragMouseMove : undefined}
-        >
-          <div className={classes.splitTop}>
-            <NetCheckinsSection expanded={true} slug={slug} />
-          </div>
-
-          <div className={classes.splitBottom} style={{ minHeight: chatHeight }}>
-            <div className={classes.splitDivider} onMouseDown={onDragMouseDown}>
-              ...
+        <div style={{ flex: 1, position: 'relative' }}>
+          <SplitPane split="horizontal" minSize={100} defaultSize={'65%'}>
+            <div className={classes.splitArea}>
+              <NetCheckinsSection expanded={true} slug={slug} />
             </div>
-
-            <NetChatSection expanded={true} slug={slug} />
-          </div>
+            <div className={classes.splitArea} style={{ minHeight: '100%' }}>
+              <NetChatSection expanded={true} slug={slug} />
+            </div>
+          </SplitPane>
         </div>
       </div>
     )

@@ -23,7 +23,6 @@ function ExpandedNetChatSection({ net, slug, className }) {
           <Typography variant="h2">Almost Instant Messages</Typography>
         </Container>
       </Paper>
-
       <MessagesSection className={classes.netMessages} slug={slug} />
     </>
   )
