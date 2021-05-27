@@ -1,15 +1,11 @@
 import React, { useCallback } from 'react'
-import { useSelector } from 'react-redux'
 
-import { Tabs, Tab, makeStyles } from '@material-ui/core'
-
-import CheckinsLoader from '../checkins/CheckinsLoader'
-import { netCheckinsSelector, netLocalSelector } from '../../data/netlogger'
-import { upcasedCallsignSelector } from '../../data/settings'
+import { makeStyles, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  this: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -17,18 +13,12 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.spotting_operating.main,
     },
   },
-  tabs: { flex: 1 },
-  more: { flex: 1 },
 }))
 
-export default function NetControls({ net, className, onViewChange, currentView }) {
+export default function NetControls({ net, checkins, local, operator, onViewChange, currentView }) {
   currentView = currentView || 'checkins'
 
   const classes = useStyles()
-
-  const checkins = useSelector(netCheckinsSelector(net.slug))
-  const local = useSelector(netLocalSelector(net.slug))
-  const operator = useSelector(upcasedCallsignSelector())
 
   const onTabChange = useCallback(
     (ev, value) => {
@@ -57,26 +47,22 @@ export default function NetControls({ net, className, onViewChange, currentView 
   let wantedLabel = `${wantedCount} wanted`
 
   return (
-    <div className={classes.root}>
-      <Tabs
-        className={classes.tabs}
-        value={currentView}
-        indicatorColor="primary"
-        textColor="primary"
-        onChange={onTabChange}
-        aria-label="disabled tabs example"
-      >
-        <Tab label={checkinsLabel} value="checkins" />
-        <Tab label={wantedLabel} value="wanted" />
-      </Tabs>
+    <div className={classes.this}>
+      <Typography variant="h2" style={{ flex: 1 }}>
+        {checkinsLabel}
+      </Typography>
+      <Typography variant="h3" style={{ flex: 1 }}>
+        {wantedLabel}
+      </Typography>
 
       {net.status !== 'active' && (
-        <div>
+        <div style={{ flex: 2 }}>
           <strong>Net has ended</strong>
         </div>
       )}
       {currentCheckin && (
         <div
+          style={{ flex: 2 }}
           className="ci_operating clickable"
           onClick={(ev) => {
             onViewChange && onViewChange('operating')
@@ -93,6 +79,7 @@ export default function NetControls({ net, className, onViewChange, currentView 
       )}
       {selfCheckin && (
         <div
+          style={{ flex: 1 }}
           className="ci_self clickable"
           onClick={(ev) => {
             onViewChange && onViewChange('operator')
@@ -102,9 +89,6 @@ export default function NetControls({ net, className, onViewChange, currentView 
           &nbsp; You are #{selfCheckin.SerialNo} <span className="callsign">{selfCheckin.Callsign}</span>
         </div>
       )}
-      <div>
-        <CheckinsLoader net={net} />
-      </div>
     </div>
 
     //   <section>

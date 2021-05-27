@@ -15,79 +15,10 @@ import MessagesSection from '../../messages/MessagesSection'
 import NetInfoSection from './NetInfoSection'
 import NetCheckinsSection from './NetCheckinsSection'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    flex: 1,
-  },
-  header: {
-    flex: 0,
-  },
-  footer: {
-    flex: 0,
-  },
-  subHeader: {
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3),
-    paddingTop: theme.spacing(1),
+import baseStyles from './styles'
+import NetChatSection from './NetChatSection'
 
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-      marginBottom: theme.spacing(1),
-    },
-
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'baseline',
-    zIndex: 100,
-  },
-  overflowContainer: {
-    overflow: 'hidden',
-    minHeight: 0,
-  },
-  splitContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    flex: 1,
-    overflow: 'hidden',
-    minHeight: 0,
-  },
-  splitDivider: {
-    flex: 0,
-    borderTop: '1px solid #ccc',
-    minHeight: '0.5rem',
-    maxHeight: '0.5rem',
-    height: '0.5rem',
-    cursor: 'row-resize',
-  },
-  splitTop: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    flex: 1,
-    overflow: 'hidden',
-    minHeight: 0,
-  },
-  splitBottom: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    flex: 0,
-    overflow: 'hidden',
-    minHeight: 0,
-  },
-  netCheckins: {
-    flex: 1,
-  },
-  netMessages: {
-    flex: 1,
-  },
-}))
+const useStyles = makeStyles((theme) => ({ ...baseStyles(theme) }))
 
 /* ================================================================================================================== */
 export default function NetPage() {
@@ -109,6 +40,7 @@ export default function NetPage() {
 
   const onDragMouseDown = useCallback(
     (ev) => {
+      console.log('onDragMouseDown')
       setDividerIsDragging(true)
       ev.preventDefault()
     },
@@ -117,6 +49,7 @@ export default function NetPage() {
 
   const onDragMouseUp = useCallback(
     (ev) => {
+      console.log('onDragMouseUp')
       setDividerIsDragging(false)
       dragContainerRef.current.style.cursor = undefined
       ev.preventDefault()
@@ -126,6 +59,7 @@ export default function NetPage() {
 
   const onDragMouseMove = useCallback(
     (ev) => {
+      console.log('onDragMouseMove')
       if (ev.buttons && ev.movementY) {
         dragContainerRef.current.style.cursor = 'row-resize'
         dispatch(setUI({ chatHeight: chatHeight - ev.movementY }))
@@ -137,15 +71,14 @@ export default function NetPage() {
 
   if (net && net.slug) {
     return (
-      <div className={classNames('NetPage', classes.root, classes.overflowContainer)}>
+      <div className={classNames('NetPage', classes.pageRoot, classes.overflowContainer)}>
         <Helmet>
           <title>{net.NetName} - Ham2k Nets</title>
         </Helmet>
-        <Header className={classes.header} title={net.NetName} />
 
-        <Paper square className={classNames(classes.subHeader)} elevation={3}>
-          <NetInfoSection net={net} onSectionClick={() => {}} />
-        </Paper>
+        <Header className={classes.pageHeader} title={net.NetName} />
+
+        <NetInfoSection net={net} expanded={true} onSectionClick={() => {}} />
 
         <div
           className={classes.splitContainer}
@@ -154,20 +87,15 @@ export default function NetPage() {
           onMouseMove={dividerIsDragging ? onDragMouseMove : undefined}
         >
           <div className={classes.splitTop}>
-            <NetCheckinsSection expanded={true} className={classes.netCheckins} slug={slug} />
+            <NetCheckinsSection expanded={true} slug={slug} />
           </div>
 
           <div className={classes.splitBottom} style={{ minHeight: chatHeight }}>
-            <div className={classes.splitDivider} onMouseMove={onDragMouseDown} />
-            <Paper elevation={3} square>
-              <Container className={classes.header} maxWidth="md">
-                <Typography variant="h6">
-                  <QuestionAnswerIcon /> Almost Instant Messages
-                </Typography>
-              </Container>
-            </Paper>
+            <div className={classes.splitDivider} onMouseDown={onDragMouseDown}>
+              ...
+            </div>
 
-            <MessagesSection className={classes.netMessages} slug={slug} />
+            <NetChatSection expanded={true} slug={slug} />
           </div>
         </div>
       </div>

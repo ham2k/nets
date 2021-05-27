@@ -2,8 +2,8 @@ import React, { useCallback, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 
-import { Container, makeStyles } from '@material-ui/core'
-
+import { Container, Grid, makeStyles, Paper } from '@material-ui/core'
+import GroupIcon from '@material-ui/icons/Group'
 import { netSelector, netCheckinsSelector, netLocalSelector } from '../../../data/netlogger'
 import { upcasedCallsignSelector, huntingSelector } from '../../../data/settings'
 import { logSelector } from '../../../data/logs'
@@ -11,9 +11,13 @@ import { logSelector } from '../../../data/logs'
 import CheckinCard from '../../checkins/CheckinCard'
 
 import './Checkins.css'
-import NetControls from '../../nets/NetControls'
+import NetControls from './components/NetControls'
+
+import baseStyles from './styles'
 
 const useStyles = makeStyles((theme) => ({
+  ...baseStyles(theme),
+
   root: {
     overflowY: 'auto',
   },
@@ -93,9 +97,22 @@ function ExpandedNetCheckinsSection({ slug, className, currentView, onViewChange
 
   return (
     <>
-      <Container maxWidth="md">
-        <NetControls className={classes.netControls} net={net} onViewChange={onViewChange} currentView={currentView} />
-      </Container>
+      <Paper square elevation={3} className={classes.sectionHeaderOuter}>
+        <Container maxWidth="md" className={classes.sectionHeader}>
+          <GroupIcon className={classes.sectionIcon} />
+          <Grid container className={classes.info}>
+            <NetControls
+              className={classes.netControls}
+              net={net}
+              checkins={checkins}
+              local={local}
+              operator={operator}
+              onViewChange={onViewChange}
+              currentView={currentView}
+            />
+          </Grid>
+        </Container>
+      </Paper>
 
       <div className={classNames(className, classes.root, `view-${currentView}`)}>
         {filteredCheckins.map((checkin, index) => (

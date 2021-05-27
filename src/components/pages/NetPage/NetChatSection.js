@@ -5,46 +5,22 @@ import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 import MessagesSection from '../../messages/MessagesSection'
 
+import baseStyles from './styles'
+
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
-      alignItems: 'flex-start',
-    },
-  },
-  icon: {
-    flex: 0,
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 30,
-    },
-  },
-  info: {
-    flex: 1,
-    marginRight: theme.spacing(1),
-  },
-  secondary: {
-    textAlign: 'right',
-    [theme.breakpoints.down('md')]: {
-      textAlign: 'left',
-    },
-  },
+  ...baseStyles(theme),
 }))
 
-function ExpandedNetChatSection({ net, className }) {
+function ExpandedNetChatSection({ net, slug, className }) {
   const classes = useStyles()
 
   return (
     <>
-      <Paper elevation={3} square>
-        <Container className={classes.header} maxWidth="md">
-          <Typography variant="h6">
-            <QuestionAnswerIcon /> Almost Instant Messages
-          </Typography>
+      <Paper square elevation={3} className={classes.sectionHeaderOuter}>
+        <Container maxWidth="md" className={classes.sectionHeader}>
+          <QuestionAnswerIcon className={classes.sectionIcon} />
+
+          <Typography variant="h2">Almost Instant Messages</Typography>
         </Container>
       </Paper>
 
@@ -53,16 +29,16 @@ function ExpandedNetChatSection({ net, className }) {
   )
 }
 
-function CollapsedNetChatSection({ net, className }) {
+function CollapsedNetChatSection({ net, slug, className }) {
   const classes = useStyles()
 
   return (
     <>
-      <Paper elevation={3} square>
-        <Container className={classes.header} maxWidth="md">
-          <Typography variant="h6">
-            <QuestionAnswerIcon /> Almost Instant Messages
-          </Typography>
+      <Paper square elevation={3} className={classes.sectionHeaderOuter}>
+        <Container maxWidth="md" className={classes.sectionHeader}>
+          <QuestionAnswerIcon className={classes.sectionIcon} />
+
+          <Typography variant="h2">Almost Instant Messages</Typography>
         </Container>
       </Paper>
     </>

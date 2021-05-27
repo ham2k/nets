@@ -1,10 +1,15 @@
 import React from 'react'
-import classNames from 'classnames'
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core'
 
-import GroupIcon from '@material-ui/icons/Group'
+import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
+
+import InfoIcon from '@material-ui/icons/Info'
+
+import baseStyles from './styles'
+import CheckinsLoader from '../../checkins/CheckinsLoader'
 
 const useStyles = makeStyles((theme) => ({
+  ...baseStyles(theme),
+
   root: {
     flex: 1,
     display: 'flex',
@@ -13,13 +18,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     [theme.breakpoints.down('sm')]: {
       alignItems: 'flex-start',
-    },
-  },
-  icon: {
-    flex: 0,
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 30,
     },
   },
   info: {
@@ -38,27 +36,19 @@ function ExpandedNetInfoSection({ net, className, onViewChange, currentView }) {
   const classes = useStyles()
 
   return (
-    <Container maxWidth="md">
-      <div className={classNames(className, classes.root)}>
-        <div className={classes.icon}>
-          <GroupIcon fontSize="large" className={classes.icon} />
-        </div>
-        <Grid container className={classes.info}>
-          <Grid item xs={12} md={7}>
-            <Typography component="h2" variant="h6" color="inherit" className={classes.title}>
-              <span>{net.NetName}</span>
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <Typography component="div" color="textSecondary" className={classes.secondary}>
-              {net.Band} • {net.Frequency} MHz {net.Mode}
-              {' • '}
-              <span>Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
-            </Typography>
-          </Grid>
-        </Grid>
-      </div>
-    </Container>
+    <Paper square elevation={3} className={classes.sectionHeaderOuter}>
+      <Container className={classes.sectionHeader} maxWidth="md">
+        <InfoIcon className={classes.sectionIcon} />
+
+        <Typography variant="h2">
+          {net.Band} • {net.Frequency} MHz {net.Mode}
+          {' • '}
+          <span>Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
+        </Typography>
+
+        <CheckinsLoader net={net} />
+      </Container>
+    </Paper>
   )
 }
 
@@ -66,27 +56,19 @@ function CollapsedNetInfoSection({ net, className, onViewChange, currentView }) 
   const classes = useStyles()
 
   return (
-    <Container maxWidth="md">
-      <div className={classNames(className, classes.root)}>
-        <div className={classes.icon}>
-          <GroupIcon fontSize="large" className={classes.icon} />
-        </div>
-        <Grid container className={classes.info}>
-          <Grid item xs={12} md={7}>
-            <Typography component="h2" variant="h6" color="inherit" className={classes.title}>
-              <span>{net.NetName}</span>
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <Typography component="div" color="textSecondary" className={classes.secondary}>
-              {net.Band} • {net.Frequency} MHz {net.Mode}
-              {' • '}
-              <span>Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
-            </Typography>
-          </Grid>
-        </Grid>
-      </div>
-    </Container>
+    <Paper square elevation={2} className={classes.sectionHeaderOuter}>
+      <Container className={classes.sectionHeader} maxWidth="md">
+        <InfoIcon className={classes.sectionIcon} />
+
+        <Typography component="div" color="textSecondary" className={classes.secondary}>
+          {net.Band} • {net.Frequency} MHz {net.Mode}
+          {' • '}
+          <span>Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
+        </Typography>
+
+        <CheckinsLoader net={net} />
+      </Container>
+    </Paper>
   )
 }
 
