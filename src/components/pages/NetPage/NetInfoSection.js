@@ -1,11 +1,21 @@
 import React from 'react'
+import classNames from 'classnames'
 
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
-
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Container,
+  makeStyles,
+  Paper,
+  Typography,
+} from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/Info'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+
+import CheckinsLoader from '../../checkins/CheckinsLoader'
 
 import baseStyles from './styles'
-import CheckinsLoader from '../../checkins/CheckinsLoader'
 
 const useStyles = makeStyles((theme) => ({
   ...baseStyles(theme),
@@ -32,12 +42,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function ExpandedNetInfoSection({ net, className, onViewChange, currentView }) {
+export default function NetInfoSection({ net, className, style, onViewChange, currentView }) {
   const classes = useStyles()
 
   return (
-    <Paper square elevation={3} className={classes.sectionHeaderOuter}>
-      <Container className={classes.sectionHeader} maxWidth="md">
+    <Accordion className={classNames(className, classes.sectionRoot)} style={style} square>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} className={classes.sectionHeader}>
         <InfoIcon className={classes.sectionIcon} />
 
         <Typography variant="h2">
@@ -47,37 +57,11 @@ function ExpandedNetInfoSection({ net, className, onViewChange, currentView }) {
         </Typography>
 
         <CheckinsLoader net={net} />
-      </Container>
-    </Paper>
+      </AccordionSummary>
+
+      <AccordionDetails>
+        <h1>Details go here</h1>
+      </AccordionDetails>
+    </Accordion>
   )
-}
-
-function CollapsedNetInfoSection({ net, className, onViewChange, currentView }) {
-  const classes = useStyles()
-
-  return (
-    <Paper square elevation={2} className={classes.sectionHeaderOuter}>
-      <Container className={classes.sectionHeader} maxWidth="md">
-        <InfoIcon className={classes.sectionIcon} />
-
-        <Typography component="div" color="textSecondary" className={classes.secondary}>
-          {net.Band} • {net.Frequency} MHz {net.Mode}
-          {' • '}
-          <span>Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
-        </Typography>
-
-        <CheckinsLoader net={net} />
-      </Container>
-    </Paper>
-  )
-}
-
-export default function NetInfoSection(props) {
-  const { expanded } = props
-
-  if (expanded) {
-    return ExpandedNetInfoSection(props)
-  } else {
-    return CollapsedNetInfoSection(props)
-  }
 }

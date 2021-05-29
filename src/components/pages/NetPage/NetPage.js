@@ -1,23 +1,20 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 import { Helmet } from 'react-helmet'
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
-
-import Header from '../../nav/Header'
+import { makeStyles } from '@material-ui/core'
+import SplitPane from 'react-split-pane'
 
 import { netSelector } from '../../../data/netlogger'
-import { setUI, uiSelector } from '../../../data/ui'
+import { setUI } from '../../../data/ui'
 
-import MessagesSection from '../../messages/MessagesSection'
+import Header from '../../nav/Header'
 import NetInfoSection from './NetInfoSection'
 import NetCheckinsSection from './NetCheckinsSection'
+import NetChatSection from './NetChatSection'
 
 import baseStyles from './styles'
-import NetChatSection from './NetChatSection'
-import SplitPane from 'react-split-pane'
 
 const useStyles = makeStyles((theme) => ({ ...baseStyles(theme) }))
 
@@ -30,45 +27,12 @@ export default function NetPage() {
   const { slug } = useParams()
   const net = useSelector(netSelector(slug))
 
-  const chatHeight = useSelector(uiSelector())?.chatHeight || 200
-
   useEffect(() => {
     dispatch(setUI({ currentSlug: net?.slug }))
   }, [dispatch, net?.slug])
 
-  const dragContainerRef = useRef()
-  const [dividerIsDragging, setDividerIsDragging] = useState(false)
-
-  const onDragMouseDown = useCallback(
-    (ev) => {
-      console.log('onDragMouseDown')
-      setDividerIsDragging(true)
-      ev.preventDefault()
-    },
-    [setDividerIsDragging]
-  )
-
-  const onDragMouseUp = useCallback(
-    (ev) => {
-      console.log('onDragMouseUp')
-      setDividerIsDragging(false)
-      dragContainerRef.current.style.cursor = undefined
-      ev.preventDefault()
-    },
-    [setDividerIsDragging, dragContainerRef]
-  )
-
-  const onDragMouseMove = useCallback(
-    (ev) => {
-      console.log('onDragMouseMove')
-      if (ev.buttons && ev.movementY) {
-        dragContainerRef.current.style.cursor = 'row-resize'
-        dispatch(setUI({ chatHeight: chatHeight - ev.movementY }))
-        ev.preventDefault()
-      }
-    },
-    [dispatch, chatHeight, dragContainerRef]
-  )
+  const [showCheckins, setShowCheckins] = React.useState(true)
+  const [showChat, setShowChat] = React.useState(true)
 
   if (net && net.slug) {
     return (
@@ -79,20 +43,29 @@ export default function NetPage() {
 
         <Header className={classes.pageHeader} title={net.NetName} />
 
-        <div style={{ flex: 0 }}>
-          <NetInfoSection net={net} expanded={true} onSectionClick={() => {}} />
-        </div>
+        <NetInfoSection net={net} expanded={false} style={{ flex: 0 }} />
 
-        <div style={{ flex: 1, position: 'relative' }}>
-          <SplitPane split="horizontal" minSize={100} defaultSize={'65%'}>
-            <div className={classes.splitArea}>
-              <NetCheckinsSection expanded={true} slug={slug} />
-            </div>
-            <div className={classes.splitArea} style={{ minHeight: '100%' }}>
-              <NetChatSection expanded={true} slug={slug} />
-            </div>
-          </SplitPane>
-        </div>
+        {showCheckins && showChat ? (
+          <div style={{ flex: 1, position: 'relative' }}>
+            <SplitPane split="horizontal" minSize={100} defaultSize={'65%'}>
+              <NetCheckinsSection
+                expanded={showCheckins}
+                slug={slug}
+                onAccordionChange={() => setShowCheckins(!showCheckins)}
+              />
+              <NetChatSection expanded={showChat} slug={slug} onAccordionChange={() => setShowChat(!showChat)} />
+            </SplitPane>
+          </div>
+        ) : (
+          <>
+            <NetCheckinsSection
+              expanded={showCheckins}
+              slug={slug}
+              onAccordionChange={() => setShowCheckins(!showCheckins)}
+            />
+            <NetChatSection expanded={showChat} slug={slug} onAccordionChange={() => setShowChat(!showChat)} />
+          </>
+        )}
       </div>
     )
   } else {

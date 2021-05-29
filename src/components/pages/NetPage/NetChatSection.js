@@ -1,7 +1,9 @@
 import React from 'react'
-import classNames from 'classnames'
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 
+import classNames from 'classnames'
+
+import { Accordion, AccordionDetails, AccordionSummary, makeStyles, Typography } from '@material-ui/core'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 import MessagesSection from '../../messages/MessagesSection'
 
@@ -11,45 +13,25 @@ const useStyles = makeStyles((theme) => ({
   ...baseStyles(theme),
 }))
 
-function ExpandedNetChatSection({ net, slug, className }) {
+export default function NetChatSection({ net, slug, className, style, expanded, onAccordionChange }) {
   const classes = useStyles()
 
   return (
-    <>
-      <Paper square elevation={3} className={classes.sectionHeaderOuter}>
-        <Container maxWidth="md" className={classes.sectionHeader}>
-          <QuestionAnswerIcon className={classes.sectionIcon} />
+    <Accordion
+      expanded={expanded}
+      onChange={onAccordionChange}
+      className={classNames(className, classes.sectionRoot, 'h2k-full-bleed', 'h2k-overflow-container')}
+      style={style}
+      square
+    >
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} className={classes.sectionHeader}>
+        <QuestionAnswerIcon className={classes.sectionIcon} />
 
-          <Typography variant="h2">Almost Instant Messages</Typography>
-        </Container>
-      </Paper>
-      <MessagesSection className={classes.netMessages} slug={slug} />
-    </>
+        <Typography variant="h2">Almost Instant Messages</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <MessagesSection style={{ flex: 1 }} slug={slug} />
+      </AccordionDetails>
+    </Accordion>
   )
-}
-
-function CollapsedNetChatSection({ net, slug, className }) {
-  const classes = useStyles()
-
-  return (
-    <>
-      <Paper square elevation={3} className={classes.sectionHeaderOuter}>
-        <Container maxWidth="md" className={classes.sectionHeader}>
-          <QuestionAnswerIcon className={classes.sectionIcon} />
-
-          <Typography variant="h2">Almost Instant Messages</Typography>
-        </Container>
-      </Paper>
-    </>
-  )
-}
-
-export default function NetChatSection(props) {
-  const { expanded } = props
-
-  if (expanded) {
-    return ExpandedNetChatSection(props)
-  } else {
-    return CollapsedNetChatSection(props)
-  }
 }

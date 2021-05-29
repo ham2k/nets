@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function MessagesSection({ slug, className }) {
+export default function MessagesSection({ slug, className, style }) {
   const classes = useStyles()
 
   const dispatch = useDispatch()
@@ -107,7 +107,7 @@ export default function MessagesSection({ slug, className }) {
   const passthru = { net, operator, checkins }
 
   return (
-    <div className={classNames(className, classes.root)}>
+    <div className={classNames(className, classes.root)} style={style}>
       <div className={classes.content} ref={messagesElement}>
         <Container maxWidth="md">
           {messages.map((message, index) => (

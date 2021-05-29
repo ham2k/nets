@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 
 import { makeStyles, Typography } from '@material-ui/core'
 
@@ -19,14 +19,6 @@ export default function NetControls({ net, checkins, local, operator, onViewChan
   currentView = currentView || 'checkins'
 
   const classes = useStyles()
-
-  const onTabChange = useCallback(
-    (ev, value) => {
-      onViewChange(value)
-      ev.stopPropagation()
-    },
-    [onViewChange]
-  )
 
   const checkinCount = checkins.filter((checkin) => checkin.Callsign).length
   const inactiveCheckinCount = checkins.filter(

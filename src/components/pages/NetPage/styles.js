@@ -2,8 +2,25 @@ const baseStyles = (theme) => ({
   pageRoot: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
     flex: 1,
+
+    maxHeight: '100%',
+
+    '& .SplitPane .Pane': {
+      overflow: 'hidden',
+      minHeight: 0,
+    },
+    '& .SplitPane .Pane > div': {
+      minHeight: '100%',
+    },
+    '& .SplitPane .Pane1': {
+      // border: '3px dashed red',
+    },
+    '& .SplitPane .Pane2': {
+      // border: '3px dashed green',
+    },
   },
   pageHeader: {
     flex: 0,
@@ -13,20 +30,132 @@ const baseStyles = (theme) => ({
   },
 
   sectionRoot: {
-    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+    justifyContent: 'flex-start',
 
-  sectionHeaderOuter: {
-    // paddingLeft: theme.spacing(1),
-    // paddingRight: theme.spacing(0),
-    // [theme.breakpoints.down('xs')]: {
-    //   paddingLeft: theme.spacing(2),
-    //   paddingRight: theme.spacing(2),
-    // },
+    '&.MuiAccordion-root': {
+      flex: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+
+      marginTop: 0,
+      marginBottom: 0,
+    },
+    '&.MuiAccordion-root.Mui-expanded': {
+      flex: 1,
+    },
+    '& .MuiAccordionSummary-root': {
+      maxWidth: theme.breakpoints.values.md,
+      minWidth: theme.breakpoints.values.xs,
+      width: '100%',
+
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+      [theme.breakpoints.down('sm')]: {
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+      },
+      [theme.breakpoints.down('xs')]: {
+        paddingLeft: theme.spacing(0),
+        paddingRight: theme.spacing(1),
+      },
+    },
+    '& .MuiAccordionSummary-content': {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      marginTop: 0,
+      marginBottom: 0,
+    },
+    '& .MuiAccordionDetails-root': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'stretch',
+
+      maxWidth: theme.breakpoints.values.md,
+      minWidth: '100%',
+      width: '100%',
+
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+      [theme.breakpoints.down('sm')]: {
+        paddingLeft: theme.spacing(0.5),
+        paddingRight: theme.spacing(0.5),
+      },
+      [theme.breakpoints.down('xs')]: {
+        paddingLeft: theme.spacing(0),
+        paddingRight: theme.spacing(0),
+      },
+    },
+    '&.h2k-full-bleed .MuiCollapse-container': {
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
+      border: 0,
+      padding: 0,
+    },
+    '&.h2k-full-bleed .MuiAccordionDetails-root': {
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
+      border: 0,
+      padding: 0,
+
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'stretch',
+    },
+    '&.h2k-full-bleed .MuiAccordionDetails-root > *': {
+      width: '100%',
+    },
+
+    '&.h2k-overflow-container': {
+      position: 'relative',
+    },
+    '&.h2k-overflow-container .MuiCollapse-container.MuiCollapse-hidden ': {
+      height: 0,
+    },
+    '&.h2k-overflow-container .MuiCollapse-container.MuiCollapse-entered ': {
+      display: 'flex',
+      flexDirection: 'column',
+      flex: 1,
+    },
+    '&.h2k-overflow-container .MuiCollapse-wrapper': {
+      overflow: 'hidden',
+      minHeight: 0,
+      flex: 1,
+      position: 'relative',
+    },
+    '&.h2k-overflow-container .MuiCollapse-wrapperInner': {
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      left: 0,
+      bottom: 0,
+    },
+    '&.h2k-overflow-container .MuiCollapse-wrapperInner > div[role="region"]': {
+      overflow: 'hidden',
+      minHeight: 0,
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    '&.h2k-overflow-container .MuiCollapse-entered .MuiAccordionDetails-root': {
+      flex: 1,
+      overflow: 'hidden',
+    },
+    '&.h2k-overflow-container.h2k-scrollable-vert .MuiAccordionDetails-root': {
+      overflowY: 'auto',
+    },
   },
 
   sectionHeader: {
@@ -61,57 +190,6 @@ const baseStyles = (theme) => ({
   overflowContainer: {
     overflow: 'hidden',
     minHeight: 0,
-  },
-
-  splitArea: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    flex: 1,
-    overflow: 'hidden',
-  },
-
-  splitContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    flex: 1,
-    overflow: 'hidden',
-    minHeight: 0,
-    cursor: 'auto',
-  },
-  splitDivider: {
-    flex: 0,
-    borderTop: '1px solid #ccc',
-    minHeight: '0.5rem',
-    maxHeight: '0.5rem',
-    height: '0.5rem',
-    cursor: 'row-resize',
-    border: '1px solid red',
-  },
-  splitTop: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    flex: 1,
-    overflow: 'hidden',
-    minHeight: 0,
-  },
-  splitBottom: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    flex: 0,
-    overflow: 'hidden',
-    minHeight: 0,
-    cursor: 'auto',
-  },
-
-  netCheckins: {
-    flex: 1,
-  },
-  netMessages: {
-    flex: 1,
   },
 })
 
