@@ -15,12 +15,6 @@ const baseStyles = (theme) => ({
     '& .SplitPane .Pane > div': {
       minHeight: '100%',
     },
-    '& .SplitPane .Pane1': {
-      // border: '3px dashed red',
-    },
-    '& .SplitPane .Pane2': {
-      // border: '3px dashed green',
-    },
   },
   pageHeader: {
     flex: 0,
@@ -42,11 +36,23 @@ const baseStyles = (theme) => ({
       alignItems: 'center',
       justifyContent: 'flex-start',
 
-      marginTop: 0,
+      marginTop: '2px !important',
       marginBottom: 0,
+
+      '&:before': {
+        height: '0px',
+      },
+      '&:after': {
+        height: '0px',
+      },
     },
+
     '&.MuiAccordion-root.Mui-expanded': {
       flex: 1,
+
+      '&:before': {
+        height: '0px',
+      },
     },
     '& .MuiAccordionSummary-root': {
       maxWidth: theme.breakpoints.values.md,
@@ -60,7 +66,8 @@ const baseStyles = (theme) => ({
         paddingRight: theme.spacing(1),
       },
       [theme.breakpoints.down('xs')]: {
-        paddingLeft: theme.spacing(0),
+        paddingTop: theme.spacing(0.5),
+        paddingLeft: theme.spacing(1),
         paddingRight: theme.spacing(1),
       },
     },
@@ -72,15 +79,41 @@ const baseStyles = (theme) => ({
       marginTop: 0,
       marginBottom: 0,
     },
-    '& .MuiAccordionDetails-root': {
+    '& .MuiCollapse-container': {
+      maxWidth: theme.breakpoints.values.md,
+      width: '100%',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'stretch',
+    },
+    '& .MuiCollapse-wrapper': {
+      maxWidth: theme.breakpoints.values.md,
+      width: '100%',
+      flex: 1,
+    },
+    '& .MuiCollapse-wrapperInner': {
+      maxWidth: theme.breakpoints.values.md,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'stretch',
+    },
+    '& .MuiCollapse-wrapperInner > div[role="region"]': {
+      maxWidth: theme.breakpoints.values.md,
+      width: '100%',
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'stretch',
+    },
+    '& .MuiAccordionDetails-root': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'stretch',
 
       maxWidth: theme.breakpoints.values.md,
-      minWidth: '100%',
-      width: '100%',
 
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
@@ -93,6 +126,7 @@ const baseStyles = (theme) => ({
         paddingRight: theme.spacing(0),
       },
     },
+
     '&.h2k-full-bleed .MuiCollapse-container': {
       maxWidth: '100%',
       minWidth: '100%',
@@ -100,17 +134,27 @@ const baseStyles = (theme) => ({
       border: 0,
       padding: 0,
     },
+    '&.h2k-full-bleed .MuiCollapse-wrapper': {
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
+    },
+    '&.h2k-full-bleed .MuiCollapse-wrapperInner': {
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
+    },
+    '&.h2k-full-bleed .MuiCollapse-wrapperInner > div[role="region"]': {
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
+    },
     '&.h2k-full-bleed .MuiAccordionDetails-root': {
       maxWidth: '100%',
       minWidth: '100%',
       width: '100%',
       border: 0,
       padding: 0,
-
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'stretch',
     },
     '&.h2k-full-bleed .MuiAccordionDetails-root > *': {
       width: '100%',
@@ -180,11 +224,15 @@ const baseStyles = (theme) => ({
 
   sectionIcon: {
     fontSize: 30,
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(0),
     marginRight: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       fontSize: 24,
     },
+  },
+
+  sectionIndented: {
+    marginLeft: theme.spacing(2),
   },
 
   overflowContainer: {
