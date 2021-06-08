@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { metaSelector, getInitialData, activeNetsSelector, refreshNets } from '../../data/netlogger'
@@ -41,6 +41,15 @@ export default function NetsLoader({ className }) {
     }
   }, [dispatch]) // run once
 
+  const reloadHandler = useCallback(
+    (ev) => {
+      dispatch(refreshNets())
+      ev.stopPropagation()
+      ev.preventDefault()
+    },
+    [dispatch]
+  )
+
   return (
     <div className={classNames(className, classes.root)}>
       {meta.isLoading || !meta.lastUpdated ? (
@@ -53,7 +62,7 @@ export default function NetsLoader({ className }) {
             {nets.length || 0} Active nets as of{' '}
             {new Date(meta.lastUpdated).toLocaleTimeString([], { timeStyle: 'short' })}
           </Typography>
-          <IconButton onClick={() => dispatch(refreshNets())} disabled={meta.isLoading}>
+          <IconButton onClick={reloadHandler} disabled={meta.isLoading}>
             <ReplayIcon />
           </IconButton>
         </>
