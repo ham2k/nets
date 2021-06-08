@@ -5,6 +5,7 @@ import HomePage from './components/pages/HomePage'
 import NetPage from './components/pages/NetPage'
 import SettingsPage from './components/pages/SettingsPage'
 import { createMuiTheme, CssBaseline, lighten, makeStyles, responsiveFontSizes, ThemeProvider } from '@material-ui/core'
+import { HelmetProvider } from 'react-helmet-async'
 
 import './global.css'
 
@@ -87,22 +88,24 @@ function App() {
 
   return (
     <>
-      <CssBaseline />
-      <ThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <Switch>
-            <Route path="/app/settings">
-              <SettingsPage />
-            </Route>
-            <Route path="/:slug">
-              <NetPage />
-            </Route>
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </Switch>
-        </div>
-      </ThemeProvider>
+      <HelmetProvider>
+        <CssBaseline />
+        <ThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <Switch>
+              <Route path="/app/settings">
+                <SettingsPage />
+              </Route>
+              <Route path="/:slug">
+                <NetPage />
+              </Route>
+              <Route path="/">
+                <HomePage />
+              </Route>
+            </Switch>
+          </div>
+        </ThemeProvider>
+      </HelmetProvider>
     </>
   )
 }

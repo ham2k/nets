@@ -14,7 +14,7 @@ import QrzSettings from '../settings/QrzSettings'
 import { uiSelector } from '../../data/ui'
 import { netSelector } from '../../data/netlogger'
 import Footer from '../nav/Footer'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 const useStyles = makeStyles((theme) => ({
   root: {

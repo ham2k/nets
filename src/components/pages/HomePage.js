@@ -9,7 +9,7 @@ import { uiSelector } from '../../data/ui'
 import { Container, makeStyles, Paper } from '@material-ui/core'
 import classNames from 'classnames'
 import Footer from '../nav/Footer'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 const useStyles = makeStyles((theme) => ({
   root: {

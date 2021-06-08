@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useParams } from 'react-router-dom'
 import classNames from 'classnames'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { makeStyles } from '@material-ui/core'
 import SplitPane from 'react-split-pane'
 
