@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 
-import { Accordion, AccordionDetails, AccordionSummary, Container, Grid, makeStyles, Paper } from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary, Grid, makeStyles } from '@material-ui/core'
 import GroupIcon from '@material-ui/icons/Group'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 

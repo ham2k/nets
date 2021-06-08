@@ -5,12 +5,10 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Container,
   Grid,
   InputLabel,
   makeStyles,
   MenuItem,
-  Paper,
   Select,
   TextField,
   Typography,
@@ -118,7 +116,7 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
       </AccordionSummary>
 
       <AccordionDetails className={classes.sectionIndented}>
-        <Grid container spacing={2} xs={12}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField label="Net Name" value={net.NetName || ''} disabled={readOnly} fullWidth={true} />
           </Grid>
@@ -131,7 +129,7 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
             </InputLabel>
             <Select labelId="net-mode-label" disabled={readOnly} value={net.Mode || ''} fullWidth={true}>
               {NET_MODES.map((mode) => (
-                <MenuItem index={mode} value={mode}>
+                <MenuItem key={mode} value={mode}>
                   {mode}
                 </MenuItem>
               ))}
@@ -143,7 +141,7 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
             </InputLabel>
             <Select labelId="net-band-label" disabled={readOnly} value={net.Band || ''} fullWidth={true}>
               {NET_BANDS.map((band) => (
-                <MenuItem index={band} value={band}>
+                <MenuItem key={band} value={band}>
                   {band}
                 </MenuItem>
               ))}
