@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { AppBar, IconButton, Link, makeStyles, Toolbar, Typography, useMediaQuery, useTheme } from '@material-ui/core'
+import RadioIcon from '@material-ui/icons/Radio'
 import SettingsIcon from '@material-ui/icons/Settings'
 import ArrowBackIcon from '@material-ui/icons/ArrowBackIos'
 import classNames from 'classnames'
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       width: 'inherit',
     },
     [theme.breakpoints.up('md')]: {
-      width: '10rem',
+      width: '11rem',
     },
   },
   center: {
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       width: 'inherit',
     },
     [theme.breakpoints.up('md')]: {
-      width: '10rem',
+      width: '11rem',
     },
   },
   toolbar: {
@@ -144,7 +145,7 @@ export default function Header({ className, children, title, hideSettings }) {
                     ev.preventDefault()
                   }}
                 >
-                  Ham2K Nets
+                  <RadioIcon style={{ fontSize: '120%', position: 'relative', top: '0.1em' }} /> Ham2K Nets
                 </Link>
               </Typography>
             )}
@@ -160,7 +161,7 @@ export default function Header({ className, children, title, hideSettings }) {
                   ev.preventDefault()
                 }}
               >
-                Ham2K Nets
+                <RadioIcon style={{ fontSize: '120%', position: 'relative', top: '0.1em' }} /> Ham2K Nets
               </Link>
             </Typography>
             <Typography component="div" color="inherit" noWrap className={classes.version}>
