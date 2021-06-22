@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import Header from '../nav/Header'
 import NetsSelection from '../nets/NetsSelection'
@@ -6,12 +6,18 @@ import NetsLoader from '../nets/NetsLoader'
 import { useSelector } from 'react-redux'
 import { activeNetsSelector } from '../../data/netlogger'
 import { uiSelector } from '../../data/ui'
-import { Container, makeStyles, Paper } from '@material-ui/core'
+import { Container, IconButton, makeStyles, Paper } from '@material-ui/core'
 import classNames from 'classnames'
 import Footer from '../nav/Footer'
 import { Helmet } from 'react-helmet-async'
+import AddIcon from '@material-ui/icons/Add'
+
+import baseStyles from '../../styles/styles'
+import { useHistory } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
+  ...baseStyles(theme),
+
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -41,11 +47,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(1),
     },
   },
-  container: {},
-  overflowContainer: {
-    overflow: 'hidden',
-    minHeight: 0,
-  },
 }))
 
 function HomePage() {
@@ -53,6 +54,13 @@ function HomePage() {
 
   const nets = useSelector(activeNetsSelector())
   const { currentSlug } = useSelector(uiSelector())
+
+  const history = useHistory()
+
+  const newNetHandler = useCallback(() => {
+    history.push('/*new*')
+  }, [history])
+
   return (
     <div className={classNames('HomePage', classes.root, classes.overflowContainer)}>
       <Helmet>
@@ -60,9 +68,13 @@ function HomePage() {
       </Helmet>
 
       <Header className={classes.header} />
-      <Paper className={classNames(classes.subHeader)} elevation={3}>
-        <Container maxWidth="md">
+      <Paper className={classNames(classes.sectionHeader)} elevation={3} square>
+        <Container maxWidth="md" style={{ display: 'flex', flexDirection: 'row' }}>
           <NetsLoader />
+          <div style={{ flex: 1 }} />
+          <IconButton onClick={newNetHandler}>
+            <AddIcon />
+          </IconButton>
         </Container>
       </Paper>
       <Container maxWidth="md" className={classes.content}>

@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NetControls({ net, checkins, local, operator, onViewChange, currentView }) {
   currentView = currentView || 'checkins'
+  checkins = checkins || []
 
   const classes = useStyles()
 
@@ -82,34 +83,5 @@ export default function NetControls({ net, checkins, local, operator, onViewChan
         </div>
       )}
     </div>
-
-    //   <section>
-    //
-
-    //     <div
-    //       className={classNames('tab checkins', currentView === 'checkins' && 'current')}
-    //       onClick={(ev) => {
-    //         onViewChange && onViewChange('checkins')
-    //         ev.stopPropagation()
-    //       }}
-    //     >
-    //       {checkinCount} checkins
-    //       {inactiveCheckinCount > 0 ? `, ${checkinCount - inactiveCheckinCount} active` : ''}
-    //     </div>
-
-    //     {(wantedCount > 0 || currentView === 'wanted') && (
-    //       <div
-    //         className={classNames('tab wanted', currentView === 'wanted' && 'current')}
-    //         onClick={(ev) => {
-    //           onViewChange && onViewChange('wanted')
-    //           ev.stopPropagation()
-    //         }}
-    //       >
-    //         {wantedCount} wanted
-    //       </div>
-    //     )}
-
-    //   </section>
-    // </div>
   )
 }

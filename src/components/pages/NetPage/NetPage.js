@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async'
 import { makeStyles } from '@material-ui/core'
 import SplitPane from 'react-split-pane'
 
-import { netSelector } from '../../../data/netlogger'
+import { netSelector, newNetSelector } from '../../../data/netlogger'
 import { setUI } from '../../../data/ui'
 
 import Header from '../../nav/Header'
@@ -14,7 +14,7 @@ import NetInfoSection from './NetInfoSection'
 import NetCheckinsSection from './NetCheckinsSection'
 import NetChatSection from './NetChatSection'
 
-import baseStyles from './styles'
+import baseStyles from '../../../styles/styles'
 
 const useStyles = makeStyles((theme) => ({ ...baseStyles(theme) }))
 
@@ -25,14 +25,14 @@ export default function NetPage() {
   const dispatch = useDispatch()
 
   const { slug } = useParams()
-  const net = useSelector(netSelector(slug))
+  let net = useSelector(slug === '*new*' ? newNetSelector(slug) : netSelector(slug))
 
   useEffect(() => {
     dispatch(setUI({ currentSlug: net?.slug }))
   }, [dispatch, net?.slug])
 
-  const [showCheckins, setShowCheckins] = React.useState(true)
-  const [showChat, setShowChat] = React.useState(true)
+  const [showCheckins, setShowCheckins] = React.useState(!net.isNew)
+  const [showChat, setShowChat] = React.useState(!net.isNew)
 
   if (net && net.slug) {
     return (
@@ -43,27 +43,35 @@ export default function NetPage() {
 
         <Header className={classes.pageHeader} title={net.NetName} />
 
-        <NetInfoSection net={net} expanded={false} style={{ flex: 0 }} />
+        <NetInfoSection net={net} expanded={net.isNew} style={{ flex: 0 }} />
 
         {showCheckins && showChat ? (
           <div style={{ flex: 1, position: 'relative' }}>
             <SplitPane split="horizontal" minSize={100} defaultSize={'65%'}>
               <NetCheckinsSection
                 expanded={showCheckins}
-                slug={slug}
-                onAccordionChange={() => setShowCheckins(!showCheckins)}
+                net={net}
+                onAccordionChange={() => !net.isNew && setShowCheckins(!showCheckins)}
               />
-              <NetChatSection expanded={showChat} slug={slug} onAccordionChange={() => setShowChat(!showChat)} />
+              <NetChatSection
+                expanded={showChat}
+                net={net}
+                onAccordionChange={() => !net.isNew && setShowChat(!showChat)}
+              />
             </SplitPane>
           </div>
         ) : (
           <>
             <NetCheckinsSection
               expanded={showCheckins}
-              slug={slug}
-              onAccordionChange={() => setShowCheckins(!showCheckins)}
+              net={net}
+              onAccordionChange={() => !net.isNew && setShowCheckins(!showCheckins)}
             />
-            <NetChatSection expanded={showChat} slug={slug} onAccordionChange={() => setShowChat(!showChat)} />
+            <NetChatSection
+              expanded={showChat}
+              net={net}
+              onAccordionChange={() => !net.isNew && setShowChat(!showChat)}
+            />
           </>
         )}
       </div>

@@ -489,3 +489,90 @@ export const postMessageToNet = (slug, name, message) => (dispatch, getState) =>
       dispatch(refreshNetData(slug))
     })
 }
+
+/* ================================================================================================================== */
+export const createNewNet = (data) => (dispatch, getState) => {
+  if (!data) return
+
+  data.slug = data.slug || slugify(data.NetName, SLUGIFY_OPTIONS)
+
+  const url = new URL(`${data.ServerHost}/cgi-bin/NetLogger/OpenNet20.php`)
+  url.searchParams.append('NetName', data.NetName)
+  const body = new URLSearchParams()
+  body.append('NetName', data.NetName)
+  body.append('Token', data.Token)
+  body.append('Frequency', data.Frequency)
+  body.append('NetControl', data.NetControl)
+  body.append('Logger', `${data.Logger}%20-%20${NETLOGGER_APP_VERSION}`)
+  body.append('Mode', data.Mode)
+  body.append('Band', data.Band)
+  body.append('EnableMessaging', 'Y')
+  body.append('UpdateInterval', 20000)
+  body.append('MiscNetParameters', '')
+
+  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.text()
+      } else {
+        throw new TypeError('Bad response')
+      }
+    })
+    .then((bodyText) => {
+      dispatch(setNetParts({ slug: data.slug, data: { ...data, authenticated: true } }))
+      dispatch(refreshNetData(data.slug))
+      dispatch(getNetsList())
+    })
+}
+
+/* ================================================================================================================== */
+export const closeNet = (slug) => (dispatch, getState) => {
+  const net = getState()?.netlogger?.nets?.[slug]
+
+  if (!net || !net.Token || !net.authenticated) return
+
+  const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/CloseNet.php`)
+  url.searchParams.append('NetName', net.NetName)
+  const body = new URLSearchParams()
+  body.append('NetName', net.NetName)
+  body.append('Token', net.Token)
+
+  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.text()
+      } else {
+        throw new TypeError('Bad response')
+      }
+    })
+    .then((bodyText) => {
+      dispatch(setNetParts({ slug, data: { authenticated: false } }))
+      dispatch(refreshNetData(net.slug))
+      dispatch(getNetsList())
+    })
+}
+
+/* ================================================================================================================== */
+export const authenticateNet = (slug, token) => (dispatch, getState) => {
+  const net = getState()?.netlogger?.nets?.[slug]
+
+  if (!net || !token) return
+
+  const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/CloseNet.php`)
+  url.searchParams.append('NetName', net.NetName)
+  const body = new URLSearchParams()
+  body.append('NetName', net.NetName)
+  body.append('Token', token)
+
+  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.text()
+      } else {
+        throw new TypeError('Bad response')
+      }
+    })
+    .then((bodyText) => {
+      dispatch(setNetParts({ slug, data: { Token: token, authenticated: true } }))
+    })
+}

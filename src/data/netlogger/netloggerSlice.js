@@ -84,14 +84,8 @@ export const netloggerSlice = createSlice({
   },
 })
 
-export const {
-  setMeta,
-  setServerList,
-  setServerInfo,
-  addNets,
-  setNetParts,
-  setNetLocalCallsignInfo,
-} = netloggerSlice.actions
+export const { setMeta, setServerList, setServerInfo, addNets, setNetParts, setNetLocalCallsignInfo } =
+  netloggerSlice.actions
 
 export const metaSelector = () => (state) => state.netlogger.meta
 
@@ -108,5 +102,27 @@ export const netCheckinsSelector = (slug) => (state) => state.netlogger.netCheck
 export const netIMsSelector = (slug) => (state) => state.netlogger.netIMs?.[slug]
 export const netLocalSelector = (slug) => (state) => state.netlogger.netLocal?.[slug]
 export const netLocalCallsignInfoSelector = (slug) => (state) => state.netlogger.netLocal?.[slug]?.callsignInfo
+
+export const clustersSelector = () => (state) => {
+  const clusters = {}
+  Object.values(state.netlogger.serverInfo || {}).forEach((server) => {
+    clusters[server.ClusterName] = clusters[server.ClusterName] || {
+      ClusterName: server.ClusterName,
+      servers: [],
+    }
+    clusters[server.ClusterName].servers.push(server)
+  })
+  return Object.values(clusters)
+}
+
+export const newNetSelector = (slug) => (state) => {
+  return {
+    slug,
+    isNew: true,
+    NetName: 'New Net',
+    ClusterName: Object.keys(state.netlogger.serverInfo || {})[0],
+    NetControl: state.settings.callsign,
+  }
+}
 
 export default netloggerSlice.reducer

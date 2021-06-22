@@ -11,6 +11,10 @@ http://www.netlogger.org/api/
 - GetPastNets.php
 - GetPastNetCheckins.php
 
+# Wireshark
+
+http.host contains netlogger
+
 # NetLogger Status
 
 - (c/o) - Checked out - gray
@@ -109,6 +113,23 @@ http://netlogger.org/cgi-bin/NetLogger/GetUpdates3.php?ProtocolVersion=2.3&NetNa
 _success_ <!--NetLogger NetControl Start-->KI2D<!--NetLogger NetControl End--><!--NetLogger LoggerName Start-->W2ASD-SEBAS - v3.1.7M<!--NetLogger LoggerName End-->\n
 ```
 
+## NEW NET
+
+`GET /cgi-bin/NetLogger/OpenNet20.php ?`
+
+- NetName=ENY%20ARES%20RACES &
+- Token=123 &
+- Frequency=3993 &
+- NetControl=KI2D &
+- Logger=KI2D-SEBAS%20-%20v3.1.7M &
+- Mode=SSB &
+- Band=80m &
+- EnableMessaging=Y &
+- UpdateInterval=20000 &
+- MiscNetParameters=
+
+> > > _success_ <!--NetLogger NetControl Start-->KI2D<!--NetLogger NetControl End--><!--NetLogger LoggerName Start-->KI2D-SEBAS - v3.1.7M<!--NetLogger LoggerName End-->\n
+
 `POST /cgi-bin/NetLogger/SendUpdates3.php`
 
 HTML Form URL Encoded: application/x-www-form-urlencoded
@@ -118,9 +139,9 @@ HTML Form URL Encoded: application/x-www-form-urlencoded
 - Form item: "Token" = "123"
 - Form item: "UpdatesFromNetControl" = "`1|future use 2|future use 3|`^future use 4|future use 5^"
 
-```
-_success_ \n
-```
+> > > _success_ \n
+
+`GET /cgi-bin/NetLogger/GetNetsInProgress20.php?ProtocolVersion=2.3`
 
 `GET /cgi-bin/NetLogger/GetSystemMessages.php`
 
@@ -147,7 +168,21 @@ At the conclusion of your net please remember to click the <b>CLOSE NET</b> butt
 </html>
 ```
 
+`POST /cgi-bin/NetLogger/SendExtData.php`
+
+HTML Form URL Encoded: application/x-www-form-urlencoded
+
+- Form item: "NetName" = "ENY ARES RACES"
+- Form item: "ExtNumber" = "1"
+- Form item: "ExtData" = "KI2D-SEBAS|113819988|0"
+
 `GET /cgi-bin/NetLogger/CloseNet.php?NetName=ENY%20ARES%20RACES&Token=123`
+
+> > > _success_ \n
+
+`GET /cgi-bin/NetLogger/CheckToken.php?NetName=ENY%20ARES%20RACES&Token=123`
+
+> > > _success_ \n
 
 `POST /cgi-bin/NetLogger/SendUpdates3.php`
 

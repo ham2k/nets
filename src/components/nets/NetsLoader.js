@@ -2,28 +2,13 @@ import React, { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { metaSelector, getInitialData, activeNetsSelector, refreshNets } from '../../data/netlogger'
-import { IconButton, makeStyles, Typography } from '@material-ui/core'
+import { IconButton, Typography } from '@material-ui/core'
 import ReplayIcon from '@material-ui/icons/Replay'
-import classNames from 'classnames'
 
 const RELOAD_INTERVAL = 60
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    // flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-}))
-
 /* ================================================================================================================== */
-export default function NetsLoader({ className }) {
-  const classes = useStyles()
-
+export default function NetsLoader({ className, style }) {
   const meta = useSelector(metaSelector())
   const nets = useSelector(activeNetsSelector())
 
@@ -51,14 +36,14 @@ export default function NetsLoader({ className }) {
   )
 
   return (
-    <div className={classNames(className, classes.root)}>
+    <div className={className} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', ...style }}>
       {meta.isLoading || !meta.lastUpdated ? (
-        <Typography component="h3" variant="h6" color="inherit" noWrap className={classes.title}>
+        <Typography component="h2" color="inherit" noWrap>
           Refreshing…
         </Typography>
       ) : (
         <>
-          <Typography component="h3" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography component="h2" color="inherit" noWrap>
             {nets.length || 0} Active nets as of{' '}
             {new Date(meta.lastUpdated).toLocaleTimeString([], { timeStyle: 'short' })}
           </Typography>

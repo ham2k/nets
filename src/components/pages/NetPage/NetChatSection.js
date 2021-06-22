@@ -7,13 +7,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 import MessagesSection from '../../messages/MessagesSection'
 
-import baseStyles from './styles'
+import baseStyles from '../../../styles/styles'
 
 const useStyles = makeStyles((theme) => ({
   ...baseStyles(theme),
 }))
 
-export default function NetChatSection({ net, slug, className, style, expanded, onAccordionChange }) {
+export default function NetChatSection({ net, className, style, expanded, onAccordionChange }) {
   const classes = useStyles()
 
   return (
@@ -30,7 +30,7 @@ export default function NetChatSection({ net, slug, className, style, expanded, 
         <Typography variant="h2">Almost Instant Messages</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <MessagesSection style={{ flex: 1 }} slug={slug} />
+        <MessagesSection style={{ flex: 1 }} slug={net.slug} />
       </AccordionDetails>
     </Accordion>
   )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import classNames from 'classnames'
 
 import {
@@ -7,7 +7,9 @@ import {
   AccordionDetails,
   AccordionSummary,
   Button,
+  FormHelperText,
   Grid,
+  InputAdornment,
   InputLabel,
   makeStyles,
   MenuItem,
@@ -22,9 +24,10 @@ import CheckinsLoader from '../../checkins/CheckinsLoader'
 import BANDS from '../../../data/consts/bands'
 import MODES from '../../../data/consts/modes'
 
-import baseStyles from './styles'
+import baseStyles from '../../../styles/styles'
 import { useSelector } from 'react-redux'
-import { serversSelector } from '../../../data/netlogger'
+import { clustersSelector } from '../../../data/netlogger'
+import { useHistory } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
   ...baseStyles(theme),
@@ -51,14 +54,133 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const defaultFormValues = (net) => {
-  const { NetName, Frequency, Band, Mode, NetControl, ServerName, Password } = net
-  return { modified: false, NetName, Frequency, Band, Mode, NetControl, ServerName, Password }
+function defaultFormValues(net) {
+  const { NetName, Frequency, Band, Mode, NetControl, ClusterName, ServerName, Token } = net
+  return { modified: false, NetName, Frequency, Band, Mode, NetControl, ClusterName, ServerName, Token }
 }
-export default function NetInfoSection({ net, className, style, onViewChange, currentView }) {
+
+function validateForm(form) {
+  const errors = {}
+
+  if (!form.NetName || form.NetName.length < 3) {
+    errors.NetName = 'You need to give your net a name at least 3 characters long.'
+  }
+
+  if (!form.Frequency || form.Frequency.length < 2) {
+    errors.Frequency = "What's the frequency, Kenneth?"
+  }
+
+  if (!form.Mode) {
+    errors.Mode = 'Pick a mode!'
+  }
+
+  if (!form.Band) {
+    errors.Band = 'Pick a band!'
+  }
+
+  if (!form.NetControl) {
+    errors.NetControl = "Who's running this net?"
+  }
+
+  if (!form.ClusterName) {
+    errors.ClusterName = 'Pick a server cluster!'
+  }
+
+  if (!form.Token) {
+    errors.Token = 'Your net needs a password'
+  }
+
+  if (!form.TokenConfirmation || form.TokenConfirmation !== form.Token) {
+    errors.TokenConfirmation = 'Password does not match!'
+  }
+
+  if (Object.keys(errors).length > 0) {
+    errors.isInvalid = true
+  }
+
+  return errors
+}
+
+function guessBandAndMode(freq) {
+  let band, mode
+  if (freq) {
+    const f = Number(freq)
+    if (f >= 0.135 && f <= 0.138) {
+      band = '2200m'
+    } else if (f >= 0.472 && f <= 0.479) {
+      band = '630m'
+    } else if (f >= 1.8 && f <= 2) {
+      band = '160m'
+    } else if (f >= 3.5 && f <= 3.6) {
+      band = '80m'
+      mode = 'CW'
+    } else if (f > 3.6 && f <= 4) {
+      band = '80m'
+      mode = 'SSB'
+    } else if (f >= 5.3 && f <= 5.4) {
+      band = '60m'
+    } else if (f >= 7.0 && f <= 7.125) {
+      band = '40m'
+      mode = 'CW'
+    } else if (f > 7.125 && f <= 7.3) {
+      band = '40m'
+      mode = 'SSB'
+    } else if (f >= 10.1 && f <= 10.15) {
+      band = '30m'
+      mode = 'CW'
+    } else if (f >= 14.0 && f < 14.15) {
+      band = '20m'
+      mode = 'CW'
+    } else if (f >= 14.15 && f < 14.35) {
+      band = '20m'
+      mode = 'SSB'
+    } else if (f >= 18.068 && f < 18.11) {
+      band = '17m'
+      mode = 'CW'
+    } else if (f >= 18.11 && f < 18.168) {
+      band = '17m'
+      mode = 'SSB'
+    } else if (f >= 21 && f < 21.2) {
+      band = '15m'
+      mode = 'CW'
+    } else if (f >= 21.2 && f < 21.45) {
+      band = '15m'
+      mode = 'SSB'
+    } else if (f >= 24.89 && f < 24.93) {
+      band = '12m'
+      mode = 'CW'
+    } else if (f >= 24.93 && f < 24.99) {
+      band = '12m'
+      mode = 'SSB'
+    } else if (f >= 28 && f < 28.3) {
+      band = '10m'
+      mode = 'CW'
+    } else if (f >= 28.3 && f < 29.7) {
+      band = '10m'
+      mode = 'SSB'
+    } else if (f >= 28.3 && f < 29.7) {
+      band = '10m'
+      mode = 'SSB'
+    } else if (f >= 50 && f <= 54) {
+      band = '6m'
+    } else if (f >= 144 && f <= 148) {
+      band = '2m'
+      mode = 'FM'
+    } else if (f >= 222 && f <= 225) {
+      band = '1.25m'
+      mode = 'FM'
+    } else if (f >= 420 && f <= 450) {
+      band = '70cm'
+      mode = 'FM'
+    }
+  }
+  return { band, mode }
+}
+
+export default function NetInfoSection({ net, className, style, expanded, onViewChange, currentView }) {
   const classes = useStyles()
 
-  const servers = useSelector(serversSelector())
+  const clusters = useSelector(clustersSelector())
 
   const [form, setFormData] = useState(() => defaultFormValues(net))
 
@@ -66,37 +188,73 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
     const field = ev.target?.dataset?.field
     const value = ev.target?.value
     if (field) {
-      setFormData({
-        ...form,
-        [field]: value,
-        modified: form.modified || net[field] !== value,
-      })
+      let newForm = { ...form, [field]: value, modified: form.modified || net[field] !== value }
+      if (field === 'Frequency') {
+        const { band, mode } = guessBandAndMode(value)
+        newForm.Band = band
+        newForm.Mode = mode
+      }
+      if (newForm.errors) {
+        newForm.errors = validateForm(newForm)
+      }
+
+      setFormData(newForm)
     } else {
       console.log(ev.target)
     }
   }
 
-  const handleCancel = () => {
+  const history = useHistory()
+  const handleCancelNew = useCallback(() => {
+    history.goBack()
+  }, [history])
+
+  const handleRestore = () => {
     setFormData(defaultFormValues(net))
   }
 
-  const handleSave = () => {}
+  const handleSave = () => {
+    const errors = validateForm(form)
+    if (errors.isInvalid) {
+      setFormData({ ...form, errors })
+    } else {
+      alert('Submitting!')
+    }
+  }
 
-  const isNew = false
-  const isEditable = form.Password
+  const handleCreate = () => {
+    const errors = validateForm(form)
+    if (errors.isInvalid) {
+      setFormData({ ...form, errors })
+    } else {
+      alert('Submitting!')
+    }
+  }
+
+  const isEditable = net.isNew || form.Password
 
   return (
-    <Accordion className={classNames(className, classes.sectionRoot)} style={style} square>
+    <Accordion expanded={expanded} className={classNames(className, classes.sectionRoot)} style={style} square>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} className={classes.sectionHeader}>
         <InfoIcon className={classes.sectionIcon} />
 
-        <Typography variant="h2">
-          {net.Band} • {net.Frequency} MHz {net.Mode}
-          {' • '}
-          <span>Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}</span>
-        </Typography>
-
-        <CheckinsLoader net={net} />
+        {net.isNew ? (
+          <Typography variant="h2">
+            <span>Details for new net</span>
+          </Typography>
+        ) : (
+          <>
+            <Typography variant="h2">
+              {net.Band} • {net.Frequency} MHz {net.Mode}
+              {net.Date && (
+                <span>
+                  {' • '}Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}
+                </span>
+              )}
+            </Typography>
+            <CheckinsLoader net={net} />
+          </>
+        )}
       </AccordionSummary>
 
       <AccordionDetails className={classes.sectionIndented}>
@@ -109,6 +267,8 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
               inputProps={{ 'data-field': 'NetName' }}
               disabled={!isEditable}
               fullWidth={true}
+              error={form.errors?.NetName}
+              helperText={form.errors?.NetName}
             />
           </Grid>
           <Grid item xs={4}>
@@ -116,13 +276,20 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
               label="Frequency"
               value={form.Frequency || ''}
               onChange={handleForm}
-              inputProps={{ 'data-field': 'Frequency' }}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">in MHz</InputAdornment>,
+              }}
+              inputProps={{
+                'data-field': 'Frequency',
+              }}
               disabled={!isEditable}
               fullWidth={true}
+              error={form.errors?.Frequency}
+              helperText={form.errors?.Frequency}
             />
           </Grid>
           <Grid item xs={4}>
-            <InputLabel id="net-mode-label" disabled={!isEditable}>
+            <InputLabel id="net-mode-label" disabled={!isEditable} error={form.errors?.Mode}>
               Mode
             </InputLabel>
             <Select
@@ -131,16 +298,18 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
               value={form.Mode || ''}
               onChange={(ev) => handleForm({ target: { value: ev.target.value, dataset: { field: 'Mode' } } })}
               fullWidth={true}
+              error={form.errors?.Mode}
             >
               {MODES.map((mode) => (
                 <MenuItem key={mode} value={mode}>
                   {mode}
                 </MenuItem>
               ))}
-            </Select>{' '}
+            </Select>
+            {form.errors?.Mode && <FormHelperText error>{form.errors?.Mode}</FormHelperText>}
           </Grid>
           <Grid item xs={4}>
-            <InputLabel id="net-band-label" disabled={!isEditable}>
+            <InputLabel id="net-band-label" disabled={!isEditable} error={form.errors?.Band}>
               Band
             </InputLabel>
             <Select
@@ -149,6 +318,7 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
               value={form.Band || ''}
               onChange={(ev) => handleForm({ target: { value: ev.target.value, dataset: { field: 'Band' } } })}
               fullWidth={true}
+              error={form.errors?.Band}
             >
               {BANDS.map((band) => (
                 <MenuItem key={band} value={band}>
@@ -156,6 +326,7 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
                 </MenuItem>
               ))}
             </Select>
+            {form.errors?.Band && <FormHelperText error>{form.errors?.Band}</FormHelperText>}
           </Grid>
           <Grid item xs={4} sm={3}>
             <TextField
@@ -165,51 +336,114 @@ export default function NetInfoSection({ net, className, style, onViewChange, cu
               onChange={handleForm}
               inputProps={{ 'data-field': 'NetControl' }}
               fullWidth={true}
+              error={form.errors?.NetControl}
+              helperText={form.errors?.NetControl}
             />
           </Grid>
 
           <Grid item xs={8} sm={3}>
-            <InputLabel id="net-server-label" disabled={!isEditable || !isNew}>
-              Server
-            </InputLabel>
-
-            <Select
-              labelId="net-band-label"
-              disabled={!isEditable || !isNew}
-              value={form.ServerName || ''}
-              onChange={(ev) => handleForm({ target: { value: ev.target.value, dataset: { field: 'ServerName' } } })}
-              fullWidth={true}
-            >
-              {servers.map((server) => (
-                <MenuItem key={server.ServerName} value={server.ServerName}>
-                  {server.ServerName}
-                </MenuItem>
-              ))}
-            </Select>
+            {net.isNew ? (
+              <>
+                <InputLabel id="net-server-label" disabled={!isEditable || !net.isNew} error={form.errors?.ClusterName}>
+                  Server Cluster
+                </InputLabel>
+                <Select
+                  labelId="net-band-label"
+                  disabled={!net.isNew}
+                  value={form.ClusterName || ''}
+                  onChange={(ev) =>
+                    handleForm({ target: { value: ev.target.value, dataset: { field: 'ClusterName' } } })
+                  }
+                  fullWidth={true}
+                  error={form.errors?.ClusterName}
+                >
+                  {clusters.map((cluster) => (
+                    <MenuItem key={cluster.ClusterName} value={cluster.ClusterName}>
+                      {cluster.ClusterName}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {form.errors?.ClusterName && <FormHelperText error>{form.errors?.ClusterName}</FormHelperText>}
+              </>
+            ) : (
+              <TextField label="Server" value={form.ServerName || ''} disabled fullWidth={true} />
+            )}
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Net Password"
-              value={form.Password || ''}
-              onChange={handleForm}
-              inputProps={{ 'data-field': 'Password' }}
-              placeholder={'Enter the net password if you know it'}
-              type={'password'}
-              fullWidth={true}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </Grid>
+          {net.isNew ? (
+            <>
+              <Grid item xs={6} sm={3}>
+                <TextField
+                  label="Net Password"
+                  value={form.Token || ''}
+                  onChange={handleForm}
+                  inputProps={{ 'data-field': 'Token' }}
+                  placeholder={'Password for new net'}
+                  type={'password'}
+                  fullWidth={true}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  error={form.errors?.Token}
+                  helperText={form.errors?.Token}
+                />
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <TextField
+                  label="Confirm Password"
+                  value={form.TokenConfirmation || ''}
+                  onChange={handleForm}
+                  inputProps={{ 'data-field': 'TokenConfirmation' }}
+                  placeholder={'Repeat password'}
+                  type={'password'}
+                  fullWidth={true}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  error={form.errors?.TokenConfirmation}
+                  helperText={form.errors?.TokenConfirmation}
+                />
+              </Grid>
+            </>
+          ) : (
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Net Password"
+                value={form.Token || ''}
+                onChange={handleForm}
+                inputProps={{ 'data-field': 'Token' }}
+                placeholder={'Enter the net password if you know it'}
+                type={'password'}
+                fullWidth={true}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                error={form.errors?.Token}
+                helperText={form.errors?.Token}
+              />
+            </Grid>
+          )}
         </Grid>
       </AccordionDetails>
       <AccordionActions>
-        <Button size="small" onClick={handleCancel} disabled={!form.modified}>
-          Cancel
-        </Button>
-        <Button size="small" onClick={handleSave} color="primary" disabled={!form.modified}>
-          Save
-        </Button>
+        {net.isNew ? (
+          <>
+            <Button size="small" onClick={handleCancelNew}>
+              Cancel
+            </Button>
+            <Button size="small" onClick={handleCreate} color="primary" disabled={!form.modified}>
+              Create
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button size="small" onClick={handleRestore} disabled={!form.modified}>
+              Cancel
+            </Button>
+            <Button size="small" onClick={handleSave} color="primary" disabled={!form.modified}>
+              Save
+            </Button>
+          </>
+        )}
       </AccordionActions>
     </Accordion>
   )
