@@ -1,11 +1,23 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { AppBar, IconButton, Link, makeStyles, Toolbar, Typography, useMediaQuery, useTheme } from '@material-ui/core'
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Link,
+  makeStyles,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core'
 import RadioIcon from '@material-ui/icons/Radio'
 import SettingsIcon from '@material-ui/icons/Settings'
 import ArrowBackIcon from '@material-ui/icons/ArrowBackIos'
 import classNames from 'classnames'
+import { useSelector } from 'react-redux'
+import { callsignSelector } from '../../data/settings'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -102,6 +114,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Header({ className, children, title, hideSettings }) {
+  const callsign = useSelector(callsignSelector())
+
   const classes = useStyles()
   const history = useHistory()
   const theme = useTheme()
@@ -182,9 +196,9 @@ export default function Header({ className, children, title, hideSettings }) {
 
         <div className={classes.right}>
           {!hideSettings && (
-            <IconButton color="inherit" onClick={() => history.push('/app/settings')}>
-              <SettingsIcon />
-            </IconButton>
+            <Button color="inherit" onClick={() => history.push('/app/settings')} endIcon={<SettingsIcon />}>
+              <div className={'callsign'}>{callsign}</div>
+            </Button>
           )}
         </div>
       </Toolbar>
