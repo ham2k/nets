@@ -4,7 +4,7 @@ import { AdifFormatter, AdifParser } from 'adif-parser-ts'
 import { loadLog } from '../logs/logsSlice'
 import { lookupHashForLog } from '../logs/logsActions'
 
-const BASE_URL = 'https://logbook.qrz.com/api'
+const BASE_URL = '/qrz-proxy/api' // -> https://logbook.qrz.com/api'
 
 const HTML_ENTITIES = {
   '&lt;': '<',
@@ -24,7 +24,7 @@ export const getLogbook = () => (dispatch, getState) => {
   body.append('ACTION', 'FETCH')
   body.append('OPTION', 'MODE:SSB')
 
-  return fetch(`/cors-proxy/${url}`, {
+  return fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
     body: body,
@@ -56,47 +56,49 @@ export const getLogbook = () => (dispatch, getState) => {
 }
 
 /* ================================================================================================================== */
-export const insertRecord = ({ key, record }) => (dispatch, getState) => {
-  const key = getState()?.settings?.qrz?.key
+export const insertRecord =
+  ({ key, record }) =>
+  (dispatch, getState) => {
+    const key = getState()?.settings?.qrz?.key
 
-  dispatch(setMeta({ loading: true, errors: [] }))
+    dispatch(setMeta({ loading: true, errors: [] }))
 
-  const url = new URL(BASE_URL)
-  const body = new URLSearchParams()
-  body.append('KEY', key)
-  body.append('ACTION', 'INSERT')
-  body.append('ADIF', AdifFormatter.formatAdi({ records: [record] }))
+    const url = new URL(BASE_URL)
+    const body = new URLSearchParams()
+    body.append('KEY', key)
+    body.append('ACTION', 'INSERT')
+    body.append('ADIF', AdifFormatter.formatAdi({ records: [record] }))
 
-  return fetch(`/cors-proxy/${url}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-    body: body,
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.text()
-      } else {
-        console.log('QRZ Error: bad response')
-        throw new TypeError('Bad response')
-      }
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: body,
     })
-    .then((bodyText) => {
-      const qrz = parseQrzResponse(bodyText)
+      .then((response) => {
+        if (response.ok) {
+          return response.text()
+        } else {
+          console.log('QRZ Error: bad response')
+          throw new TypeError('Bad response')
+        }
+      })
+      .then((bodyText) => {
+        const qrz = parseQrzResponse(bodyText)
 
-      const data = qrz.ADIF
-      console.log(data)
-      // data.name = 'QRZ Logbook'
-      // data.source = 'https://logbook.qrz.com'
-      // data.lookup = lookupHashForLog(data)
+        const data = qrz.ADIF
+        console.log(data)
+        // data.name = 'QRZ Logbook'
+        // data.source = 'https://logbook.qrz.com'
+        // data.lookup = lookupHashForLog(data)
 
-      // dispatch(loadLog({ data, name: 'QRZ Logbook' }))
-      dispatch(setMeta({ loading: false, errors: [] }))
-    })
-    .catch((error) => {
-      console.log('QRZ Error', error)
-      dispatch(setMeta({ loading: false, errors: 'QRZ Error' }))
-    })
-}
+        // dispatch(loadLog({ data, name: 'QRZ Logbook' }))
+        dispatch(setMeta({ loading: false, errors: [] }))
+      })
+      .catch((error) => {
+        console.log('QRZ Error', error)
+        dispatch(setMeta({ loading: false, errors: 'QRZ Error' }))
+      })
+  }
 
 /* ================================================================================================================== */
 /*
@@ -110,7 +112,8 @@ export const insertRecord = ({ key, record }) => (dispatch, getState) => {
  * So we cannot use the standard URL manipulation classes and have to roll our own.
  */
 
-const QRZ_PARSING_REGEXP = /(RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=(.*?)(?=\s*$|&\s*(?:RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=)/gs
+const QRZ_PARSING_REGEXP =
+  /(RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=(.*?)(?=\s*$|&\s*(?:RESULT|REASON|LOGIDS|LOGID|COUNT|DATA|ADIF|OPTION|KEY|ACTION)=)/gs
 /*
  * `(RESULT|...)` Match (and capture) any of the QRZ parameter names
  * `=` followed by an equal sign

@@ -7,7 +7,7 @@ const MOCK_RESPONSES = {
 }
 
 export default function setupQrzSamples() {
-  fetch.mockIf(/cors-proxy/, (req) => {
+  fetch.mockIf(/qrz-proxy/, (req) => {
     const match = Object.keys(MOCK_RESPONSES).find((pattern) => req.url.indexOf(pattern) >= 0)
     if (match) {
       return Promise.resolve(MOCK_RESPONSES[match])

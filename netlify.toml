@@ -5,8 +5,92 @@
   publish = "build"
 
 [[redirects]]
-  from = "/cors-proxy/*"
-  to = ":splat"
+  from = "/qrz-proxy/*"
+  to = "https://logbook.qrz.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/netlogger.org/*"
+  to = "http://netlogger.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/www.netlogger.org/*"
+  to = "http://www.netlogger.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/netlogger1.org/*"
+  to = "http://netlogger1.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/www.netlogger1.org/*"
+  to = "http://www.netlogger1.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/netlogger2.org/*"
+  to = "http://netlogger2.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/www.netlogger2.org/*"
+  to = "http://www.netlogger2.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/netlogger3.org/*"
+  to = "http://netlogger3.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/www.netlogger3.org/*"
+  to = "http://www.netlogger3.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/netlogger4.org/*"
+  to = "http://netlogger4.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/www.netlogger4.org/*"
+  to = "http://www.netlogger4.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/netlogger5.org/*"
+  to = "http://netlogger5.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/www.netlogger5.org/*"
+  to = "http://www.netlogger5.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/netlogger6.org/*"
+  to = "http://netlogger6.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/netlogger-proxy/www.netlogger6.org/*"
+  to = "http://www.netlogger6.org/:splat"
   status = 200
   force = true
 

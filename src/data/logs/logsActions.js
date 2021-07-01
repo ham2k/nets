@@ -3,8 +3,6 @@ import { AdifParser } from 'adif-parser-ts'
 import { loadLog, setMeta } from './logsSlice'
 
 export const loadADIF = (uri) => {
-  if (uri.startsWith('http')) uri = `/cors-proxy/${uri}`
-
   return fetch(uri)
     .then((response) => {
       if (response.ok) {
@@ -22,31 +20,33 @@ export const loadADIF = (uri) => {
     })
 }
 
-export const loadADIFromUri = ({ uri, source, name }) => (dispatch) => {
-  dispatch(setMeta({ loading: true, errors: undefined }))
+export const loadADIFromUri =
+  ({ uri, source, name }) =>
+  (dispatch) => {
+    dispatch(setMeta({ loading: true, errors: undefined }))
 
-  return loadADIF(uri).then(
-    (data) => {
-      name = name || guessNameForADIF(data)
-      source = source || uri
+    return loadADIF(uri).then(
+      (data) => {
+        name = name || guessNameForADIF(data)
+        source = source || uri
 
-      if (source.startsWith('data:')) {
-        source = 'data uri'
+        if (source.startsWith('data:')) {
+          source = 'data uri'
+        }
+
+        data.name = name
+        data.source = source
+        data.lookup = lookupHashForLog(data)
+
+        dispatch(loadLog({ data, name }))
+        dispatch(setMeta({ loading: false, errors: undefined }))
+      },
+      (error) => {
+        console.log('loadADIFAsync error', error)
+        dispatch(setMeta({ loading: false, errors: error }))
       }
-
-      data.name = name
-      data.source = source
-      data.lookup = lookupHashForLog(data)
-
-      dispatch(loadLog({ data, name }))
-      dispatch(setMeta({ loading: false, errors: undefined }))
-    },
-    (error) => {
-      console.log('loadADIFAsync error', error)
-      dispatch(setMeta({ loading: false, errors: error }))
-    }
-  )
-}
+    )
+  }
 
 function guessNameForADIF(data) {
   const program = data?.header?.programid || 'Unknown Logger'
