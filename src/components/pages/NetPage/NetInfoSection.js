@@ -25,8 +25,8 @@ import BANDS from '../../../data/consts/bands'
 import MODES from '../../../data/consts/modes'
 
 import baseStyles from '../../../styles/styles'
-import { useSelector } from 'react-redux'
-import { clustersSelector } from '../../../data/netlogger'
+import { useDispatch, useSelector } from 'react-redux'
+import { authenticateNet, closeNet, clustersSelector, createNewNet } from '../../../data/netlogger'
 import { useHistory } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
@@ -55,11 +55,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function defaultFormValues(net) {
-  const { NetName, Frequency, Band, Mode, NetControl, ClusterName, ServerName, Token } = net
-  return { modified: false, NetName, Frequency, Band, Mode, NetControl, ClusterName, ServerName, Token }
+  const { NetName, Frequency, Band, Mode, NetControl, ClusterName, ServerName, Token, isNew } = net
+  return { modified: false, NetName, Frequency, Band, Mode, NetControl, ClusterName, ServerName, Token, isNew }
 }
 
-function validateForm(form) {
+function validateForm(form, isNew) {
   const errors = {}
 
   if (!form.NetName || form.NetName.length < 3) {
@@ -82,7 +82,7 @@ function validateForm(form) {
     errors.NetControl = "Who's running this net?"
   }
 
-  if (!form.ClusterName) {
+  if (isNew && !form.ClusterName) {
     errors.ClusterName = 'Pick a server cluster!'
   }
 
@@ -90,7 +90,7 @@ function validateForm(form) {
     errors.Token = 'Your net needs a password'
   }
 
-  if (!form.TokenConfirmation || form.TokenConfirmation !== form.Token) {
+  if (isNew && (!form.TokenConfirmation || form.TokenConfirmation !== form.Token)) {
     errors.TokenConfirmation = 'Password does not match!'
   }
 
@@ -178,6 +178,7 @@ function guessBandAndMode(freq) {
 }
 
 export default function NetInfoSection({ net, className, style, expanded, onViewChange, currentView }) {
+  const dispatch = useDispatch()
   const classes = useStyles()
 
   const clusters = useSelector(clustersSelector())
@@ -215,10 +216,12 @@ export default function NetInfoSection({ net, className, style, expanded, onView
 
   const handleSave = () => {
     const errors = validateForm(form)
+    console.log('saving?', form)
     if (errors.isInvalid) {
+      console.log('invalid', errors)
       setFormData({ ...form, errors })
     } else {
-      alert('Submitting!')
+      // console.log('saving!', form)
     }
   }
 
@@ -227,11 +230,23 @@ export default function NetInfoSection({ net, className, style, expanded, onView
     if (errors.isInvalid) {
       setFormData({ ...form, errors })
     } else {
-      alert('Submitting!')
+      dispatch(
+        createNewNet(form, (data) => {
+          history.replace(`/${data.slug}`)
+        })
+      )
     }
   }
 
-  const isEditable = net.isNew || form.Password
+  const handleAuthenticate = () => {
+    dispatch(authenticateNet(net.slug, form.Token))
+  }
+
+  const handleClose = () => {
+    dispatch(closeNet(net.slug, form.Token))
+  }
+
+  const isEditable = net.isNew || form.Token
 
   return (
     <Accordion expanded={expanded} className={classNames(className, classes.sectionRoot)} style={style} square>
@@ -436,12 +451,31 @@ export default function NetInfoSection({ net, className, style, expanded, onView
           </>
         ) : (
           <>
-            <Button size="small" onClick={handleRestore} disabled={!form.modified}>
-              Cancel
-            </Button>
-            <Button size="small" onClick={handleSave} color="primary" disabled={!form.modified}>
-              Save
-            </Button>
+            {net.authenticated ? (
+              <>
+                <Button size="small" onClick={handleClose} color="primary" disabled={!form.modified}>
+                  Close
+                </Button>
+
+                <Button size="small" onClick={handleRestore} disabled={!form.modified}>
+                  Cancel
+                </Button>
+
+                <Button size="small" onClick={handleSave} color="primary" disabled={!form.modified}>
+                  Save
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button size="small" onClick={handleRestore} disabled={!form.modified}>
+                  Cancel
+                </Button>
+
+                <Button size="small" onClick={handleAuthenticate} color="primary" disabled={!form.modified}>
+                  Authenticate
+                </Button>
+              </>
+            )}
           </>
         )}
       </AccordionActions>

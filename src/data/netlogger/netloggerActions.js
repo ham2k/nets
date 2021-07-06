@@ -204,7 +204,7 @@ export const getNetSubscription = (slug) => (dispatch, getState) => {
 }
 
 /* ================================================================================================================== */
-export const refreshNetData = (slug) => (dispatch, getState) => {
+export const refreshNetData = (slug, callback) => (dispatch, getState) => {
   const net = getState()?.netlogger?.nets?.[slug]
   if (!net) return
 
@@ -228,6 +228,7 @@ export const refreshNetData = (slug) => (dispatch, getState) => {
       const { data, checkins, ims, monitors, exts } = parseNetDatastream(bodyText, net)
       data.isLoading = false
       dispatch(setNetParts({ slug, data, checkins, ims, monitors, exts }))
+      callback && callback(data)
     })
 }
 
@@ -491,26 +492,33 @@ export const postMessageToNet = (slug, name, message) => (dispatch, getState) =>
 }
 
 /* ================================================================================================================== */
-export const createNewNet = (data) => (dispatch, getState) => {
+export const createNewNet = (data, callback) => (dispatch, getState) => {
+  console.log('createNewNet', data)
   if (!data) return
+
+  const state = getState().netlogger
 
   data.slug = data.slug || slugify(data.NetName, SLUGIFY_OPTIONS)
 
+  const serverInfo = state?.serverInfo?.[data.ClusterName]
+  data.ServerHost = serverInfo?.ServerHost
+
+  if (!data.ServerHost) return
+
   const url = new URL(`${data.ServerHost}/cgi-bin/NetLogger/OpenNet20.php`)
   url.searchParams.append('NetName', data.NetName)
-  const body = new URLSearchParams()
-  body.append('NetName', data.NetName)
-  body.append('Token', data.Token)
-  body.append('Frequency', data.Frequency)
-  body.append('NetControl', data.NetControl)
-  body.append('Logger', `${data.Logger}%20-%20${NETLOGGER_APP_VERSION}`)
-  body.append('Mode', data.Mode)
-  body.append('Band', data.Band)
-  body.append('EnableMessaging', 'Y')
-  body.append('UpdateInterval', 20000)
-  body.append('MiscNetParameters', '')
-
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  url.searchParams.append('NetName', data.NetName)
+  url.searchParams.append('Token', data.Token)
+  url.searchParams.append('Frequency', data.Frequency)
+  url.searchParams.append('NetControl', data.NetControl)
+  url.searchParams.append('Logger', `${data.NetControl}-%20-%20${NETLOGGER_APP_VERSION}`)
+  url.searchParams.append('Mode', data.Mode)
+  url.searchParams.append('Band', data.Band)
+  url.searchParams.append('EnableMessaging', 'Y')
+  url.searchParams.append('UpdateInterval', 20000)
+  url.searchParams.append('MiscNetParameters', '')
+  console.log(url.toString())
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -519,25 +527,28 @@ export const createNewNet = (data) => (dispatch, getState) => {
       }
     })
     .then((bodyText) => {
+      console.log(bodyText)
       dispatch(setNetParts({ slug: data.slug, data: { ...data, authenticated: true } }))
-      dispatch(refreshNetData(data.slug))
-      dispatch(getNetsList())
+      dispatch(getNetsList(serverInfo))
+      dispatch(refreshNetData(data.slug, callback))
     })
 }
 
 /* ================================================================================================================== */
-export const closeNet = (slug) => (dispatch, getState) => {
+export const closeNet = (slug, token, callback) => (dispatch, getState) => {
+  console.log(slug)
   const net = getState()?.netlogger?.nets?.[slug]
+  console.log(slug, net)
 
-  if (!net || !net.Token || !net.authenticated) return
+  // if (!net || !net.Token || !net.authenticated) return
 
   const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/CloseNet.php`)
   url.searchParams.append('NetName', net.NetName)
   const body = new URLSearchParams()
   body.append('NetName', net.NetName)
-  body.append('Token', net.Token)
+  body.append('Token', net.Token || token)
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -547,8 +558,8 @@ export const closeNet = (slug) => (dispatch, getState) => {
     })
     .then((bodyText) => {
       dispatch(setNetParts({ slug, data: { authenticated: false } }))
-      dispatch(refreshNetData(net.slug))
-      dispatch(getNetsList())
+      dispatch(getNetsList(net.ServerHost))
+      dispatch(refreshNetData(net.slug, callback))
     })
 }
 
@@ -558,13 +569,13 @@ export const authenticateNet = (slug, token) => (dispatch, getState) => {
 
   if (!net || !token) return
 
-  const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/CloseNet.php`)
+  const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/CheckToken.php`)
   url.searchParams.append('NetName', net.NetName)
   const body = new URLSearchParams()
   body.append('NetName', net.NetName)
   body.append('Token', token)
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
