@@ -2,6 +2,7 @@ import { setMeta, setServerList, setServerInfo, addNets, setNetParts } from './n
 import capitalize from 'lodash/capitalize'
 import words from 'lodash/words'
 import slugify from 'slugify'
+import { proxyFor } from '../../utils/proxyFor'
 
 const SERVER_LIST_URL = 'http://www.netlogger.org/downloads/ServerList.txt'
 const NETLOGGER_PROTOCOL_VERSION = '2.3'
@@ -20,7 +21,7 @@ export const getInitialData = () => (dispatch) => {
   const url = new URL(SERVER_LIST_URL)
   dispatch(setMeta({ errors: [] }))
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -59,7 +60,7 @@ function parseServerList(bodyText) {
 export const getServerInfo = (serverHost) => (dispatch) => {
   const url = new URL(`${serverHost}/cgi-bin/NetLogger/GetServerInfo.pl`)
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -100,7 +101,7 @@ export const getNetsList = (serverInfo) => (dispatch) => {
   const url = new URL(`${serverInfo.ServerHost}/cgi-bin/NetLogger/GetNetsInProgress20.php`)
   url.searchParams.append('ProtocolVersion', NETLOGGER_PROTOCOL_VERSION)
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -187,7 +188,7 @@ export const getNetSubscription = (slug) => (dispatch, getState) => {
   url.searchParams.append('IMSerial', 0)
   url.searchParams.append('LastExtDataSerial', 0)
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -215,7 +216,7 @@ export const refreshNetData = (slug) => (dispatch, getState) => {
   url.searchParams.append('IMSerial', 0)
   url.searchParams.append('LastExtDataSerial', 0)
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`)
+  return fetch(proxyFor(url))
     .then((response) => {
       if (response.ok) {
         return response.text()
@@ -470,7 +471,7 @@ export const postMessageToNet = (slug, name, message) => (dispatch, getState) =>
   body.append('IsNetControl', 'x')
   body.append('Message', message)
 
-  return fetch(`/netlogger-proxy/${url.toString().replace('http://', '')}`, {
+  return fetch(proxyFor(url), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',

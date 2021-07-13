@@ -3,8 +3,9 @@ import { AdifFormatter, AdifParser } from 'adif-parser-ts'
 
 import { loadLog } from '../logs/logsSlice'
 import { lookupHashForLog } from '../logs/logsActions'
+import { proxyFor } from '../../utils/proxyFor'
 
-const BASE_URL = '/qrz-proxy/api' // -> https://logbook.qrz.com/api'
+const BASE_URL = 'https://logbook.qrz.com/api'
 
 const HTML_ENTITIES = {
   '&lt;': '<',
@@ -24,7 +25,7 @@ export const getLogbook = () => (dispatch, getState) => {
   body.append('ACTION', 'FETCH')
   body.append('OPTION', 'MODE:SSB')
 
-  return fetch(url, {
+  return fetch(proxyFor(url), {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
     body: body,
@@ -69,7 +70,7 @@ export const insertRecord =
     body.append('ACTION', 'INSERT')
     body.append('ADIF', AdifFormatter.formatAdi({ records: [record] }))
 
-    return fetch(url, {
+    return fetch(proxyFor(url), {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       body: body,
