@@ -528,7 +528,7 @@ export const createNewNet = (data, callback) => (dispatch, getState) => {
     })
     .then((bodyText) => {
       console.log(bodyText)
-      dispatch(setNetParts({ slug: data.slug, data: { ...data, authenticated: true } }))
+      dispatch(setNetParts({ slug: data.slug, data: { ...data, isAuthenticated: true, isLogger: true } }))
       dispatch(getNetsList(serverInfo))
       dispatch(refreshNetData(data.slug, callback))
     })
@@ -540,7 +540,7 @@ export const closeNet = (slug, token, callback) => (dispatch, getState) => {
   const net = getState()?.netlogger?.nets?.[slug]
   console.log(slug, net)
 
-  // if (!net || !net.Token || !net.authenticated) return
+  // if (!net || !net.Token || !net.isAuthenticated) return
 
   const url = new URL(`${net.ServerHost}/cgi-bin/NetLogger/CloseNet.php`)
   url.searchParams.append('NetName', net.NetName)
@@ -557,7 +557,7 @@ export const closeNet = (slug, token, callback) => (dispatch, getState) => {
       }
     })
     .then((bodyText) => {
-      dispatch(setNetParts({ slug, data: { authenticated: false } }))
+      dispatch(setNetParts({ slug, data: { isAuthenticated: false } }))
       dispatch(getNetsList(net.ServerHost))
       dispatch(refreshNetData(net.slug, callback))
     })
@@ -584,6 +584,6 @@ export const authenticateNet = (slug, token) => (dispatch, getState) => {
       }
     })
     .then((bodyText) => {
-      dispatch(setNetParts({ slug, data: { Token: token, authenticated: true } }))
+      dispatch(setNetParts({ slug, data: { Token: token, isAuthenticated: true } }))
     })
 }

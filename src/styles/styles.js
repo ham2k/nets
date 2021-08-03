@@ -15,6 +15,9 @@ const baseStyles = (theme) => ({
     '& .SplitPane .Pane > div': {
       minHeight: '100%',
     },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.85rem',
+    },
   },
   pageHeader: {
     flex: 0,
@@ -220,6 +223,14 @@ const baseStyles = (theme) => ({
       fontSize: '1rem',
       fontWeight: 'normal',
     },
+    '& > .MuiAccordionSummary-content': {
+      marginRight: theme.spacing(4),
+    },
+    '& > .MuiAccordionSummary-content > .MuiGrid-container > .MuiGrid-item': {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
   },
 
   sectionIcon: {
@@ -238,6 +249,12 @@ const baseStyles = (theme) => ({
   overflowContainer: {
     overflow: 'hidden',
     minHeight: 0,
+  },
+
+  rowCenter: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 })
 

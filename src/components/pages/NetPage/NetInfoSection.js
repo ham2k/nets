@@ -19,6 +19,7 @@ import {
 } from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/Info'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import EditIcon from '@material-ui/icons/Edit'
 
 import CheckinsLoader from '../../checkins/CheckinsLoader'
 import BANDS from '../../../data/consts/bands'
@@ -246,30 +247,43 @@ export default function NetInfoSection({ net, className, style, expanded, onView
     dispatch(closeNet(net.slug, form.Token))
   }
 
-  const isEditable = net.isNew || form.Token
+  const isEditable = net.isNew || net.isAuthenticated
 
   return (
     <Accordion expanded={expanded} className={classNames(className, classes.sectionRoot)} style={style} square>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} className={classes.sectionHeader}>
-        <InfoIcon className={classes.sectionIcon} />
+        <Grid container direction="row">
+          <Grid item xs={10}>
+            <InfoIcon className={classes.sectionIcon} />
 
-        {net.isNew ? (
-          <Typography variant="h2">
-            <span>Details for new net</span>
-          </Typography>
-        ) : (
-          <>
-            <Typography variant="h2">
-              {net.Band} • {net.Frequency} MHz {net.Mode}
-              {net.Date && (
-                <span>
-                  {' • '}Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}
-                </span>
-              )}
-            </Typography>
-            <CheckinsLoader net={net} />
-          </>
-        )}
+            {net.isNew ? (
+              <Typography variant="h2">
+                <span>Details for new net</span>
+              </Typography>
+            ) : (
+              <>
+                <Typography variant="h2">
+                  {net.Band} • {net.Frequency} MHz {net.Mode}
+                  {net.Date && (
+                    <span>
+                      {' • '}Started at {new Date(net.Date).toLocaleTimeString([], { timeStyle: 'short' })}
+                    </span>
+                  )}
+                </Typography>
+                <CheckinsLoader net={net} />
+              </>
+            )}
+          </Grid>
+          <Grid item xs={2} style={{ justifyContent: 'flex-end' }}>
+            {net.isAuthenticated ? (
+              <span>
+                <EditIcon /> You are logging
+              </span>
+            ) : (
+              <span>&nbsp;</span>
+            )}
+          </Grid>
+        </Grid>
       </AccordionSummary>
 
       <AccordionDetails className={classes.sectionIndented}>
@@ -451,7 +465,7 @@ export default function NetInfoSection({ net, className, style, expanded, onView
           </>
         ) : (
           <>
-            {net.authenticated ? (
+            {net.isAuthenticated ? (
               <>
                 <Button size="small" onClick={handleClose} color="primary" disabled={!form.modified}>
                   Close

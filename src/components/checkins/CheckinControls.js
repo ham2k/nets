@@ -2,7 +2,6 @@ import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { Button, Grid, IconButton, TextField } from '@material-ui/core'
-import MicIcon from '@material-ui/icons/Mic'
 import StarIcon from '@material-ui/icons/Star'
 import StarBorderIcon from '@material-ui/icons/StarBorder'
 import MenuBookIcon from '@material-ui/icons/MenuBook'
@@ -35,7 +34,7 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
     [dispatch, checkin, localInfo, net]
   )
 
-  const onReceptionClick = useCallback(
+  const onWantedClick = useCallback(
     (ev) => {
       dispatch(
         setNetLocalCallsignInfo({
@@ -97,40 +96,29 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
 
   return (
     <Typography variant="body2" component="div">
-      {checkin.Callsign && checkin.Callsign === operator ? (
-        <div>
-          <Chip variant="outlined" size="small" className="tagSelf" label="YOU" />
-        </div>
-      ) : (
-        ''
-      )}
-
-      {checkin.statuses.checkedOut && (
-        <div>
-          <Chip size="small" className="tagUnavailable" label="Checked Out" />
-        </div>
-      )}
-      {checkin.statuses.notResponding && <Chip size="small" className="tagUnavailable" label="Not Responding" />}
-      {checkin.statuses.unavailable && <Chip size="small" className="tagUnavailable" label="Unavailable" />}
-
-      {checkin.operating && (
-        <Chip variant="outlined" size="small" className="tagOperating" label="Operating" icon={<MicIcon />} />
-      )}
-
       {activeControls ? (
         <div className="no-wrap">
           {localInfo.wanted ? (
             <>
-              <IconButton onClick={onReceptionClick} className="tagWanted">
-                <StarIcon fontSize="small" />
-              </IconButton>
-              <Chip variant="outlined" size="small" className="tagWanted" label="Wanted" icon={<StarIcon />} />
+              <Chip
+                onClick={onWantedClick}
+                variant="outlined"
+                size="small"
+                className="tagWanted"
+                label="Wanted"
+                icon={<StarIcon />}
+              />
             </>
           ) : (
             <>
-              <IconButton onClick={onReceptionClick} className="tagWanted">
-                <StarBorderIcon fontSize="small" />
-              </IconButton>
+              <Chip
+                onClick={onWantedClick}
+                variant="outlined"
+                size="small"
+                className=""
+                label="Wanted?"
+                icon={<StarBorderIcon />}
+              />
             </>
           )}
         </div>
@@ -144,68 +132,104 @@ export default function CheckinControls({ net, checkin, localInfo, operator, act
 
       {activeControls ? (
         <div className="no-wrap">
-          <IconButton onClick={onWorkedClick} className="tagWorked">
-            <MenuBookIcon fontSize="small" />
-          </IconButton>
           {localInfo.worked && (
             <>
-              <Chip variant="outlined" size="small" className="tagWorked" label="Worked" />
-              <Grid container spacing={1}>
-                <Grid item xs={4}>
-                  <TextField
-                    label="Sent"
-                    size="small"
-                    type="number"
-                    variant="outlined"
-                    value={localInfo.signalSent || ''}
-                    disabled={localInfo.savedToQRZ}
-                    onChange={(ev) =>
-                      dispatch(
-                        setNetLocalCallsignInfo({
-                          slug: net.slug,
-                          info: { [checkin.Callsign]: { ...localInfo, signalSent: ev.target.value } },
-                        })
-                      )
-                    }
-                  />
-                </Grid>
-                <Grid item xs={4}>
-                  <TextField
-                    label="Received"
-                    size="small"
-                    type="number"
-                    variant="outlined"
-                    value={localInfo.signalReceived || ''}
-                    disabled={localInfo.savedToQRZ}
-                    onChange={(ev) =>
-                      dispatch(
-                        setNetLocalCallsignInfo({
-                          slug: net.slug,
-                          info: { [checkin.Callsign]: { ...localInfo, signalReceived: ev.target.value } },
-                        })
-                      )
-                    }
-                  />
-                </Grid>
-                <Grid item xs={4}>
-                  {localInfo.savedToQRZ ? (
-                    <Button disabled>QRZ!</Button>
-                  ) : (
-                    <Button variant="contained" onClick={onSaveToQRZ}>
-                      &gt; QRZ
-                    </Button>
-                  )}
-                </Grid>
-              </Grid>
+              <Chip
+                onClick={onWorkedClick}
+                variant="outlined"
+                size="small"
+                className="tagWorked"
+                label="Worked"
+                icon={<MenuBookIcon fontSize="inherit" />}
+              />
+              <TextField
+                label="Sent"
+                size="small"
+                type="number"
+                variant="outlined"
+                style={{ width: '5em', marginLeft: '1em' }}
+                value={localInfo.signalSent || ''}
+                disabled={localInfo.savedToQRZ}
+                onChange={(ev) =>
+                  dispatch(
+                    setNetLocalCallsignInfo({
+                      slug: net.slug,
+                      info: { [checkin.Callsign]: { ...localInfo, signalSent: ev.target.value } },
+                    })
+                  )
+                }
+              />
+              <TextField
+                label="Rcvd"
+                size="small"
+                type="number"
+                variant="outlined"
+                style={{ width: '5em', marginLeft: '1em' }}
+                value={localInfo.signalReceived || ''}
+                disabled={localInfo.savedToQRZ}
+                onChange={(ev) =>
+                  dispatch(
+                    setNetLocalCallsignInfo({
+                      slug: net.slug,
+                      info: { [checkin.Callsign]: { ...localInfo, signalReceived: ev.target.value } },
+                    })
+                  )
+                }
+              />
+              {localInfo.savedToQRZ ? (
+                <Button disabled style={{ width: '6em', marginLeft: '1em' }}>
+                  QRZ!
+                </Button>
+              ) : (
+                <Button variant="contained" style={{ width: '6em', marginLeft: '1em' }} onClick={onSaveToQRZ}>
+                  &gt; QRZ
+                </Button>
+              )}
             </>
           )}
 
-          {localInfo.notWorked && <Chip variant="outlined" size="small" className="tagNotWorked" label="Not Worked" />}
+          {localInfo.notWorked && (
+            <Chip
+              onClick={onWorkedClick}
+              variant="outlined"
+              size="small"
+              className="tagNotWorked"
+              label="Not Worked"
+              icon={<MenuBookIcon fontSize="inherit" />}
+            />
+          )}
+
+          {!localInfo.worked && !localInfo.notWorked && (
+            <Chip
+              onClick={onWorkedClick}
+              variant="outlined"
+              size="small"
+              className="tagNotWorked"
+              label="Worked?"
+              icon={<MenuBookIcon fontSize="inherit" />}
+            />
+          )}
         </div>
       ) : (
         <>
-          {localInfo.worked && <Chip variant="outlined" size="small" className="tagWorked" label="Worked" />}
-          {localInfo.notWorked && <Chip variant="outlined" size="small" className="tagNotWorked" label="Not Worked" />}
+          {localInfo.worked && (
+            <Chip
+              variant="outlined"
+              size="small"
+              className="tagWorked"
+              label="Worked"
+              icon={<MenuBookIcon fontSize="inherit" />}
+            />
+          )}
+          {localInfo.notWorked && (
+            <Chip
+              variant="outlined"
+              size="small"
+              className="tagNotWorked"
+              label="Not Worked"
+              icon={<MenuBookIcon fontSize="inherit" />}
+            />
+          )}
         </>
       )}
     </Typography>

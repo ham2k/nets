@@ -4,7 +4,15 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from './components/pages/HomePage'
 import NetPage from './components/pages/NetPage'
 import SettingsPage from './components/pages/SettingsPage'
-import { createMuiTheme, CssBaseline, lighten, makeStyles, responsiveFontSizes, ThemeProvider } from '@material-ui/core'
+import {
+  createMuiTheme,
+  CssBaseline,
+  lighten,
+  makeStyles,
+  responsiveFontSizes,
+  ThemeProvider,
+  Typography,
+} from '@material-ui/core'
 import { HelmetProvider } from 'react-helmet-async'
 
 import './global.css'
@@ -14,6 +22,7 @@ const baseTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#546e7a',
+      light: lighten('#546e7a', 0.7),
     },
     spotting_self: {
       main: '#0fa3a3',
@@ -91,7 +100,7 @@ function App() {
       <HelmetProvider>
         <CssBaseline />
         <ThemeProvider theme={theme}>
-          <div className={classes.root}>
+          <Typography component="div" className={classes.root}>
             <Switch>
               <Route path="/app/settings">
                 <SettingsPage />
@@ -103,7 +112,7 @@ function App() {
                 <HomePage />
               </Route>
             </Switch>
-          </div>
+          </Typography>
         </ThemeProvider>
       </HelmetProvider>
     </>

@@ -10,10 +10,9 @@ import { netCheckinsSelector, netLocalSelector } from '../../../data/netlogger'
 import { upcasedCallsignSelector, huntingSelector } from '../../../data/settings'
 import { logSelector } from '../../../data/logs'
 
-import CheckinCard from '../../checkins/CheckinCard'
+import CheckinsList from '../../checkins/CheckinsList'
 import NetControls from './components/NetControls'
 
-import './Checkins.css'
 import baseStyles from '../../../styles/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -43,15 +42,12 @@ export default function NetCheckinsSection({ net, className, style, expanded, on
   )
 
   const classes = useStyles()
-  const [openCheckin, setOpenCheckin] = useState()
 
   const hunting = useSelector(huntingSelector())
   const checkins = useSelector(netCheckinsSelector(net.slug))
   const local = useSelector(netLocalSelector(net.slug))
   const operator = useSelector(upcasedCallsignSelector())
   const log = useSelector(logSelector())
-
-  const passthru = { net, checkins, operator, log, local, hunting }
 
   let filteredCheckins
   if (currentView === 'wanted') {
@@ -103,18 +99,17 @@ export default function NetCheckinsSection({ net, className, style, expanded, on
       </AccordionSummary>
 
       <AccordionDetails className={`view-${currentView}`} style={{ xbackgroundColor: '#d9d9d9' }}>
-        {filteredCheckins.map((checkin, index) => (
-          <CheckinCard
-            key={checkin.SerialNo}
-            {...passthru}
-            checkin={checkin}
-            index={index}
-            isOpen={openCheckin === checkin.SerialNo}
-            onClick={() => setOpenCheckin(openCheckin === checkin.SerialNo ? null : checkin.SerialNo)}
-            operatingRef={operatingRef}
-            operatorRef={operatorRef}
-          />
-        ))}
+        <CheckinsList
+          className={classes.checkinsList}
+          checkins={filteredCheckins}
+          net={net}
+          hunting={hunting}
+          local={local}
+          operator={operator}
+          log={log}
+          operatingRef={operatingRef}
+          operatorRef={operatorRef}
+        />
       </AccordionDetails>
     </Accordion>
   )
