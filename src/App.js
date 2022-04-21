@@ -1,6 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import * as Rollback from '@rollbar/react' // <-- Provider imports 'rollbar' for us
+
 import HomePage from './components/pages/HomePage'
 import NetPage from './components/pages/NetPage'
 import SettingsPage from './components/pages/SettingsPage'
@@ -83,29 +85,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const rollbarConfig = {
+  accessToken: '3ad53c4d044749ce82b47496bb6902d7',
+  payload: {
+    environment: process.env.NODE_ENV,
+  },
+}
+
 function App() {
   const classes = useStyles()
 
   return (
     <>
-      <HelmetProvider>
-        <CssBaseline />
-        <ThemeProvider theme={theme}>
-          <div className={classes.root}>
-            <Switch>
-              <Route path="/app/settings">
-                <SettingsPage />
-              </Route>
-              <Route path="/:slug">
-                <NetPage />
-              </Route>
-              <Route path="/">
-                <HomePage />
-              </Route>
-            </Switch>
-          </div>
-        </ThemeProvider>
-      </HelmetProvider>
+      <Rollback.Provider config={rollbarConfig}>
+        <Rollback.ErrorBoundary>
+          <HelmetProvider>
+            <CssBaseline />
+            <ThemeProvider theme={theme}>
+              <div className={classes.root}>
+                <Switch>
+                  <Route path="/app/settings">
+                    <SettingsPage />
+                  </Route>
+                  <Route path="/:slug">
+                    <NetPage />
+                  </Route>
+                  <Route path="/">
+                    <HomePage />
+                  </Route>
+                </Switch>
+              </div>
+            </ThemeProvider>
+          </HelmetProvider>
+        </Rollback.ErrorBoundary>
+      </Rollback.Provider>
     </>
   )
 }
