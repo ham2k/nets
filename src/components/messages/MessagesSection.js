@@ -10,6 +10,7 @@ import { netSelector, netCheckinsSelector, netIMsSelector, postMessageToNet } fr
 import { upcasedCallsignSelector, nameSelector } from '../../data/settings'
 
 import Message from './Message'
+import { useRollbar } from '@rollbar/react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +61,7 @@ export default function MessagesSection({ slug, className, style }) {
   const messages = useSelector(netIMsSelector(slug)) || []
   const operator = useSelector(upcasedCallsignSelector())
   const operatorName = useSelector(nameSelector())
+  const rollbar = useRollbar()
 
   const [message, setMessage] = useState('')
 
@@ -129,6 +131,7 @@ export default function MessagesSection({ slug, className, style }) {
               onKeyDown={(ev) => {
                 if (ev.key === 'Enter') {
                   dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
+                  // rollbar.info(`${operator}-${operatorName} sent a message to ${net.slug}`)
                   setMessage('')
                 }
               }}
@@ -137,6 +140,7 @@ export default function MessagesSection({ slug, className, style }) {
               className={classes.messageSubmit}
               onClick={() => {
                 dispatch(postMessageToNet(net.slug, `${operator}-${operatorName}`, message))
+                // rollbar.info(`${operator}-${operatorName} sent a message to ${net.slug}`)
                 setMessage('')
               }}
             >

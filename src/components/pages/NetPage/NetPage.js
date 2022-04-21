@@ -26,7 +26,6 @@ export default function NetPage() {
 
   const { slug } = useParams()
   let net = useSelector(slug === '*new*' ? newNetSelector(slug) : netSelector(slug))
-
   useEffect(() => {
     dispatch(setUI({ currentSlug: net?.slug }))
   }, [dispatch, net?.slug])
