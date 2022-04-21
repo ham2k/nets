@@ -4,7 +4,7 @@ import { Redirect, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 import { Helmet } from 'react-helmet-async'
 import { makeStyles } from '@material-ui/core'
-import SplitPane from 'react-split-pane'
+import SplitPane from '../../../utils/split-pane/SplitPane'
 
 import { netSelector, newNetSelector } from '../../../data/netlogger'
 import { setUI } from '../../../data/ui'
