@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
+import { useRollbar } from '@rollbar/react'
 
 import { Container, IconButton, makeStyles } from '@material-ui/core'
 import SendIcon from '@material-ui/icons/Send'
@@ -10,7 +11,6 @@ import { netSelector, netCheckinsSelector, netIMsSelector, postMessageToNet } fr
 import { upcasedCallsignSelector, nameSelector } from '../../data/settings'
 
 import Message from './Message'
-// import { useRollbar } from '@rollbar/react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +61,7 @@ export default function MessagesSection({ slug, className, style }) {
   const messages = useSelector(netIMsSelector(slug)) || []
   const operator = useSelector(upcasedCallsignSelector())
   const operatorName = useSelector(nameSelector())
-  // const rollbar = useRollbar()
+  const rollbar = useRollbar()
 
   const [message, setMessage] = useState('')
 
@@ -106,6 +106,11 @@ export default function MessagesSection({ slug, className, style }) {
     }
   }, [messagesElement, atBottom])
 
+  useEffect(() => {
+    if (rollbar && operator && net.slug) {
+      rollbar.info(`Message Window for ${operator}-${operatorName} on ${net.slug}`)
+    }
+  }, [rollbar, operator, operatorName, net.slug])
   const passthru = { net, operator, checkins }
 
   return (
