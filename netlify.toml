@@ -12,85 +12,85 @@
 
 [[redirects]]
   from = "/ham2k-proxy/netlogger.org/*"
-  to = "http://netlogger.org/:splat"
+  to = "https://netlogger.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/www.netlogger.org/*"
-  to = "http://www.netlogger.org/:splat"
+  to = "https://www.netlogger.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/netlogger1.org/*"
-  to = "http://netlogger1.org/:splat"
+  to = "https://netlogger1.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/www.netlogger1.org/*"
-  to = "http://www.netlogger1.org/:splat"
+  to = "https://www.netlogger1.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/netlogger2.org/*"
-  to = "http://netlogger2.org/:splat"
+  to = "https://netlogger2.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/www.netlogger2.org/*"
-  to = "http://www.netlogger2.org/:splat"
+  to = "https://www.netlogger2.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/netlogger3.org/*"
-  to = "http://netlogger3.org/:splat"
+  to = "https://netlogger3.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/www.netlogger3.org/*"
-  to = "http://www.netlogger3.org/:splat"
+  to = "https://www.netlogger3.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/netlogger4.org/*"
-  to = "http://netlogger4.org/:splat"
+  to = "https://netlogger4.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/www.netlogger4.org/*"
-  to = "http://www.netlogger4.org/:splat"
+  to = "https://www.netlogger4.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/netlogger5.org/*"
-  to = "http://netlogger5.org/:splat"
+  to = "https://netlogger5.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/www.netlogger5.org/*"
-  to = "http://www.netlogger5.org/:splat"
+  to = "https://www.netlogger5.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/netlogger6.org/*"
-  to = "http://netlogger6.org/:splat"
+  to = "https://netlogger6.org/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/ham2k-proxy/www.netlogger6.org/*"
-  to = "http://www.netlogger6.org/:splat"
+  to = "https://www.netlogger6.org/:splat"
   status = 200
   force = true
 
